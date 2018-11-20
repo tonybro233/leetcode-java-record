@@ -21,7 +21,7 @@ public class Predict_the_Winner {
     /*
         动态规划
         D[i][j]表示数组内i~j区间中按照规则能够取得的最大分数
-        S[i][i]表示数组内i~j区间中的总和
+        sum[i][i]表示数组内i~j区间中的总和
         那么D[i][j] = max(sum[i+1][j] - D[i+1][j] + nums[i], sum[i][j-1] - D[i][j-1] + nums[j])
         而D[i][i] = nums[i]
      */
