@@ -32,7 +32,7 @@ public class Evaluate_Reverse_Polish_Notation {
             try{
                 int num = Integer.parseInt(token);
                 valStack.addLast(num);
-            } catch (Exception e){
+            } catch (NumberFormatException ignore){
                 Integer one = valStack.pollLast();
                 Integer two = valStack.pollLast();
                 int val = 0;
