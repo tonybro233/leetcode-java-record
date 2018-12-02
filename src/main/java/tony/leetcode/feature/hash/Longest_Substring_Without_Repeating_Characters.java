@@ -2,6 +2,18 @@ package tony.leetcode.feature.hash;
 
 import java.util.*;
 
+// 3 无重复字符的最长子串
+// 给定一个字符串，找出不含有重复字符的最长子串的长度。
+
+// 输入: "abcabcbb"
+// 输出: 3
+// 解释: 无重复字符的最长子串是 "abc"，其长度为 3。
+
+// 输入: "pwwkew"
+// 输出: 3
+// 解释: 无重复字符的最长子串是 "wke"，其长度为 3。
+// 请注意，答案必须是一个子串，"pwke" 是一个子序列 而不是子串。
+
 public class Longest_Substring_Without_Repeating_Characters {
 
     /**
@@ -24,6 +36,7 @@ public class Longest_Substring_Without_Repeating_Characters {
         System.out.println(size);
     }
 
+    // 维护当前无重复子串的尾部位置，读取下一个字符时，如果有重复，则砍掉重复数字之前的内容。没有重复则更新最大值
     public int lengthOfLongestSubstring(String s) {
         String re = "";
         StringBuilder sb = new StringBuilder();
@@ -31,10 +44,7 @@ public class Longest_Substring_Without_Repeating_Characters {
         int max = 0;
         int count = 0;
         int bottom = 0;
-        List<Character> list = new LinkedList<Character>();
-        //LinkedHashSet<Character> lset = new LinkedHashSet<Character>();
-        Map<Character, Integer> map = new HashMap<Character, Integer>();
-        int pos = -1;
+        Map<Character, Integer> map = new HashMap<>();
         for (int i =0 ; i < chars.length; i++){
             Character ea = chars[i];
             Integer integer = map.get(ea);
