@@ -16,12 +16,6 @@ import java.util.*;
 
 public class Longest_Substring_Without_Repeating_Characters {
 
-    public static void main(String[] args){
-        Longest_Substring_Without_Repeating_Characters go = new Longest_Substring_Without_Repeating_Characters();
-        int size = go.lengthOfLongestSubstring("tmmzuxt");
-        System.out.println(size);
-    }
-
     // 维护当前无重复子串的尾部位置，读取下一个字符时，如果有重复，则砍掉重复数字之前的内容。没有重复则更新最大值
     public int lengthOfLongestSubstring(String s) {
         String re = "";
@@ -46,5 +40,11 @@ public class Longest_Substring_Without_Repeating_Characters {
         }
 
         return max;
+    }
+
+    public static void main(String[] args){
+        Longest_Substring_Without_Repeating_Characters go = new Longest_Substring_Without_Repeating_Characters();
+        int size = go.lengthOfLongestSubstring("tmmzuxt");
+        System.out.println(size);
     }
 }
