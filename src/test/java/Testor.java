@@ -169,4 +169,17 @@ public class Testor {
         System.out.println(-i-1); // 大于等于key的第一个位置
     }
 
+    @Test
+    public void testIterator(){
+        TreeSet<Integer> set = new TreeSet<>();
+        set.add(3);
+        set.add(2);
+        set.add(1);
+        Iterator<Integer> iterator = set.iterator();
+        System.out.println(iterator.next());
+        iterator.remove();
+
+        System.out.println(set.iterator().next());
+    }
+
 }
