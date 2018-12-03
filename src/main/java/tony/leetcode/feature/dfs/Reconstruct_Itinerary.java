@@ -28,12 +28,12 @@ public class Reconstruct_Itinerary {
 
     public List<String> findItinerary(String[][] tickets) {
         List<String> result = new ArrayList<>();
-        // 使用map构建图结构，value类型使用treeset保证顺序（不过这需要保证没有相同的机票，可以AC说明确实没有）
-        Map<String, TreeSet<String>> map = new HashMap<>();
+        // 使用map构建图结构，value类型使用PriorityQueue保证顺序
+        Map<String, PriorityQueue<String>> map = new HashMap<>();
         for (String[] ticket : tickets){
-            TreeSet<String> treeSet = map.getOrDefault(ticket[0], new TreeSet<>());
-            treeSet.add(ticket[1]);
-            map.put(ticket[0], treeSet);
+            PriorityQueue<String> queue = map.getOrDefault(ticket[0], new PriorityQueue<>());
+            queue.add(ticket[1]);
+            map.put(ticket[0], queue);
         }
 
         // 使用dfs得到结果的反向值
@@ -42,13 +42,13 @@ public class Reconstruct_Itinerary {
         return result;
     }
 
-    private void dfs(Map<String, TreeSet<String>> map, String dest, List<String> result){
-        TreeSet<String> set = map.get(dest);
+    private void dfs(Map<String, PriorityQueue<String>> que, String dest, List<String> result){
+        PriorityQueue<String> set = que.get(dest);
         while (set != null && set.size() > 0){
             Iterator<String> it = set.iterator();
             String next = it.next();
             it.remove();
-            dfs(map, next, result);
+            dfs(que, next, result);
         }
         // 后置加入所以结果是反的
         result.add(dest);
