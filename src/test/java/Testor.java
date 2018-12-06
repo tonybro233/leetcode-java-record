@@ -182,4 +182,23 @@ public class Testor {
         System.out.println(set.iterator().next());
     }
 
+    @Test
+    public void testIterator2(){
+        Deque<Integer> list = new LinkedList<>();
+        for (int i = 1; i <= 10; i++){
+            list.add(i);
+        }
+        Iterator<Integer> iterator = list.iterator();
+
+        while (iterator.hasNext()){
+            iterator.next();
+            iterator.remove();
+            if (!iterator.hasNext()){
+                break;
+            } else {
+                iterator.next();
+            }
+        }
+        System.out.println(list);
+    }
 }
