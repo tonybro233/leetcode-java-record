@@ -38,6 +38,38 @@ import java.util.*;
 
 public class Frog_Jump {
 
+    public boolean canCross4(int[] stones) {
+        for (int i = 3; i < stones.length; i++) {
+            if (stones[i] > 2 * stones[i - 1]) {
+                return false;
+            }
+        }
+        return stones[1] == 1 && dfs(1, 1, stones);
+    }
+
+    /**
+     * @param i 石头下标
+     * @param k 步数
+     * @param stones 石头数组
+     */
+    private boolean dfs(int i, int k, int[] stones) {
+        if (i < 0 || k <= 0) {
+            return false;
+        }
+        if (i == stones.length - 1) {
+            return true;
+        }
+        int plusOne = Arrays.binarySearch(stones, stones[i] + k + 1);
+        int equalOne = Arrays.binarySearch(stones, stones[i] + k);
+        int minusOne;
+        if (k == 1) {
+            minusOne = -1;
+        } else {
+            minusOne = Arrays.binarySearch(stones, stones[i] + k - 1);
+        }
+        return dfs(plusOne, k + 1, stones) || dfs(equalOne, k, stones) || dfs(minusOne, k - 1, stones);
+    }
+
     // 石头的值是不重复的
     // 使用石头值和到达石头的步数集合作为map进行操作
     public boolean canCross3(int[] stones) {
