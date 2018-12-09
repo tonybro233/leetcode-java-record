@@ -1,4 +1,4 @@
-package tony.leetcode.level.simple;
+package tony.leetcode.feature.math;
 
 import java.util.ArrayList;
 import java.util.List;
