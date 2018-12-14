@@ -1,5 +1,9 @@
 package tony.leetcode.level.simple;
 
+import tony.util.TreeNode;
+
+import java.util.*;
+
 // 101
 // 给定一个二叉树，检查它是否是镜像对称的。
 //
@@ -20,10 +24,6 @@ package tony.leetcode.level.simple;
 // 说明:
 //
 // 如果你可以运用递归和迭代两种方法解决这个问题，会很加分。
-
-import tony.util.TreeNode;
-
-import java.util.*;
 
 public class Symmetric_Tree {
 

@@ -21,7 +21,7 @@ public class Decode_String {
         int num = 0;
         Deque<StringBuilder> builders = new ArrayDeque<>();
         Deque<Integer> ints = new ArrayDeque<>();
-        StringBuilder tmp = new StringBuilder();
+        StringBuilder tmp = new StringBuilder(); // 处于操作状态的字符序列
         for (int i = 0; i < chars.length; i++){
             if (Character.isDigit(chars[i])){
                 num = num * 10 + (chars[i] - '0');
@@ -32,11 +32,11 @@ public class Decode_String {
                 num = 0;
             } else if (']' == chars[i]){
                 String str = tmp.toString();
-                for (int j = 0; j < ints.peekLast();j++){
-                    builders.peekLast().append(str);
-                }
                 tmp = builders.pollLast();
-                ints.pollLast();
+                Integer lastInt = ints.pollLast();
+                for (int j = 0; j < lastInt;j++){
+                    tmp.append(str);
+                }
             } else {
                 tmp.append(chars[i]);
             }
