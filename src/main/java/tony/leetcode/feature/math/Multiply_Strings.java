@@ -38,7 +38,7 @@ public class Multiply_Strings {
         for (int i = 0; i < d.length; i++) {
             int digit = d[i] % 10;
             int carry = d[i] / 10;
-            sb.insert(0, digit);
+            sb.insert(0, digit); // 这个insert方法值得一记
             if (i < d.length - 1) {
                 d[i + 1] += carry;
             }
