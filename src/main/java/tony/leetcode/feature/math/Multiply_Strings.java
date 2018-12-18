@@ -40,7 +40,7 @@ public class Multiply_Strings {
             int carry = d[i] / 10;
             sb.insert(0, digit); // 这个insert方法值得一记
             if (i < d.length - 1) {
-                d[i + 1] += carry;
+                d[i + 1] += carry; // 数组足够长，最后一位是不会溢出的
             }
         }
         while (sb.length() > 0 && sb.charAt(0) == '0') {
@@ -108,7 +108,7 @@ public class Multiply_Strings {
     }
 
     public static void main(String[] args){
-        String multiply = new Multiply_Strings().multiply("123", "456");
+        String multiply = new Multiply_Strings().multiply("89", "99");
         System.out.println(multiply);
     }
 }
