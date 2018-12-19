@@ -24,7 +24,7 @@ public class Permutations_II {
         if (nums.length == 0) {
             return null;
         }
-        Arrays.sort(nums);
+        Arrays.sort(nums); // 先进行排序方便执行跳过
         getResult(result,nums,new ArrayList<>(),0, new int[nums.length]);
         return result;
     }
@@ -42,7 +42,7 @@ public class Permutations_II {
                 pos[i] = 0;
                 ans.remove(num);
                 //在这里判断之后的数字是否一样，如果一样，就直接跳过。
-                while(i<nums.length-1 && nums[i] == nums[i+1]){
+                while(i < nums.length-1 && nums[i] == nums[i+1]){
                     i++;
                 }
             }

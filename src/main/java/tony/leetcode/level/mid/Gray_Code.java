@@ -48,6 +48,7 @@ public class Gray_Code {
         return res;
     }
 
+    // 回溯解法
     public List<Integer> grayCode(int n) {
         List<Integer> result = new ArrayList<>();
         Set<Integer> record = new HashSet<>();
