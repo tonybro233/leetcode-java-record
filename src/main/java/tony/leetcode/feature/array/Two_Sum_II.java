@@ -1,5 +1,6 @@
 package tony.leetcode.feature.array;
 
+import java.util.Arrays;
 
 // 167 两数之和 II - 输入有序数组
 // 给定一个已按照升序排列 的有序数组，找到两个数使得它们相加之和等于目标数。
@@ -15,8 +16,6 @@ package tony.leetcode.feature.array;
 // 输入: numbers = [2, 7, 11, 15], target = 9
 // 输出: [1,2]
 // 解释: 2 与 7 之和等于目标数 9 。因此 index1 = 1, index2 = 2 。
-
-import java.util.Arrays;
 
 public class Two_Sum_II {
 

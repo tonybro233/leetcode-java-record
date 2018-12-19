@@ -1,4 +1,4 @@
-package tony.leetcode.feature.array;
+package tony.leetcode.feature.array.double_pointer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +15,19 @@ import java.util.List;
 // 尽量减少操作次数。
 
 public class Move_Zeroes {
+
+    // 更加优雅的写法，核心思想是双指针
+    public void moveZeroes2(int[] nums) {
+        int index = 0;
+        for(int i = 0; i < nums.length; i++) {
+            if(nums[i] != 0) {
+                nums[index++] = nums[i];
+            }
+        }
+        for(int i = index; i < nums.length; i++) {
+            nums[i] = 0;
+        }
+    }
 
     public void moveZeroes(int[] nums) {
         List<Integer> zeros = new ArrayList<>();
@@ -46,16 +59,4 @@ public class Move_Zeroes {
         }
     }
 
-    // 更加优雅的写法，核心思想是双指针
-    public void moveZeroes2(int[] nums) {
-        int index = 0;
-        for(int i = 0; i < nums.length; i++) {
-            if(nums[i] != 0) {
-                nums[index++] = nums[i];
-            }
-        }
-        for(int i = index; i < nums.length; i++) {
-            nums[i] = 0;
-        }
-    }
 }
