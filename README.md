@@ -1,2 +1,5 @@
 # leetcode-java-record
-record the leetcode train
+- leetcode record
+- basic data structure
+- basic algorithm
+- design pattern
