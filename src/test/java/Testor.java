@@ -201,4 +201,14 @@ public class Testor {
         }
         System.out.println(list);
     }
+
+    @Test
+    public void testEqual(){
+        String s1 = "1234";
+        String s2 = "1234";
+        System.out.println(s1 == s2);
+        Integer i1 = 128;
+        Integer i2 = 128;
+        System.out.println(i1 == i2);
+    }
 }
