@@ -47,6 +47,10 @@ public class DirectionGraph {
         return adj[v];
     }
 
+    public List<Integer>[] getAdj(){
+        return this.adj;
+    }
+
     // 返回反向图
     public DirectionGraph reverse() {
         DirectionGraph R = new DirectionGraph(this.V);
