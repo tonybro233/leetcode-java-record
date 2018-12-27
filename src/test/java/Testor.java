@@ -211,4 +211,17 @@ public class Testor {
         Integer i2 = 128;
         System.out.println(i1 == i2);
     }
+
+    @Test
+    public void testContinueOut(){
+        int i = 0, j = 0;
+        out : for (i =0; i < 10;i++){
+            for (j = 0; j < 10; j++){
+                if (j+i == 2){
+                    break out;
+                }
+            }
+        }
+        System.out.println("i:"+i+" j:"+j);
+    }
 }
