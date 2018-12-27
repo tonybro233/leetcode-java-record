@@ -20,8 +20,9 @@ public class Ransom_Note {
 
     // 注意利用字符候选者有限这个条件
     public boolean canConstruct2(String ransomNote, String magazine) {
-        int l1 = ransomNote.length();
-        int l2 = magazine.length();
+        if (ransomNote.length() > magazine.length()){
+            return false;
+        }
         int[] count1 = new int[26];
         int[] count2 = new int[26];
         for (char c : ransomNote.toCharArray()) {
