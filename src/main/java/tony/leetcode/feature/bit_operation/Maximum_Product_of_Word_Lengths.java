@@ -1,4 +1,4 @@
-package tony.leetcode.level.mid;
+package tony.leetcode.feature.bit_operation;
 
 // 318. 最大单词长度乘积
 // 给定一个字符串数组 words，找到 length(word[i]) * length(word[j]) 的最大值，
