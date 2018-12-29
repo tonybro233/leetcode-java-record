@@ -75,7 +75,7 @@ public class Pascal_Triangle {
     }
 
     // 计算 C(n,m) n个数取m个的组合数
-    //private static Integer combine(int n , int m){
+    //private static Integer structure(int n , int m){
     //    if (m > n)
     //        return 0;
     //    // 太容易越界
