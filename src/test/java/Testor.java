@@ -224,4 +224,12 @@ public class Testor {
         }
         System.out.println("i:"+i+" j:"+j);
     }
+
+    @Test
+    public void testNegativeZero(){
+        int i = 0;
+        int j = -0;
+        System.out.println(i+" : "+ 3*i);
+        System.out.println(j+" : "+ 3*j);
+    }
 }
