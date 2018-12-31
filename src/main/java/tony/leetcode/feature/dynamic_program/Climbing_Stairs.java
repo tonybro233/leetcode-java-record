@@ -8,7 +8,6 @@ package tony.leetcode.feature.dynamic_program;
 // 注意：给定 n 是一个正整数。
 //
 // 示例 1：
-//
 // 输入： 2
 // 输出： 2
 // 解释： 有两种方法可以爬到楼顶。

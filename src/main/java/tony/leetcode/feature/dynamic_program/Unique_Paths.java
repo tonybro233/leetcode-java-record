@@ -1,21 +1,16 @@
 package tony.leetcode.feature.dynamic_program;
 
+// 62
+// 一个机器人位于一个 m x n 网格的左上角 （起始点在下图中标记为“Start” ）。
+// 机器人每次只能向下或者向右移动一步。机器人试图达到网格的右下角（在下图中标记为“Finish”）。
+// 问总共有多少条不同的路径？
+// m,n 值均不超过100
+
 public class Unique_Paths {
 
-    // 62
-    // 一个机器人位于一个 m x n 网格的左上角 （起始点在下图中标记为“Start” ）。
-    // 机器人每次只能向下或者向右移动一步。机器人试图达到网格的右下角（在下图中标记为“Finish”）。
-    // 问总共有多少条不同的路径？
-    // m,n 值均不超过100
-
-    public static void main(String[] args){
-        Unique_Paths go = new Unique_Paths();
-        int re = go.uniquePaths(3,2);
-        System.out.println(re);
-    }
+    // D(m,n) = D(m,n-1)+D(m-1,n)
 
     public int uniquePaths(int m, int n) {
-        // D(m,n) = D(m,n-1)+D(m-1,n)
         if (m == 0){
             return n;
         }
@@ -45,5 +40,11 @@ public class Unique_Paths {
         }
 
         return record[n-1][m-1];
+    }
+
+    public static void main(String[] args){
+        Unique_Paths go = new Unique_Paths();
+        int re = go.uniquePaths(3,2);
+        System.out.println(re);
     }
 }

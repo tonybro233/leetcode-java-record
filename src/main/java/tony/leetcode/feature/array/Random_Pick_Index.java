@@ -1,5 +1,6 @@
 package tony.leetcode.feature.array;
 
+import java.util.*;
 
 // 398. 随机数索引
 // 给定一个可能含有重复元素的整数数组，要求随机输出给定的数字的索引。
@@ -17,8 +18,6 @@ package tony.leetcode.feature.array;
 //
 // // pick(1) 应该返回 0。因为只有nums[0]等于1。
 // solution.pick(1);
-
-import java.util.*;
 
 public class Random_Pick_Index {
 

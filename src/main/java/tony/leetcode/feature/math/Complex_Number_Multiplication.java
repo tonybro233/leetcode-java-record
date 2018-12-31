@@ -3,15 +3,14 @@ package tony.leetcode.feature.math;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+// 537
+// 给定两个表示复数的字符串。
+// 返回表示它们乘积的字符串。注意，根据定义 i2 = -1 。
+
+// 输入: "1+-1i", "1+-1i"
+// 输出: "0+-2i"
+
 public class Complex_Number_Multiplication {
-
-    // 537
-    // 给定两个表示复数的字符串。
-    // 返回表示它们乘积的字符串。注意，根据定义 i2 = -1 。
-
-    // 输入: "1+-1i", "1+-1i"
-    // 输出: "0+-2i"
-
 
     private static final Pattern pattern = Pattern.compile("^(-*\\d+)\\+(-*\\d+)i$");
 

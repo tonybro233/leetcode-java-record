@@ -1,20 +1,13 @@
 package tony.leetcode.feature.dynamic_program;
 
+// 5
+// 给定一个字符串 s，找到 s 中最长的回文子串。你可以假设 s 的最大长度为1000。
+
+// 输入: "babad"
+// 输出: "bab"
+// 注意: "aba"也是一个有效答案。
+
 public class Longest_Palindromic_Substring {
-
-    // 5
-    // 给定一个字符串 s，找到 s 中最长的回文子串。你可以假设 s 的最大长度为1000。
-
-    // 输入: "babad"
-    // 输出: "bab"
-    // 注意: "aba"也是一个有效答案。
-
-
-    public static void main(String[] args){
-        Longest_Palindromic_Substring go = new Longest_Palindromic_Substring();
-        //int size = go.lengthOfLongestSubstring("tmmzuxt");
-        //System.out.println(size);
-    }
 
     /**
      * 将 D[i,j] 表示从i到j的范围是否是一个回文串
@@ -69,8 +62,9 @@ public class Longest_Palindromic_Substring {
      */
     public String longestPalindrome2(String s) {
         int len = s.length();
-        if (len < 2)
+        if (len < 2) {
             return s;
+        }
 
         for (int i = 0; i < len-1; i++) {
             extendPalindrome(s, i, i);  // .. b a b ..
@@ -88,5 +82,11 @@ public class Longest_Palindromic_Substring {
             lo = j + 1;
             maxLen = k - j - 1;
         }
+    }
+
+    public static void main(String[] args){
+        Longest_Palindromic_Substring go = new Longest_Palindromic_Substring();
+        //int size = go.lengthOfLongestSubstring("tmmzuxt");
+        //System.out.println(size);
     }
 }
