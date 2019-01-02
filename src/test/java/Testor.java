@@ -232,4 +232,10 @@ public class Testor {
         System.out.println(i+" : "+ 3*i);
         System.out.println(j+" : "+ 3*j);
     }
+
+
+    @Test
+    public void testBit(){
+        System.out.println(Integer.numberOfTrailingZeros(2));
+    }
 }
