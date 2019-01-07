@@ -1,5 +1,7 @@
 package tony.leetcode.feature.linkedlist;
 
+import tony.util.ListNode;
+
 // 92
 // 反转从位置 m 到 n 的链表。请使用一趟扫描完成反转。
 //
@@ -10,8 +12,6 @@ package tony.leetcode.feature.linkedlist;
 //
 // 输入: 1->2->3->4->5->NULL, m = 2, n = 4
 // 输出: 1->4->3->2->5->NULL
-
-import tony.util.ListNode;
 
 public class Reverse_Linked_List_II {
 

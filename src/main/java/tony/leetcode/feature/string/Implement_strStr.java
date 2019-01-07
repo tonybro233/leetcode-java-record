@@ -15,6 +15,7 @@ package tony.leetcode.feature.string;
 // 输入: haystack = "aaaaa", needle = "bba"
 // 输出: -1
 // 对于本题而言，当 needle 是空字符串时我们应当返回 0 。
+
 public class Implement_strStr {
 
     // 讲道理应该用kmp算法

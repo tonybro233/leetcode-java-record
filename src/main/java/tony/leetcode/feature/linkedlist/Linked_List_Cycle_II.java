@@ -23,12 +23,10 @@ public class Linked_List_Cycle_II {
         }
         ListNode slow = head, fast = head;
         boolean got = false;
-        int count = 0;
         // 快慢指针确定是否有环
         while (slow.next != null && fast.next != null && fast.next.next != null){
             slow = slow.next;
             fast = fast.next.next;
-            count++;
             if (slow.equals(fast)){
                 got = true;
                 break;

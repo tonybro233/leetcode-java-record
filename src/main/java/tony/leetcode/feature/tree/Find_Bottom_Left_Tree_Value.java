@@ -5,11 +5,11 @@ import tony.util.TreeNode;
 import java.util.ArrayDeque;
 import java.util.Deque;
 
-public class Find_Bottom_Left_Tree_Value {
+// 513
+// 给定一个二叉树，在树的最后一行找到最左边的值。
+// 注意: 您可以假设树（即给定的根节点）不为 NULL。
 
-    // 513
-    // 给定一个二叉树，在树的最后一行找到最左边的值。
-    // 注意: 您可以假设树（即给定的根节点）不为 NULL。
+public class Find_Bottom_Left_Tree_Value {
 
     // 很明显的BFS，但是需要记录层数
 
