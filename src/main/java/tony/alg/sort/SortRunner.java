@@ -14,7 +14,7 @@ public class SortRunner {
         }
         System.out.println("Clazz : "+ args[0] + "\n");
 
-        Integer[] intlist = new Integer[10];
+        Integer[] intlist = new Integer[15];
         Random ra = new Random();
         System.out.print("init array :\t");
         for (int i = 0; i < intlist.length ; i++) {
