@@ -1,4 +1,6 @@
-package tony.leetcode.level.mid;
+package tony.leetcode.feature.binary_search;
+
+import java.util.Arrays;
 
 // 33. 搜索旋转排序数组
 // 假设按照升序排序的数组在预先未知的某个点上进行了旋转。
@@ -15,8 +17,6 @@ package tony.leetcode.level.mid;
 // 示例 2:
 // 输入: nums = [4,5,6,7,0,1,2], target = 3
 // 输出: -1
-
-import java.util.Arrays;
 
 public class Search_in_Rotated_Sorted_Array {
 
