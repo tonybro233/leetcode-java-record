@@ -238,4 +238,20 @@ public class Testor {
     public void testBit(){
         System.out.println(Integer.numberOfTrailingZeros(2));
     }
+
+    @Test
+    public void testBitOperation(){
+        int a = 1 << 3;
+        int b = 1 << 4;
+        int All = 0xFFFF;
+        System.out.println("a:  \t"+Integer.toBinaryString(a));
+        System.out.println("~a:  \t"+Integer.toBinaryString(~a));
+        System.out.println("All:\t"+Integer.toBinaryString(All));
+        System.out.println("All^a:\t"+Integer.toBinaryString(All^a));
+        System.out.println("All^a^b:\t"+Integer.toBinaryString(All^a^b));
+        System.out.println("All&~a:\t"+Integer.toBinaryString(All&~a));
+        System.out.println("All&~a&~b:\t"+Integer.toBinaryString(All&~a&~b));
+    }
+
+
 }
