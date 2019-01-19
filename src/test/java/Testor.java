@@ -253,5 +253,15 @@ public class Testor {
         System.out.println("All&~a&~b:\t"+Integer.toBinaryString(All&~a&~b));
     }
 
+    @Test
+    public void testLetter(){
+        System.out.println(Character.isLetter('汉')); // true
+        System.out.println(Character.isAlphabetic('汉')); // true
+        System.out.println(Character.isAlphabetic('a')); // true
+        System.out.println(Character.isLowerCase('汉')); // false
+        System.out.println(Character.isUpperCase('汉')); // false
+        System.out.println(Character.getType('汉')); // 5 OTHER_LETTER
+    }
+
 
 }
