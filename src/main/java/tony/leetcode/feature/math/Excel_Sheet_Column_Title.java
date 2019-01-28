@@ -1,4 +1,4 @@
-package tony.leetcode.level.mid;
+package tony.leetcode.feature.math;
 
 // 168. Excel表列名称
 // 给定一个正整数，返回它在 Excel 表中相对应的列名称。
