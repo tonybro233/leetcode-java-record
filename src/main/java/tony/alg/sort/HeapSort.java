@@ -4,6 +4,13 @@ package tony.alg.sort;
 // 位置为K的节点，其父节点K/2向下取整，子节点为2K和2K+1
 // 注意位置为K的节点下标为K-1
 
+/**
+ * 堆排序
+ * 时间复杂度O(nlogn)
+ * 属于不稳定排序
+ *
+ * @param <T>
+ */
 public class HeapSort<T extends Comparable<T>> extends SortBase<T> {
 
     @Override

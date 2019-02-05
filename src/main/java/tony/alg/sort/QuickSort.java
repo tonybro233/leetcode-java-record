@@ -1,5 +1,12 @@
 package tony.alg.sort;
 
+/**
+ * 快速排序
+ * 平均时间复杂度O(nlogn)
+ * 属于不稳定排序
+ *
+ * @param <T>
+ */
 public class QuickSort<T extends Comparable<T>> extends SortBase<T> {
 
     @Override

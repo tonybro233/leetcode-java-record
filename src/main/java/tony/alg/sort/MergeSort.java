@@ -3,6 +3,14 @@ package tony.alg.sort;
 import java.util.LinkedList;
 import java.util.Queue;
 
+/**
+ * 归并排序
+ * 平均时间复杂度O(nlogn)
+ * 属于稳定排序
+ * 可以优化为TimSort
+ *
+ * @param <T>
+ */
 public class MergeSort<T extends Comparable<T>> extends SortBase<T> {
     @Override
     public void sort(T[] a) {

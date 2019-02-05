@@ -1,5 +1,12 @@
 package tony.alg.sort;
 
+/**
+ * 选择排序
+ * 平均时间复杂度O(n2)
+ * 属于不稳定排序
+ *
+ * @param <T>
+ */
 public class SelectionSort<T extends Comparable<T>> extends SortBase<T> {
 
     @Override

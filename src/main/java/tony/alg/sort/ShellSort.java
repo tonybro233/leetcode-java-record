@@ -1,5 +1,12 @@
 package tony.alg.sort;
 
+/**
+ * 希尔排序
+ * 平均时间复杂度O(n1.3)
+ * 属于不稳定排序
+ *
+ * @param <T>
+ */
 public class ShellSort<T extends Comparable<T>> extends SortBase<T> {
     @Override
     public void sort(T[] a) {

@@ -1,5 +1,12 @@
 package tony.alg.sort;
 
+/**
+ * 冒泡排序
+ * 平均时间复杂度O(n2)
+ * 属于稳定排序
+ *
+ * @param <T>
+ */
 public class BubbleSort<T extends Comparable<T>> extends SortBase<T> {
 
     @Override
