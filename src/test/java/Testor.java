@@ -1,5 +1,10 @@
 import org.junit.Test;
+import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
+import tony.util.ListNode;
 
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.MethodHandles;
+import java.lang.invoke.MethodType;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.*;
@@ -108,7 +113,7 @@ public class Testor {
     }
 
     @Test
-    public void testInfiniy(){
+    public void testInfinity(){
         double d1 = Float.POSITIVE_INFINITY;
         double d2 = Float.NEGATIVE_INFINITY;
         System.out.println(d1 == d2);
@@ -127,7 +132,7 @@ public class Testor {
     @Test
     public void testSplit(){
         // 开头的分隔符会分隔，末尾的不会
-        String to = ":8::3";
+        String to = ":8::3:";
         String[] split = to.split(":");
         // String collect = Arrays.stream(split).collect(Collectors.joining(","));
         // System.out.println(collect);
@@ -184,12 +189,13 @@ public class Testor {
 
     @Test
     public void testIterator2(){
-        Deque<Integer> list = new LinkedList<>();
+        List<Integer> list = new ArrayList<>();
         for (int i = 1; i <= 10; i++){
             list.add(i);
         }
         Iterator<Integer> iterator = list.iterator();
 
+        // 利用迭代器间隔删除List中的内容
         while (iterator.hasNext()){
             iterator.next();
             iterator.remove();
@@ -261,6 +267,19 @@ public class Testor {
         System.out.println(Character.isLowerCase('汉')); // false
         System.out.println(Character.isUpperCase('汉')); // false
         System.out.println(Character.getType('汉')); // 5 OTHER_LETTER
+    }
+
+    @Test
+    public void testMethodHandle() throws Throwable {
+        // 字节码层次的方法调用
+        ListNode node = new ListNode(10);
+        node.next = new ListNode(9);
+        MethodType methodType = MethodType.methodType(String.class);
+        MethodHandle handle = MethodHandles.lookup().findVirtual(ListNode.class, "toString", methodType);
+        // MethodHandle不可变
+        handle = handle.bindTo(node);
+        String str = (String) handle.invokeExact();
+        System.out.println(str);
     }
 
 
