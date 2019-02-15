@@ -17,6 +17,30 @@ package tony.leetcode.feature.binary_search;
 
 public class Search_a_2D_Matrix {
 
+    public boolean searchMatrix2(int[][] matrix, int target) {
+        int m = matrix.length;
+        if (m == 0){
+            return false;
+        }
+        int n = matrix[0].length;
+        if (n == 0){
+            return false;
+        }
+        int low = 0, high = m * n - 1;
+        while(low <= high){
+            int mid = (low + high) / 2;
+            // 直接求取行列
+            if(matrix[mid / n][mid % n] == target){
+                return true;
+            }else if(matrix[mid / n][mid % n] < target){
+                low = mid + 1;
+            }else{
+                high = mid - 1;
+            }
+        }
+        return false;
+    }
+
     public boolean searchMatrix(int[][] matrix, int target) {
         int row = matrix.length;
         if (row == 0){
