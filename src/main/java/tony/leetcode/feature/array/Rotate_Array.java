@@ -29,9 +29,9 @@ public class Rotate_Array {
     public void rotate(int[] nums, int k) {
         int n = nums.length;
         k %= n;
-        reverse(nums, 0, n - 1);
-        reverse(nums, 0, k - 1);
-        reverse(nums, k, n - 1);
+        reverse(nums, 0, n - 1); // 整个数组反向
+        reverse(nums, 0, k - 1); // 前k个数反向，相当于原本后k个数被挪到前面，且因为反向两次保持顺序不变
+        reverse(nums, k, n - 1); // 恢复原来0 ~ k-1个数的顺序
     }
 
     private void reverse(int[] nums, int begin, int end){
