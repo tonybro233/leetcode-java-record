@@ -1,4 +1,4 @@
-package tony.leetcode.feature.array;
+package tony.leetcode.feature.array.double_pointer;
 
 import java.util.Arrays;
 
