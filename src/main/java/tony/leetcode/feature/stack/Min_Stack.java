@@ -33,7 +33,7 @@ public class Min_Stack {
             assist = new node(i);
         } else {
             cursor = new node(i, cursor);
-            if (i < assist.val){
+            if (i <= assist.val){
                 assist = new node(i, assist); // 辅助节点（本身从大到小）
             }
         }
