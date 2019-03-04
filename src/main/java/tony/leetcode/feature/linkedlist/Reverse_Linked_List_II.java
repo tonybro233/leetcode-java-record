@@ -28,11 +28,11 @@ public class Reverse_Linked_List_II {
         for (int i = m; i < n; i++) {
             // 表示每次移动一个节点到前面
             temp = cur.next;
-            cur.next = temp.next;
+            cur.next = cur.next.next;
             temp.next = pointer.next;
             pointer.next = temp;
         }
-        return pointer.next;
+        return aux.next;
     }
 
     // 写的什么屎玩意儿
