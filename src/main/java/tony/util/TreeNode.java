@@ -1,7 +1,6 @@
 package tony.util;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 /**
  * TreeNode is the node of a binary tree.
@@ -9,8 +8,6 @@ import java.util.List;
  *     val
  *     / \
  *  left right
- *
- * @author Wei SHEN
  */
 public class TreeNode {
 
@@ -30,48 +27,67 @@ public class TreeNode {
      */
     @Override
     public String toString() {
-        return bfs().toString();
+        return serialize().toString();
     }
 
-    /**
-     * Parse the tree in BFS order
-     * @return List of Integer
-     *
-     * For example, given the following tree,
-     *      a
-     *     / \
-     *    b  null
-     * output = [[a],[b,null]]
-     * null node will be listed in the output
-     */
-    private List<List<Integer>> bfs() {
+    private List<List<Integer>> serialize() {
         List<List<Integer>> res = new ArrayList<List<Integer>>();
-        List<TreeNode> buffer = new ArrayList<>();
-        buffer.add(this);
-        while (!buffer.isEmpty()) {
-            List<Integer> line = new ArrayList<>();
-            int size = buffer.size();
-            for (int i = 0; i < size; i++) {
-                TreeNode node = buffer.remove(0);
-                if (node == null) {
-                    line.add(null);
+        Deque<TreeNode> deque = new LinkedList<>();
+        deque.addLast(this);
+        int colcount = 1;
+        boolean hasval = true;
+        TreeNode obj = new TreeNode(0);
+        while (hasval){
+            hasval = false;
+            List<Integer> vals = new ArrayList<>();
+            for (int i = 0; i < colcount; i++){
+                TreeNode node = deque.pollFirst();
+                if (obj == node){
+                    vals.add(null);
+                    deque.addLast(obj);
+                    deque.addLast(obj);
                 } else {
-                    line.add(node.val);
-                    buffer.add(node.left);
-                    buffer.add(node.right);
+                    vals.add(node.val);
+                    if (null != node.left || null != node.right){
+                        hasval = true;
+                    }
+                    if (null != node.left){
+                        deque.addLast(node.left);
+                    } else {
+                        deque.addLast(obj);
+                    }
+                    if (null != node.right){
+                        deque.addLast(node.right);
+                    } else {
+                        deque.addLast(obj);
+                    }
                 }
             }
-            if (line.isEmpty()) {
-                continue;
-            }
-            for (Integer n : line) { // ignore the bottom line with all null nodes
-                if (n != null) {
-                    res.add(line);
-                }
-                break;
-            }
+            res.add(vals);
+            colcount <<= 1;
         }
         return res;
+    }
+
+    public static void prettyPrintTree(TreeNode node) {
+        prettyPrintTree(node,"", true);
+    }
+
+    public static void prettyPrintTree(TreeNode node, String prefix, boolean isLeft) {
+        if (node == null) {
+            System.out.println("Empty tree");
+            return;
+        }
+
+        if (node.right != null) {
+            prettyPrintTree(node.right, prefix + (isLeft ? "│   " : "    "), false);
+        }
+
+        System.out.println(prefix + (isLeft ? "└── " : "┌── ") + node.val);
+
+        if (node.left != null) {
+            prettyPrintTree(node.left, prefix + (isLeft ? "    " : "│   "), true);
+        }
     }
 
 }
