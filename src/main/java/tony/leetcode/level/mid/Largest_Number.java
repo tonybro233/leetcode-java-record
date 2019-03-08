@@ -37,9 +37,7 @@ public class Largest_Number {
         for (int i = list.size() - 1; i >= 0; i--){
             sb.append(list.get(i));
         }
-        if (sb.length() == 0){
-            return "0";
-        } else if ('0' == sb.charAt(0)){
+        if (sb.length() == 0 || '0' == sb.charAt(0)){
             return "0";
         } else{
             return sb.toString();
