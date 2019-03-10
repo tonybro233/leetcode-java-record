@@ -47,6 +47,7 @@ public class Word_Ladder {
                         String newWord = new String(chars);
                         if (wordSet.contains(newWord)) {
                             temp.add(newWord);
+                            // 可以remove是因为只换了一个字母就能获取到，就必然属于相应的最短序列中
                             wordSet.remove(newWord);
                         }
                     }
