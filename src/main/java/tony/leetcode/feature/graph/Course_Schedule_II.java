@@ -64,4 +64,50 @@ public class Course_Schedule_II {
             return result;
         }
     }
+
+    // dfs逆后序
+    public int[] findOrder2(int numCourses, int[][] prerequisites) {
+        List<Integer>[] graph = new List[numCourses];
+        Arrays.setAll(graph, value -> new ArrayList<>());
+        for (int[] pair : prerequisites){
+            graph[pair[0]].add(pair[1]);
+        }
+
+        boolean[] record = new boolean[numCourses];
+        boolean[] once = new boolean[numCourses];
+        List<Integer> list = new ArrayList<>();
+        for (int i = 0;i < numCourses;i++){
+            if (!record[i]){
+                if (dfs(graph, i, once, record, list)){
+                    return new int[0];
+                }
+            }
+        }
+        int[] result = new int[numCourses];
+        for (int i = 0;i < numCourses; i++){
+            result[i] = list.get(numCourses - 1 - i);
+        }
+
+        return result;
+    }
+
+    private boolean dfs(List<Integer>[] graph, int v, boolean[] once, boolean[] mark, List<Integer> list){
+        if (once[v]){
+            return true;
+        }
+        if (mark[v]){
+            return false;
+        }
+        once[v] = true;
+        mark[v] = true;
+        for (Integer ea : graph[v]){
+            if (dfs(graph, ea, once, mark, list)){
+                return true;
+            }
+        }
+        once[v] = false;
+        list.add(v);
+        return false;
+    }
+
 }

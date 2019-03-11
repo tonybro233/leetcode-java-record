@@ -72,9 +72,10 @@ public class Course_Schedule {
             graph[each[1]].add(each[0]);
         }
         boolean[] record = new boolean[numCourses];
+        boolean[] once = new boolean[numCourses];
         for (int i = 0; i < numCourses;i++){
             if (!record[i]){
-                if (dfs(graph, i, new boolean[numCourses], record)){
+                if (dfs(graph, i, once, record)){
                     return false;
                 }
             }
@@ -86,6 +87,9 @@ public class Course_Schedule {
     private boolean dfs(List<Integer>[] graph, int now, boolean[] current, boolean[] record){
         if (current[now]){
             return true;
+        }
+        if (record[now]){
+            return false;
         }
         current[now] = true;
         record[now] = true;
