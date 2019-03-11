@@ -1,4 +1,4 @@
-package tony.leetcode.feature.bfs;
+package tony.leetcode.feature.graph;
 
 import java.util.Deque;
 import java.util.LinkedList;
