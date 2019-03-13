@@ -20,6 +20,18 @@ import java.util.Set;
 
 public class Missing_Number {
 
+    public int missingNumber3(int[] nums){
+        int n = nums.length;
+        int result = 0;
+        for (int i = 0; i <= n;i++){
+            result ^= i;
+        }
+        for (int i = 0; i < n;i++){
+            result ^= nums[i];
+        }
+        return result;
+    }
+
     public int missingNumber2(int[] nums) {
         int n = nums.length;
         int sum = (1+n)*n/2;
