@@ -1,4 +1,4 @@
-package tony.leetcode.level.mid;
+package tony.leetcode.feature.binary_search;
 
 import tony.util.TreeNode;
 

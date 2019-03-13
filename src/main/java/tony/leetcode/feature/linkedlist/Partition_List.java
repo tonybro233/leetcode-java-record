@@ -1,4 +1,4 @@
-package tony.leetcode.level.mid;
+package tony.leetcode.feature.linkedlist;
 
 import tony.util.ListNode;
 
