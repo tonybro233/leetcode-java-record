@@ -24,14 +24,26 @@ public class ChainReverse {
 
     /** 迭代方式 */
     public static ListNode inverse(ListNode head){
-        ListNode tmp = new ListNode(0);
+        ListNode dummy = new ListNode(0);
         while (head != null){
             ListNode next = head.next;
-            head.next = tmp.next;
-            tmp.next = head;
+            head.next = dummy.next;
+            dummy.next = head;
             head = next;
         }
-        return tmp.next;
+        return dummy.next;
+    }
+
+    /** 迭代方式2 */
+    public static ListNode inverse2(ListNode head){
+        ListNode pre = null, next = null;
+        while (head != null){
+            next = head.next;
+            head.next = pre;
+            pre = head;
+            head = next;
+        }
+        return pre;
     }
 
     /** 递归方式 */
