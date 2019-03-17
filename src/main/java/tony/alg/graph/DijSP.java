@@ -4,6 +4,9 @@ import tony.util.EdgeWeightDirectionGraph;
 import tony.util.GraphEdge;
 import tony.util.IndexMinPQ;
 
+import java.util.Deque;
+import java.util.LinkedList;
+
 /**
  * Dijkstra算法，计算有向非负权重图的最短路径
  *
@@ -29,6 +32,7 @@ public class DijSP {
         // 起点的距离初始化为0
         disTo[s] = 0;
 
+        // 如果v是从s可达的，那么所有v-w的边只会放松一次，也就是每个顶点只会被放松1次
         // 以0初始化索引优先队列，不断删除路径最短的节点，并对其放松
         pq.insert(0, 0.0);
         while (!pq.isEmpty()){
@@ -38,15 +42,16 @@ public class DijSP {
 
     /**
      * 放松一个顶点：遍历每一个该顶点指出的节点，如果disTo[v] + 指出边权重 < disTo[w], 则更新disTo[w]
+     * 放松边v-w意味着检查从s到w的最短路径会否是先从s到v然后再由v到w，如果是则更新信息，而对顶点的放松
+     * 就是对顶点指出的所有边进行放松
+     *
      * @param G
      * @param v
      */
     private void relax(EdgeWeightDirectionGraph G, int v) {
-        for (GraphEdge e : G.adj(v))
-        {
+        for (GraphEdge e : G.adj(v)) {
             int w = e.to();
-            if (disTo[v] + e.weight() < disTo[w])
-            {
+            if (disTo[v] + e.weight() < disTo[w]) {
                 disTo[w] = disTo[v] + e.weight();
                 edgeTo[w] = e;
                 if (pq.contains(w)) {
@@ -57,5 +62,24 @@ public class DijSP {
                 }
             }
         }
+    }
+
+    public double distTo(int v){
+        return disTo[v];
+    }
+
+    public boolean hasPathTo(int v){
+        return disTo[v] < Double.POSITIVE_INFINITY;
+    }
+
+    public Iterable<GraphEdge> pathTo(int v){
+        if (!hasPathTo(v)){
+            return null;
+        }
+        Deque<GraphEdge> edges = new LinkedList<>();
+        for (GraphEdge e = edgeTo[v]; e != null; e = edgeTo[e.from()]){
+            edges.addLast(e);
+        }
+        return edges;
     }
 }

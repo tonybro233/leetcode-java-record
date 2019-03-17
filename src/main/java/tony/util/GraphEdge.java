@@ -1,5 +1,7 @@
 package tony.util;
 
+import java.util.Objects;
+
 /**
  * 图的一条边
  * 带有权重，可以有向也可以无向
@@ -66,5 +68,20 @@ public class GraphEdge implements Comparable<GraphEdge> {
     @Override
     public int compareTo(GraphEdge that) {
         return Double.compare(this.weight, that.weight);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (null == obj || !(obj instanceof GraphEdge)){
+            return false;
+        }
+        GraphEdge other = (GraphEdge) obj;
+        return this.v == other.v
+                && this.w == other.w;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(this.v) ^ Objects.hashCode(this.w);
     }
 }

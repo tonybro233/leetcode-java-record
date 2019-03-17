@@ -1,19 +1,21 @@
 package tony.util;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class EdgeWeightDirectionGraph {
     private final int V;				// 顶点数量
-    private List<GraphEdge>[] adj;		// 顶点指出的边
+    private Set<GraphEdge>[] adj;		// 顶点指出的边
     private int E;						// 边的数量
 
     public EdgeWeightDirectionGraph(int V) {
         this.V = V;
         this.E = 0;
-        this.adj = (List<GraphEdge>[])new List[V];
+        this.adj = (Set<GraphEdge>[])new HashSet[V];
         for (int v = 0;v < V;v++ ) {
-            adj[v] = new ArrayList<>();
+            adj[v] = new HashSet<>();
         }
     }
 
@@ -25,9 +27,12 @@ public class EdgeWeightDirectionGraph {
         return this.E;
     }
 
-    public void addEdge(GraphEdge e) {
-        adj[e.either()].add(e);
-        E++;
+    public boolean addEdge(GraphEdge e) {
+        boolean r = adj[e.either()].add(e);
+        if (r) {
+            E++;
+        }
+        return r;
     }
 
     public Iterable<GraphEdge> adj(int v) {
