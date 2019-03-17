@@ -10,8 +10,10 @@ import java.util.Stack;
  */
 public class DirectionGraph {
 
+    // 顶点数
     private final int V;
 
+    // 边数
     private int E;
 
     private List<Integer>[] adj;
@@ -87,6 +89,30 @@ public class DirectionGraph {
             }
         }
 
+        return false;
+    }
+
+    // 验证是否有环
+    public boolean hasCycle(){
+        boolean[] mark = new boolean[V];
+        for (int i = 0; i < V; i++){
+            if (dfs(i, mark)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean dfs(int v, boolean[] mark){
+        mark[v] = true;
+        for (int w : adj[v]){
+            if (!mark[w]){
+                return dfs(w, mark);
+            } else {
+                return true;
+            }
+        }
+        mark[v] = false;
         return false;
     }
 }

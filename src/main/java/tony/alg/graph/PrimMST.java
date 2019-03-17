@@ -6,6 +6,8 @@ import tony.util.IndexMinPQ;
 
 /**
  * 即时版本的最小生成树Prim算法
+ *
+ * 生成树是包含所有顶点的无环连通子图，最小生成树即树中所有边权值和最小的树
  */
 public class PrimMST {
     private boolean[] marked;		// 节点是否在树上
