@@ -8,6 +8,7 @@ import tony.util.IndexMinPQ;
  * 即时版本的最小生成树Prim算法
  *
  * 生成树是包含所有顶点的无环连通子图，最小生成树即树中所有边权值和最小的树
+ * 核心是切分定理：一幅加权图中给定任意切分，它的横切边中权重最小者必然属于最小生成树
  */
 public class PrimMST {
     private boolean[] marked;		// 节点是否在树上
@@ -24,7 +25,7 @@ public class PrimMST {
         for (int v= 0; v<G.V();v++) {
             disTo[v] = Double.POSITIVE_INFINITY;
         }
-        pq = new IndexMinPQ<Double>(G.V());
+        pq = new IndexMinPQ<>(G.V());
 
         disTo[0] = 0;
         pq.insert(0, 0.0);
@@ -40,8 +41,7 @@ public class PrimMST {
         marked[v] = true;
 
         // 遍历添加的节点的所有边
-        for (GraphEdge e: G.adj(v))
-        {
+        for (GraphEdge e: G.adj(v)) {
             int w = e.other(v);
 
             // w已经在树中直接跳过
@@ -49,6 +49,8 @@ public class PrimMST {
                 continue;
             }
 
+            // 当添加节点时，当前的其他非树节点的disTo一定只可能变小，只需要保存每个节点最小的disTo
+            // 当前队列中所有最小中的最小即是下一个添加的边(节点)
             // 发现w节点有距离树更近的边
             if (e.weight() < disTo[w]) {
                 edgeTo[w] = e;
