@@ -282,5 +282,10 @@ public class Testor {
         System.out.println(str);
     }
 
+    @Test
+    public void testRound(){
+        System.out.println("Round of 1.5:"+Math.round(1.5)); // 2
+        System.out.println("Round of -1.5:"+ Math.round(-1.5)); // -1
+    }
 
 }

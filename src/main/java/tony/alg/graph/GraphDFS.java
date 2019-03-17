@@ -6,7 +6,6 @@ import java.util.Stack;
 
 public class GraphDFS {
     private boolean[] mark;
-    // private Stack<Integer> reversePost = new Stack<>();
 
     public GraphDFS(DirectionGraph g, int v) {
         int n = g.V();
@@ -22,7 +21,5 @@ public class GraphDFS {
                 dfs(g,ea);
             }
         }
-        // dfs的逆后序排序是图的一个拓扑排序解
-        // reversePost.push(v);
     }
 }
