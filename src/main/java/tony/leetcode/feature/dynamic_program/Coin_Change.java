@@ -46,6 +46,7 @@ public class Coin_Change {
     public int coinChange2(int[] coins, int amount){
         int[] D = new int[amount+1];
         Arrays.fill(D, amount+1);
+        D[0] = 0;
         for (int i = 0; i <= amount;i++){
             for (int coin : coins){
                 if (i - coin < 0){

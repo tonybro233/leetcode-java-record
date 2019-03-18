@@ -33,8 +33,8 @@ public class Ones_and_Zeroes {
                     one++;
                 }
             }
-            for (int i = m; i > zero - 1; i--) {
-                for (int j = n; j > one - 1; j--) {
+            for (int i = m; i >= zero; i--) {
+                for (int j = n; j >= one; j--) {
                     dp[i][j] = Math.max(dp[i][j], dp[i - zero][j - one] + 1);
                 }
             }

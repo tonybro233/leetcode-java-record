@@ -25,7 +25,7 @@ public class Partition_Equal_Subset_Sum {
             sum += nums[i];
         }
 
-        // 必须为奇数才可能平分
+        // 必须为偶数才可能平分
         if (0 != (sum & 1)) {
             return false;
         }
@@ -57,7 +57,7 @@ public class Partition_Equal_Subset_Sum {
 
         sum /=2;
         int n = nums.length;
-        // dp[i][j] 表示 如果我们取前i个数字，且背包容量为j的情况下，最多能放入多少东西
+        // dp[i][j] 表示 如果我们取前i+1个数字，且背包容量为j的情况下，最多能放入的数字和
         int dp[][]=new int[n][sum + 1];
         // dp[0][0] 为初始状态，表示，没有任何没有东西没有体积，其余部分初始化
         for(int i=nums[0];i<=sum;i++){
