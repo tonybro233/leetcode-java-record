@@ -68,7 +68,7 @@ public class Valid_Triangle_Number {
             int l = 0, r = i - 1;
             while (l < r) {
                 if (nums[l] + nums[r] > nums[i]) {
-                    res += r - l;
+                    res += r - l; // (l~r-1)和r和i都可以组成三角形，一共r-l个
                     r--;
                 }else {
                     l++;
