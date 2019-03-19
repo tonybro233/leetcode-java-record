@@ -1,4 +1,4 @@
-package tony.leetcode.feature.array;
+package tony.leetcode.feature.stack;
 
 import java.util.*;
 
@@ -24,11 +24,13 @@ public class Next_Greater_Element_II {
         int[] res = new int[len];
         Arrays.fill(res, -1);
         for (int i = 0; i < 2 * len; i++) {
+            // 利用取模来达到1,2,3,...,1,2,3,...的遍历效果
             int num = nums[(i+len) % len];
+            // 栈中保存还没有找到下一个更大值的数
             while (!stack.isEmpty() && num > nums[stack.peek()]) {
                 res[stack.pop()] = num;
             }
-            // use for second round
+            // len个数按顺序入栈
             if (i < len) {
                 stack.push(i);
             }
