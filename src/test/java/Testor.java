@@ -267,6 +267,9 @@ public class Testor {
         System.out.println(Character.isLowerCase('汉')); // false
         System.out.println(Character.isUpperCase('汉')); // false
         System.out.println(Character.getType('汉')); // 5 OTHER_LETTER
+        System.out.println(Character.getType('!')); // 24 OTHER_PUNCTUATION
+        System.out.println(Character.getType('?')); // 24 OTHER_PUNCTUATION
+        System.out.println(Character.getType('[')); // 21 START_PUNCTUATION
     }
 
     @Test
