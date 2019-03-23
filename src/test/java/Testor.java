@@ -48,39 +48,6 @@ public class Testor {
         return set.iterator().next();
     }
 
-    public int compareVersion(String version1, String version2) {
-        String[] sp1 = version1.split("\\.");
-        String[] sp2 = version2.split("\\.");
-        int i = 0;
-        for (; i < sp1.length; i++){
-            if (i == sp2.length)
-                break;
-            if (Integer.valueOf(sp1[i]) > Integer.valueOf(sp2[i])){
-                return 1;
-            }
-            else if (Integer.valueOf(sp1[i]) < Integer.valueOf(sp2[i])){
-                return -1;
-            }
-        }
-        if (sp1.length == sp2.length)
-            return 0;
-        else if (sp1.length > sp2.length){
-            for (;i < sp1.length;i++){
-                if (Integer.valueOf(sp1[i]) != 0)
-                    return 1;
-            }
-            return 0;
-        }
-        else{
-            for (;i < sp2.length;i++){
-                if (Integer.valueOf(sp2[i]) != 0)
-                    return -1;
-            }
-            return 0;
-        }
-
-    }
-
     @Test
     public void testPow(){
         double pow = Math.pow(2, 0);
