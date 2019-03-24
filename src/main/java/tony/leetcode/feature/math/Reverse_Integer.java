@@ -44,7 +44,7 @@ public class Reverse_Integer {
     }
 
     public int reverse2(int x) {
-        double res = 0;
+        long res = 0;
         int sign = 1;
 
         if (x == 0) {
