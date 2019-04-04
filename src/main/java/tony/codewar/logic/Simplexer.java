@@ -46,6 +46,18 @@ public class Simplexer implements Iterator<Token> {
         }
     }
 
+    // 这种类似的分类讨论问题总是有用正则的骚操作
+    // String[] types = {"integer", "boolean", "string", "operator", "keyword", "whitespace", "identifier"};
+    // Matcher matcher = Pattern
+    //   .compile("(\\d+)|(true|false)|(\".+\")|([-+*\\/%\\(\\)=])|(if|else|for|while|return|func|break)|(\\s+)|([\\w$]+)")
+    //   .matcher(buffer == null ? "" : buffer);
+    //
+    // while (matcher.find()) {
+    //   IntStream.rangeClosed(1, 7).forEach(x -> {
+    //     if (matcher.group(x) != null) tokens.add(new Token(matcher.group(x), types[x-1]));
+    //   });
+    // }
+
     @Override
     public boolean hasNext() {
         return cursor < len;
