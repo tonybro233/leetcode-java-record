@@ -1,4 +1,4 @@
-package tony.leetcode.feature.array;
+package tony.leetcode.feature.binary_search;
 
 // 162
 // 峰值元素是指其值大于左右相邻值的元素。
