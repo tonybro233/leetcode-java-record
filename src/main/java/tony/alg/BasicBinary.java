@@ -19,7 +19,7 @@ public class BasicBinary {
             }
         }
 
-        System.out.println("大于等于目标最小:"+l1 + " 小于目标最大:"+h1);
+        System.out.println("大于等于目标最小:"+array[l1] + " 小于目标最大:"+array[h1]);
 
         while(l2 <= h2) {
             m2 = (l2 + h2)/2;
@@ -30,7 +30,7 @@ public class BasicBinary {
             }
         }
 
-        System.out.println("大于目标最小:"+l2 + " 小于等于目标最大:"+h2);
+        System.out.println("大于目标最小:"+array[l2] + " 小于等于目标最大:"+array[h2]);
     }
 
     public static void main(String[] args){
