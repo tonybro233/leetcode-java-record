@@ -41,7 +41,7 @@ public class Find_Minimum_in_Rotated_Sorted_Array {
             }
         }
 
-        return low;
+        return nums[low];
     }
 
     public static void main(String[] args){
