@@ -29,4 +29,26 @@ public class Perfect_Squares {
         return D[n];
     }
 
+    // 如果n很大则需要用这种
+    public int numSquares2(int n){
+        int mincount = Integer.MAX_VALUE;
+        for (int i = (int) Math.sqrt(n); i > 1; i--) {
+            int value = n - i * i;
+            int count = 1;
+            while (value > 0) {
+                // 无论如何都可以用1来填平，因此可以这么做
+                int residual = (int) Math.sqrt(value);
+                value -= residual * residual;
+                count++;
+            }
+            if (count < mincount) {
+                mincount = count;
+                if (count == 1) {
+                    return 1;
+                }
+            }
+        }
+        return mincount;
+    }
+
 }
