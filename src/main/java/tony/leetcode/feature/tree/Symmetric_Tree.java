@@ -1,4 +1,4 @@
-package tony.leetcode.level.simple;
+package tony.leetcode.feature.tree;
 
 import tony.util.TreeNode;
 
