@@ -51,6 +51,7 @@ public class Max_Points_on_a_Line {
             if (mark[i]){
                 continue;
             }
+            // 统计重复点
             int dup = 1;
             for (int j = i + 1; j < n; j++){
                 if (points[j][0] == points[i][0] && points[j][1] == points[i][1]){
@@ -58,7 +59,9 @@ public class Max_Points_on_a_Line {
                     dup++;
                 }
             }
+            // 只包含重复点
             max = Math.max(max, dup);
+            // 排除重复
             Set<line> old = new HashSet<>(map.keySet());
             for (int j = i + 1; j < n; j++){
                 if (points[j][0] == points[i][0] && points[j][1] == points[i][1]){
