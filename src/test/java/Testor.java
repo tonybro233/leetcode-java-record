@@ -49,6 +49,20 @@ public class Testor {
     }
 
     @Test
+    public void testIterRemove(){
+        Set<Integer> set = new HashSet<>();
+        set.add(1);
+        set.add(2);
+        set.add(3);
+        Iterator<Integer> iterator = set.iterator();
+        Integer next = iterator.next();
+        System.out.println("Get : "+next);
+        iterator.remove();
+
+        System.out.println(set.toString());
+    }
+
+    @Test
     public void testPow(){
         double pow = Math.pow(2, 0);
         System.out.println(pow);
