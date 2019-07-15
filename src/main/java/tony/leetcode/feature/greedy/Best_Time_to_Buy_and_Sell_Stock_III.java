@@ -40,7 +40,7 @@ public class Best_Time_to_Buy_and_Sell_Stock_III {
         for (int i = 0; i < prices.length; i++){
             b1 = Math.max(b1, -prices[i]);
             s1 = Math.max(s1, prices[i] + b1);
-            b2 = Math.max(b2, prices[i] + s1);
+            b2 = Math.max(b2, -prices[i] + s1);
             s2 = Math.max(s2, prices[i] + b2);
         }
         return s2;
