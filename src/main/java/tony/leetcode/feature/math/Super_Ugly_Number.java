@@ -18,7 +18,11 @@ package tony.leetcode.feature.math;
 
 public class Super_Ugly_Number {
 
-    // 为每个质数维护一个指针，数值为丑数数组的下标，每个子循环比较 ugly[pointer[j]]和 primes[j]的最小值
+    // 为每个质数维护一个指针，数值为丑数数组的下标，每个子循环比较 ugly[pointer[j]]和 primes[j]乘积的最小值
+    // 如果第i个丑数是质数p*ugly[pointer[p]]，那么第i+1个丑数只能是p*[pointer[p]+1]或者其他
+    // 比如列表[2,3,5], 第2个丑数只能是2*ugly[0]、3*ugly[0]、5*ugly[0]的其中之一
+    // 此时计算出第2个丑数为2(即2*ugly[0]), 第3个丑数必须比第二个大, 所以只能是2*ugly[1]或者其他
+    // 因此维护一个指针列表，就可以在有限次循环中比较得出下一个丑数
     public int nthSuperUglyNumbe2r(int n, int[] primes) {
         int[] pointer = new int[primes.length]; // 指针数组
         int[] ugly = new int[n];
@@ -38,6 +42,27 @@ public class Super_Ugly_Number {
             pointer[minIndex]++;
         }
         return ugly[n - 1];
+    }
+
+    // 好理解的解法
+    public int nthSuperUglyNumber2(int n, int[] primes) {
+        int[] idxs = new int[primes.length], ugly = new int[n];
+        ugly[0] = 1;
+        for(int i = 1; i < n; i++){
+            int min = Integer.MAX_VALUE;
+            for(int j = 0;j < primes.length;j++){
+                if (primes[j] * ugly[idxs[j]] < min) {
+                    min = primes[j] * ugly[idxs[j]];
+                }
+            }
+            ugly[i] = min;
+            for(int j = 0;j < primes.length;j++){
+                if (min == primes[j] * ugly[idxs[j]]) {
+                    idxs[j]++;
+                }
+            }
+        }
+        return ugly[ugly.length - 1];
     }
 
     // 暴力解法超时

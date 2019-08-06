@@ -272,4 +272,13 @@ public class Testor {
         System.out.println("Round of -1.5:"+ Math.round(-1.5)); // -1
     }
 
+    @Test
+    public void testRuntime(){
+        // 能够从操作系统获取的最大内存
+        System.out.println("Max mem: "+Runtime.getRuntime().maxMemory() / 1024.0 / 1024.0 + "mb");
+        // 已经从操作系统获取的最大内存
+        System.out.println("Total mem: "+ Runtime.getRuntime().totalMemory() / 1024.0 / 1024.0 + "mb");
+        System.out.println("Processors: " + Runtime.getRuntime().availableProcessors());
+    }
+
 }
