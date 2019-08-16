@@ -42,7 +42,8 @@ public class _132_Pattern {
                 return true;
             }
 
-            // nums[i] >= last, last <= sta.peek
+            // nums[i] >= last, sta.peek >= last
+            // last保持增大，last是pop出来的因此必然
 
             // 若当前值大于或等于2则更新2（2为栈中小于当前值的最大元素）
             while(!sta.isEmpty() && sta.peek() < nums[i]){
@@ -51,7 +52,7 @@ public class _132_Pattern {
 
             // nums[i] <= sta.peek
 
-            // 将当前值压入栈中, 栈内从顶至底递增
+            // 将当前值压入栈中, 栈内从顶至底递增，从顶至底也符合原来数组内的顺序
             sta.push(nums[i]);
 
             // last保持为小于栈顶元素的最大值
