@@ -1,5 +1,4 @@
 import org.junit.Test;
-import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 import tony.util.ListNode;
 
 import java.lang.invoke.MethodHandle;
@@ -13,6 +12,23 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class Testor {
+
+    @Test
+    public void testPriorityQueue(){
+        // 默认是小顶堆
+        PriorityQueue<Integer> queue = new PriorityQueue<>();
+        queue.add(9);
+        queue.add(8);
+        queue.add(7);
+        queue.add(10);
+        queue.add(11);
+        queue.add(1);
+
+        // 从小到大打印
+        while (queue.peek() != null){
+            System.out.println(queue.poll());
+        }
+    }
 
     @Test
     public void demo(){
