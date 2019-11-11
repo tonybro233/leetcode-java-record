@@ -14,6 +14,37 @@ import java.util.stream.Collectors;
 public class Testor {
 
     @Test
+    public void testUniqueRandom() {
+        int max = 10, min = 0, n = 5;
+        int len = max - min + 1;
+
+        //初始化给定范围的待选数组
+        int[] source = new int[len];
+        for (int i = min; i < min+len; i++){
+            source[i-min] = i;
+        }
+
+        int[] result = new int[n];
+        Random rd = new Random();
+        int index = 0;
+        for (int i = 0; i < n; i++) {
+            // 待选数组0到(len-1)随机一个下标，然后len自减
+            index = Math.abs(rd.nextInt() % len--);
+            // 将随机到的数放入结果集
+            result[i] = source[index];
+            // 将待选数组中被随机到的数，用待选数组(len-1)下标对应的数替换
+            // 如果随机到的下标是len-1，则等于没动，如果不是(小于)len-1，则替换。
+            // 保证下一轮0到len-1都是没出现的数
+            source[index] = source[len];
+        }
+        System.out.println(Arrays.toString(result));
+
+        // for (int i = 0; i < 20;i++) {
+        //     System.out.print(rd.nextInt(2000) + " ");
+        // }
+    }
+
+    @Test
     public void testPriorityQueue(){
         // 默认是小顶堆
         PriorityQueue<Integer> queue = new PriorityQueue<>();
