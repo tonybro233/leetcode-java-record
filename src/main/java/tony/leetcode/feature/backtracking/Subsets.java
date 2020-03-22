@@ -32,12 +32,6 @@ public class Subsets {
 
     private void find(int begin, int[] nums, List<Integer> one, List<List<Integer>> result){
         result.add(new ArrayList<>(one));
-        if (one.size() == nums.length){
-            return;
-        }
-        if (begin >= nums.length){
-            return;
-        }
         for (int i = begin; i< nums.length;i++){
             one.add(nums[i]);
             find(i+1, nums, one, result);
