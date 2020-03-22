@@ -17,6 +17,7 @@ public class Interleaving_String {
         if (s1.length() + s2.length() != s3.length()){
             return false;
         }
+        // dp[i][j]表示s1[0 ~ i-1]和s2[0 ~ j-1]能否交错组成s3[0 ~ i+j-1]。
         boolean[][] dp = new boolean[s1.length()+1][s2.length()+1];
         dp[0][0] = true;
         for (int i = 0; i < s1.length(); i++){

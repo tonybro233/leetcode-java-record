@@ -42,7 +42,7 @@ public class Delete_and_Earn {
             lastPos = getLastPos(nums, i);
             if (nums[i] == current + 1) {
                 swap = deleteMax;
-                // 例如在计算 2 2 3 5 6 时 5的deletemax应该是4而不是3
+                // 例如在计算 2 2 3 4 6 时 4的deletemax应该是4而不是3
                 deleteMax = Math.max(deleteMax, takeMax);
                 takeMax = swap + nums[i] * (lastPos - i + 1);
             } else {
