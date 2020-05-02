@@ -24,21 +24,18 @@ public class _2_Keys_Keyboard {
 
     // 动态规划
     public int minSteps(int n) {
-        if (n == 1) {
-            return 0;
-        }
-        int[] dp = new int[n+1];
-        dp[1] = 1;
-        for(int i = 2;i <= n;i++) {
-            for (int j = i-1;j >= 1;j--) {
-                if(i % j == 0) {
-                    dp[i] = dp[j] + i/j; // 1次paste 加 i/j -1次copy
+        int[] D = new int[n + 1];
+        for (int i = 2;i <= n;i++) {
+            for (int j = i-1; j > 0; j--) {
+                if (i % j == 0) {
+                    // 严格来说还是因数分解
+                    // 所以最小的肯定是第一个整除然后采用paste + copy，而不可能是继续D[j]的copy
+                    D[i] = D[j] + i / j; // 1次paste 加 i/j -1次copy
                     break;
                 }
             }
-            dp[i] = Math.min(dp[i],i);
         }
-        return dp[n];
+        return D[n];
     }
 
     // 因数分解，将n分解为m个数字的乘积 且m个数字的和最小
