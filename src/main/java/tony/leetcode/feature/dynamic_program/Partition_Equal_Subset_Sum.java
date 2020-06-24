@@ -37,7 +37,7 @@ public class Partition_Equal_Subset_Sum {
         for (int i = 0; i < nums.length; i++) {
             // 从大到小
             for (int j = sum; j >= nums[i]; j--) {
-                dp[j] = dp[j] > dp[j - nums[i]] + nums[i] ? dp[j] : dp[j - nums[i]] + nums[i];
+                dp[j] = Math.max(dp[j], dp[j - nums[i]] + nums[i]);
             }
         }
 

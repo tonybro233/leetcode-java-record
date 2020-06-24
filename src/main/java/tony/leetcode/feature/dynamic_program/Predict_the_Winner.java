@@ -19,34 +19,33 @@ package tony.leetcode.feature.dynamic_program;
 
 public class Predict_the_Winner {
 
-    /*
-        动态规划
-        D[i][j]表示数组内i~j区间中按照规则能够取得的最大分数
-        sum[i][i]表示数组内i~j区间中的总和
-        那么D[i][j] = max(sum[i+1][j] - D[i+1][j] + nums[i], sum[i][j-1] - D[i][j-1] + nums[j])
-        而D[i][i] = nums[i]
+    /**
+     * D[i][j]表示数组内i~j区间中按照规则能够取得的最大分数
+     * sum(i,j)表示数组内i~j区间中的总和
+     * 那么D[i][j] = max(sum(i+1,j) - D[i+1][j] + nums[i], sum(i,j-1) - D[i][j-1] + nums[j])
+     * 即D[i][j] = max(sum(i,j) - D[i+1][j], sum(i,j) - D[i][j-1])
+     * 而D[i][i] = nums[i]
      */
-
     public boolean PredictTheWinner(int[] nums) {
         int n = nums.length;
         int[][] D = new int[n][n];
         int[] sum = new int[n];
         sum[0] = nums[0];
-        for (int i = 0 ; i < n; i++){
+        for (int i = 0; i < n; i++) {
             D[i][i] = nums[i];
-            if (i > 0){
-                sum[i] = sum[i-1]+nums[i];
+            if (i > 0) {
+                sum[i] = sum[i - 1] + nums[i];
             }
         }
 
         // 从i = n - 2, j = n - 1开始
-        for (int i = n - 2; i >= 0; i--){
-            int val = i == 0 ? 0 : sum[i-1];
-            for (int j = i+1; j < n; j++){
-                D[i][j] = Math.max(sum[j] - val - D[i+1][j], sum[j] - val - D[i][j-1]);
+        for (int i = n - 2; i >= 0; i--) {
+            int val = i == 0 ? 0 : sum[i - 1];
+            for (int j = i + 1; j < n; j++) {
+                D[i][j] = Math.max(sum[j] - val - D[i + 1][j], sum[j] - val - D[i][j - 1]);
             }
         }
 
-        return D[0][n-1] >= (sum[n-1] - D[0][n-1]);
+        return D[0][n - 1] >= (sum[n - 1] - D[0][n - 1]);
     }
 }
