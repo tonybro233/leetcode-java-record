@@ -26,7 +26,7 @@ public class QuickSort<T extends Comparable<T>> extends SortBase<T> {
     private int partition(T[] a, int lo , int hi){
         int mid = (lo+hi)/2;
         T v = a[mid];
-        exch(a,hi,mid);
+        exch(a,hi,mid); // 需要转换一下是因为下面的条件是 <= , 换了才能保证mid最后在中间
         int pivot = lo - 1;
         for (int i = lo; i <= hi; i++){
             if (a[i].compareTo(v) <= 0){
