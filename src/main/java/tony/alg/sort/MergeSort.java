@@ -1,7 +1,7 @@
 package tony.alg.sort;
 
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 归并排序
@@ -14,55 +14,42 @@ import java.util.Queue;
 public class MergeSort<T extends Comparable<T>> extends SortBase<T> {
     @Override
     public void sort(T[] a) {
-        Sort(a,0,a.length-1);
+        Sort(a, 0, a.length - 1);
     }
 
-    private void Sort(T[] a, int lo, int hi){
-        if (lo >= hi){
+    private void Sort(T[] a, int lo, int hi) {
+        if (lo >= hi) {
             return;
         }
-        int mid = (lo + hi)/2;
-        Sort(a,lo,mid);
-        Sort(a,mid+1,hi);
-        merge(a,lo,mid,hi);
+        int mid = (lo + hi) / 2;
+        Sort(a, lo, mid);
+        Sort(a, mid + 1, hi);
+        merge(a, lo, mid, hi);
     }
 
-    private void merge(T[] a, int lo, int mid, int hi){
-        if (lo >= hi){
+    private void merge(T[] a, int lo, int mid, int hi) {
+        if (lo >= hi) {
             return;
         }
-        int p = lo;
-        int q = mid + 1;
-        Queue<T> que = new LinkedList<>();
-        T pp = null, qq = null;
-        while (true){
-            if (p <= mid) {
-                pp = a[p];
+        int leftPos = lo;
+        int rightPos= mid + 1;
+        List<T> helper = new ArrayList<>(hi - lo + 1);
+        while (leftPos <= mid && rightPos <= hi) {
+            if (a[leftPos].compareTo(a[rightPos]) <= 0) {
+                helper.add(a[leftPos++]);
+            } else {
+                helper.add(a[rightPos++]);
             }
-            if (q <= hi) {
-                qq = a[q];
-            }
-            if (null == pp && null == qq) {
-                break;
-            }else if (null == pp){
-                que.offer(qq);
-                q++;
-            }else if (null == qq){
-                que.offer(pp);
-                p++;
-            }else{
-                if (pp.compareTo(qq) > 0){
-                    que.offer(qq);
-                    q++;
-                }else{
-                    que.offer(pp);
-                    p++;
-                }
-            }
-            qq = null;pp = null;
         }
+        while (leftPos <= mid) {
+            helper.add(a[leftPos++]);
+        }
+        while (rightPos <= hi) {
+            helper.add(a[rightPos++]);
+        }
+
         int i = lo;
-        for (T ea : que){
+        for (T ea : helper) {
             a[i++] = ea;
         }
     }
