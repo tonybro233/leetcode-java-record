@@ -20,6 +20,7 @@ public class _46_translate_num {
         if (num == 0) {
             return 1;
         }
+        // 无需反向也是正确的，有点绕
         List<Integer> ints = new ArrayList<>();
         while (num != 0) {
             ints.add(num % 10);

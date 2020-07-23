@@ -34,14 +34,16 @@ public class _51_reverse_pairs {
         int leftCursor = lo;
         int rightCursor = mid + 1;
 
-        int[] helper = new int[hi - lo + 1];
+        int[] helper = new int[hi - lo + 1]; // 排序辅助
         int idx = 0;
+        // 执行该步操作时 lo ~ mid 和 mid+1 ~ hi 都是递增有序的
         while (leftCursor <= mid && rightCursor <= hi) {
             if (nums[leftCursor] <= nums[rightCursor]) {
                 helper[idx++] = nums[leftCursor++];
             } else {
                 helper[idx++] = nums[rightCursor++];
-                count += mid - leftCursor + 1; // 比num[rightCursor] 大的有几个
+                // 比num[rightCursor] 大的有几个,
+                count += mid - leftCursor + 1;
             }
         }
 

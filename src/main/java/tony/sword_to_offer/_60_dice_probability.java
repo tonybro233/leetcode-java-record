@@ -35,6 +35,7 @@ public class _60_dice_probability {
 
             // 骰子求和范围循环
             for (int i = k; i <= currentMax;i++) {
+                // 需要置0，每一项都是基于上一轮重新计算，与当前值无关
                 container[1 - flag][i] = 0;
 
                 // 取值循环, 基于上一轮 求和 i-1, i-2, i-3, i-4, i-5, i-6
