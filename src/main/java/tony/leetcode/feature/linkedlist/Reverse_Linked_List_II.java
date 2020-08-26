@@ -18,19 +18,19 @@ public class Reverse_Linked_List_II {
     public ListNode reverseBetween(ListNode head, int m, int n) {
         ListNode aux = new ListNode(0);
         aux.next = head;
-        ListNode pointer = aux;
+        ListNode prev = aux;
         for (int i = 1; i < m; i++) {
-            pointer = pointer.next;
+            prev = prev.next;
         }
-        ListNode cur = pointer.next;
+        ListNode cur = prev.next;
 
-        ListNode temp;
+        ListNode next;
         for (int i = m; i < n; i++) {
             // 表示每次移动一个节点到前面
-            temp = cur.next;
-            cur.next = cur.next.next;
-            temp.next = pointer.next;
-            pointer.next = temp;
+            next = cur.next;
+            cur.next = next.next;
+            next.next = prev.next;
+            prev.next = next;
         }
         return aux.next;
     }
