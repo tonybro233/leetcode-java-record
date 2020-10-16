@@ -38,10 +38,6 @@ public class Testor {
             source[index] = source[len];
         }
         System.out.println(Arrays.toString(result));
-
-        // for (int i = 0; i < 20;i++) {
-        //     System.out.print(rd.nextInt(2000) + " ");
-        // }
     }
 
     @Test
@@ -247,6 +243,23 @@ public class Testor {
     }
 
     @Test
+    public void testEqual2() {
+        Integer a = 1;
+        Integer b = 2;
+        Integer c = 3;
+        Integer d = 3;
+        Integer e = 321;
+        Integer f = 321;
+        Long g = 3L;
+        System.out.println(c == d); // true
+        System.out.println(e == f); // false
+        System.out.println(c == (a + b)); // true
+        System.out.println(c.equals(a + b)); // true
+        System.out.println(g == (a + b)); // true
+        System.out.println(g.equals(a + b)); // false
+    }
+
+    @Test
     public void testContinueOut(){
         int i = 0, j = 0;
         out : for (i =0; i < 10;i++){
@@ -326,6 +339,15 @@ public class Testor {
         // 已经从操作系统获取的最大内存
         System.out.println("Total mem: "+ Runtime.getRuntime().totalMemory() / 1024.0 / 1024.0 + "mb");
         System.out.println("Processors: " + Runtime.getRuntime().availableProcessors());
+    }
+
+    @Test
+    public void testIntern() {
+        String s1 = new StringBuilder("计算机").append("语言").toString();
+        System.out.println(s1 == s1.intern());
+
+        String s2 = new StringBuilder("ja").append("va").toString();
+        System.out.println(s2 == s2.intern());
     }
 
 }
