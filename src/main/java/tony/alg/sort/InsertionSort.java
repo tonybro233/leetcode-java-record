@@ -11,11 +11,11 @@ public class InsertionSort<T extends Comparable<T>> extends SortBase<T> {
 
     @Override
     public void sort(T[] a) {
-        for (int i = 1; i < a.length;i++){
+        for (int i = 1; i < a.length; i++) {
             T tmp = a[i];
             int j = i;
-            for ( ; j > 0 && a[j-1].compareTo(tmp) > 0;j--){
-                a[j] = a[j-1];
+            for (; j > 0 && a[j - 1].compareTo(tmp) > 0; j--) {
+                a[j] = a[j - 1];
             }
             a[j] = tmp;
         }

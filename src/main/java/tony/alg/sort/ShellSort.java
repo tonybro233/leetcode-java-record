@@ -20,20 +20,19 @@ public class ShellSort<T extends Comparable<T>> extends SortBase<T> {
         // h表示的是每个子序列元素的间隔
 
         // 计算出h的起始值
-        while (h < N/3) {
-            h = h*3 +1; // 1, 4, 13, 40, 121, ... 序列形式
+        while (h < N / 3) {
+            h = h * 3 + 1; // 1, 4, 13, 40, 121, ... 序列形式
         }
-
 
         while (h >= 1) {
             // 一个两重循环，排序了 length/h 个子序列，h~n-1个元素都按照递减规则分配到的子序列参与了排序
             for (int i = h; i < N; i++) {
-                for (int j = i; j >= h && a[j].compareTo(a[j-h]) < 0;j -= h) {
-                    exch(a, j, j-h);
+                for (int j = i; j >= h && a[j].compareTo(a[j - h]) < 0; j -= h) {
+                    exch(a, j, j - h);
                 }
             }
 
-            h = h/3; // 对应序列生成方式
+            h = h / 3; // 对应序列生成方式
         }
     }
 }

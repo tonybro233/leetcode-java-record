@@ -1,8 +1,5 @@
 package tony.alg.sort;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * 归并排序
  * 平均时间复杂度O(nlogn)
@@ -12,6 +9,7 @@ import java.util.List;
  * @param <T>
  */
 public class MergeSort<T extends Comparable<T>> extends SortBase<T> {
+
     @Override
     public void sort(T[] a) {
         Sort(a, 0, a.length - 1);
@@ -32,25 +30,24 @@ public class MergeSort<T extends Comparable<T>> extends SortBase<T> {
             return;
         }
         int leftPos = lo;
-        int rightPos= mid + 1;
-        List<T> helper = new ArrayList<>(hi - lo + 1);
+        int rightPos = mid + 1;
+        int len = hi - lo + 1;
+        Object[] helper = new Object[len];
+        int helperIdx = 0;
         while (leftPos <= mid && rightPos <= hi) {
             if (a[leftPos].compareTo(a[rightPos]) <= 0) {
-                helper.add(a[leftPos++]);
+                helper[helperIdx++] = a[leftPos++];
             } else {
-                helper.add(a[rightPos++]);
+                helper[helperIdx++] = a[rightPos++];
             }
         }
         while (leftPos <= mid) {
-            helper.add(a[leftPos++]);
+            helper[helperIdx++] = a[leftPos++];
         }
         while (rightPos <= hi) {
-            helper.add(a[rightPos++]);
+            helper[helperIdx++] = a[rightPos++];
         }
 
-        int i = lo;
-        for (T ea : helper) {
-            a[i++] = ea;
-        }
+        System.arraycopy(helper, 0, a, lo, len);
     }
 }
