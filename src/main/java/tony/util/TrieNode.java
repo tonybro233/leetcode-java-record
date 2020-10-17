@@ -1,9 +1,5 @@
 package tony.util;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-
 /**
  * 针对小写英文字符串的字典树节点
  */
@@ -23,12 +19,12 @@ public class TrieNode {
     // 节点的值
     private char val;
 
-    public TrieNode(char val){
+    public TrieNode(char val) {
         this(val, false);
     }
 
-    public TrieNode(char val, boolean isRoot){
-        if (!isRoot){
+    public TrieNode(char val, boolean isRoot) {
+        if (!isRoot) {
             assertInput(val);
         }
         this.children = new TrieNode[LETTER_COUNT];
@@ -37,14 +33,14 @@ public class TrieNode {
         this.val = val;
     }
 
-    public TrieNode getChild(char val){
+    public TrieNode getChild(char val) {
         assertInput(val);
         return children[val - 'a'];
     }
 
-    public TrieNode addChild(char val){
+    public TrieNode addChild(char val) {
         TrieNode child = getChild(val);
-        if (null == child){
+        if (null == child) {
             child = new TrieNode(val);
         } else {
             child.addFreq();
@@ -52,17 +48,17 @@ public class TrieNode {
         return child;
     }
 
-    private void assertInput(char val){
-        if (!Character.isLetter(val) || !Character.isLowerCase(val)){
+    private void assertInput(char val) {
+        if (!Character.isLetter(val) || !Character.isLowerCase(val)) {
             throw new IllegalArgumentException("Only support lower English letter");
         }
     }
 
-    public int addFreq(){
+    public int addFreq() {
         return ++this.freq;
     }
 
-    public int subFreq(){
+    public int subFreq() {
         return --this.freq;
     }
 

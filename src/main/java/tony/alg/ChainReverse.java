@@ -5,7 +5,7 @@ package tony.alg;
  */
 public class ChainReverse {
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         ListNode one = new ListNode(1);
         ListNode two = new ListNode(2);
         ListNode three = new ListNode(3);
@@ -22,10 +22,12 @@ public class ChainReverse {
         ListNode(int x) { val = x; }
     }
 
-    /** 迭代方式 */
-    public static ListNode inverse(ListNode head){
+    /**
+     * 迭代方式
+     */
+    public static ListNode inverse(ListNode head) {
         ListNode dummy = new ListNode(0);
-        while (head != null){
+        while (head != null) {
             ListNode next = head.next;
             head.next = dummy.next;
             dummy.next = head;
@@ -34,10 +36,12 @@ public class ChainReverse {
         return dummy.next;
     }
 
-    /** 迭代方式2 */
-    public static ListNode inverse2(ListNode head){
+    /**
+     * 迭代方式2
+     */
+    public static ListNode inverse2(ListNode head) {
         ListNode pre = null, next = null;
-        while (head != null){
+        while (head != null) {
             next = head.next;
             head.next = pre;
             pre = head;
@@ -46,9 +50,11 @@ public class ChainReverse {
         return pre;
     }
 
-    /** 递归方式 */
-    public static ListNode inverseRecur(ListNode head){
-        if (head == null || head.next == null){
+    /**
+     * 递归方式
+     */
+    public static ListNode inverseRecur(ListNode head) {
+        if (head == null || head.next == null) {
             return head;
         }
         ListNode next = head.next;
@@ -59,10 +65,10 @@ public class ChainReverse {
         return result;
     }
 
-    public static void printList(ListNode head){
+    public static void printList(ListNode head) {
         System.out.print("begin: ");
-        while (head != null ){
-            System.out.print(head.val+" ");
+        while (head != null) {
+            System.out.print(head.val + " ");
             head = head.next;
         }
         System.out.println("End");

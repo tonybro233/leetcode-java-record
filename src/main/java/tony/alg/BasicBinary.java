@@ -11,8 +11,9 @@ public class BasicBinary {
 
         while(l1 <= h1) {
             m1 = (l1 + h1)/2;
-            if(array[m1] < target){//小于x的最大值
-                //这样理解，l一直在向右移动，直到array[mid]大于等于target，即找出的是大于等于target中的最小值
+            if(array[m1] < target){ // 小于x的最大值
+                // 这样理解，l一直在向右移动，直到array[mid]大于等于target，
+                // 即找出的是大于等于target中的最小值
                 l1 = m1 + 1;
             } else {
                 h1 = m1 - 1;
@@ -23,7 +24,7 @@ public class BasicBinary {
 
         while(l2 <= h2) {
             m2 = (l2 + h2)/2;
-            if(array[m2] > target) { //大于x的最小值
+            if(array[m2] > target) { // 大于x的最小值
                 h2 = m2 - 1;
             } else {
                 l2 = m2 + 1;

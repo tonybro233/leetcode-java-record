@@ -7,16 +7,16 @@ import java.util.List;
  */
 public class Preorder {
 
-    public void go(Node root){
+    public void go(Node root) {
         foo(root);
     }
 
-    private void foo(Node node){
-        if (null == node){
+    private void foo(Node node) {
+        if (null == node) {
             return;
         }
         System.out.println(node.val);
-        for (Node ea : node.children){
+        for (Node ea : node.children) {
             foo(ea);
         }
     }
@@ -29,7 +29,7 @@ class Node {
 
     public Node() {}
 
-    public Node(int _val,List<Node> _children) {
+    public Node(int _val, List<Node> _children) {
         val = _val;
         children = _children;
     }
