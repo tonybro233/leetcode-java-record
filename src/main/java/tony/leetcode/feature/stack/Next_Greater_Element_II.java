@@ -25,12 +25,13 @@ public class Next_Greater_Element_II {
         Arrays.fill(res, -1);
         for (int i = 0; i < 2 * len; i++) {
             // 利用取模来达到1,2,3,...,1,2,3,...的遍历效果
-            int num = nums[(i+len) % len];
-            // 栈中保存还没有找到下一个更大值的数
+            int num = nums[i % len];
+            // 栈中保存还没有找到下一个更大值的数的下标
+            // 把所有比当前值小的下标都pop出来(当前值就是其下一个更大的数)并在结果中赋值
             while (!stack.isEmpty() && num > nums[stack.peek()]) {
                 res[stack.pop()] = num;
             }
-            // len个数按顺序入栈
+            // 数字都要按顺序入栈一次
             if (i < len) {
                 stack.push(i);
             }
