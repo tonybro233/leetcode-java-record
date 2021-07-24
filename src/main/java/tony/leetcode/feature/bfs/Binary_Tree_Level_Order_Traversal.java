@@ -27,30 +27,30 @@ public class Binary_Tree_Level_Order_Traversal {
 
     public List<List<Integer>> levelOrder(TreeNode root) {
         List<List<Integer>> result = new ArrayList<>();
-        if (root == null){
+        if (root == null) {
             return result;
         }
         Deque<TreeNode> valQue = new ArrayDeque<>();
         Deque<Integer> levelQue = new ArrayDeque<>();
         valQue.addLast(root);
         levelQue.addLast(0);
-        while (valQue.size() > 0){
+        while (valQue.size() > 0) {
             TreeNode node = valQue.pollFirst();
             Integer level = levelQue.pollFirst();
-            if (result.size() > level){
+            if (result.size() > level) {
                 result.get(level).add(node.val);
             } else {
                 List<Integer> newline = new ArrayList<>();
                 newline.add(node.val);
                 result.add(newline);
             }
-            if (null != node.left){
+            if (null != node.left) {
                 valQue.addLast(node.left);
-                levelQue.addLast(level+1);
+                levelQue.addLast(level + 1);
             }
-            if (null != node.right){
+            if (null != node.right) {
                 valQue.addLast(node.right);
-                levelQue.addLast(level+1);
+                levelQue.addLast(level + 1);
             }
         }
         return result;
@@ -60,7 +60,7 @@ public class Binary_Tree_Level_Order_Traversal {
     public List<List<Integer>> levelOrder2(TreeNode root) {
         List<List<Integer>> result = new ArrayList<>();
         List<Integer> rowResult = new ArrayList<>();
-        if(root == null){
+        if (root == null) {
             return result;
         }
 
@@ -69,20 +69,20 @@ public class Binary_Tree_Level_Order_Traversal {
 
         Queue<TreeNode> queue = new LinkedList<TreeNode>();
         queue.add(root);
-        while(!queue.isEmpty()){
+        while (!queue.isEmpty()) {
             TreeNode now = queue.poll();
             rowResult.add(now.val);
             num--;
-            if(now.left != null){
+            if (now.left != null) {
                 queue.add(now.left);
                 next++;
             }
-            if(now.right != null){
+            if (now.right != null) {
                 queue.add(now.right);
                 next++;
             }
 
-            if(num == 0){
+            if (num == 0) {
                 num = next;
                 next = 0;
                 result.add(rowResult);
