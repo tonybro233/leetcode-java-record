@@ -1,4 +1,4 @@
-package tony.leetcode.feature.linkedlist;
+package tony.leetcode.feature.linkedlist.fast_slow_pointer;
 
 import tony.util.ListNode;
 
