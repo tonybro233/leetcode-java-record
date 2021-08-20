@@ -10,6 +10,9 @@ package tony.leetcode.feature.dynamic_program;
 // 网格的长度和高度在 [1,50] 的范围内。
 // N 在 [0,50] 的范围内。
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Out_of_Boundary_Paths {
 
     public int findPaths(int m, int n, int N, int i, int j) {
@@ -125,4 +128,35 @@ public class Out_of_Boundary_Paths {
 
         return dp[i][j];
     }
+
+    Map<Integer, Integer> cache = new HashMap<>();
+    int[][] DIRs = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
+
+    // 记忆化搜索
+    public int findPaths4(int m, int n, int N, int i, int j) {
+        if (i < 0 || i >= m || j < 0 || j >= n) {
+            return 1;
+        }
+
+        if (N == 0) {
+            return 0;
+        }
+
+        // 核心还是 位置+剩余步数 可以组成一个key
+        // 直接利用了题目限定条件做类似位运算的操作
+        int key = i * 2500 + j * 50 + N;
+        if (cache.containsKey(key)) {
+            return cache.get(key);
+        }
+
+        int rst = 0;
+        for (int[] dir : DIRs) {
+            rst = (rst + findPaths4(m, n, N - 1, i + dir[0], j + dir[1])) % MOD;
+        }
+
+        cache.put(key, rst);
+
+        return rst;
+    }
+
 }
