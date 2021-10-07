@@ -32,7 +32,43 @@ package tony.leetcode.feature.string;
 // 所有字符都有一个ASCII值在[35, 126]区间内。
 // 1 <= len(chars) <= 1000。
 
+import java.util.Arrays;
+
 public class String_Compression {
+
+
+    public int compress2(char[] chars) {
+        int res = 0;
+        int cnt = 1;
+        char mark = chars[0];
+
+        for (int i = 1; i < chars.length; i++) {
+            if (chars[i] != mark) {
+                res = modify(chars, res, cnt, mark);
+                mark = chars[i];
+                cnt = 1;
+            } else {
+                cnt++;
+            }
+        }
+
+        res = modify(chars, res, cnt, mark);
+
+        return res;
+    }
+
+    private int modify(char[] chars, int res, int cnt, char mark) {
+        chars[res++] = mark;
+        if (cnt > 1) {
+            char[] nums = Integer.toString(cnt).toCharArray();
+            for (char num : nums) {
+                chars[res++] = num;
+            }
+        }
+        return res;
+    }
+
+
 
     public int compress(char[] chars) {
         Character before = null;
@@ -70,7 +106,9 @@ public class String_Compression {
     }
 
     public static void main(String[] args){
-        int compress = new String_Compression().compress(new char[]{'a', 'a', 'b', 'b', 'c', 'c', 'c'});
+        char[] chars = {'a', 'a', 'b', 'b', 'c', 'c', 'c'};
+        int compress = new String_Compression().compress(chars);
         System.out.println(compress);
+        System.out.println(Arrays.toString(Arrays.copyOfRange(chars, 0, compress)));
     }
 }
