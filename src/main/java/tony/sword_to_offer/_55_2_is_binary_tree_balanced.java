@@ -24,7 +24,7 @@ import tony.util.TreeNode;
 //    3   3
 //   / \
 //  4   4
-// 返回 false 。
+// 返回 false 。
 
 public class _55_2_is_binary_tree_balanced {
 

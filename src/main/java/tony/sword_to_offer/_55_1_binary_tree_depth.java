@@ -13,7 +13,7 @@ import tony.util.TreeNode;
 //   9  20
 //     /  \
 //    15   7
-// 返回它的最大深度 3 。
+// 返回它的最大深度 3 。
 
 public class _55_1_binary_tree_depth {
 

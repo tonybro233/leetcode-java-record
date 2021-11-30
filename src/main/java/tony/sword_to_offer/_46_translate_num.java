@@ -12,6 +12,7 @@ package tony.sword_to_offer;
 // 解释: 12258有5种不同的翻译，分别是"bccfi", "bwfi", "bczi", "mcfi"和"mzi"
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class _46_translate_num {
@@ -20,7 +21,7 @@ public class _46_translate_num {
         if (num == 0) {
             return 1;
         }
-        // 无需反向也是正确的，有点绕
+        // 这里没有做反向，后面做了针对操作
         List<Integer> ints = new ArrayList<>();
         while (num != 0) {
             ints.add(num % 10);
@@ -42,6 +43,35 @@ public class _46_translate_num {
         }
 
         return D[len - 1];
+    }
+
+    public int translateNum2(int num) {
+        if (num == 0) {
+            return 1;
+        }
+
+        List<Integer> ints = new ArrayList<>();
+        while (num != 0) {
+            ints.add(num % 10);
+            num /= 10;
+        }
+        // 这是好理解的标准写法
+        Collections.reverse(ints);
+        int len = ints.size();
+        int[] D = new int[len];
+        D[len - 1] = 1;
+        for (int i = len - 2; i >= 0; i--) {
+            D[i] = D[i + 1];
+            int val = ints.get(i) * 10 + ints.get(i + 1);
+            if (val >= 10 && val <= 25) {
+                if (i < len - 2) {
+                    D[i] += D[i + 2];
+                } else {
+                    D[i] += 1;
+                }
+            }
+        }
+        return D[0];
     }
 
 }

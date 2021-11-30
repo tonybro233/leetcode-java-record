@@ -9,7 +9,7 @@ package tony.sword_to_offer;
 // 输入: 1
 // 输出: [0.16667,0.16667,0.16667,0.16667,0.16667,0.16667]
 
-// 示例 2:
+// 示例 2:
 // 输入: 2
 // 输出: [0.02778,0.05556,0.08333,0.11111,0.13889,0.16667,0.13889,0.11111,0.08333,0.05556,0.02778]
 
@@ -17,7 +17,7 @@ import java.util.Arrays;
 
 public class _60_dice_probability {
 
-    public double[] twoSum(int n) {
+    public double[] printProbability(int n) {
         if (n < 1) {
             return null;
         }
@@ -61,7 +61,7 @@ public class _60_dice_probability {
 
 
     // 递归法
-    public double[] twoSum2(int num) {
+    public double[] printProbability2(int num) {
         if (num < 1) {
             return null;
         }
@@ -96,7 +96,7 @@ public class _60_dice_probability {
     }
 
     public static void main(String[] args) {
-        double[] doubles = new _60_dice_probability().twoSum2(2);
+        double[] doubles = new _60_dice_probability().printProbability2(2);
         System.out.println(Arrays.toString(doubles));
     }
 
