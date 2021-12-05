@@ -35,11 +35,16 @@ public class _44_nth_digit {
             n -= left;
             digits++;
             start *= 10;
-            left = digits * start * 9; // 1*9 2*90 3*900 4*9000
+            left = start * 9 * digits; // 1*9*1 10*9*2 100*9*3 1000*9*4
         }
 
+        // 剩下n个数字，此时位数为digits，如果n=digits，那么还是在第一个数字
+        // 也就是start，所以是(n - 1) / digits
+        // 0也是满足的
         long num = start + (n - 1) / digits;
 
+        // chartAt是从0开始计数，如果n=digits，就是第一个数字的最后一位
+        // 而要取最后一位下标就是n-1，所以是(n - 1) % digits
         return Long.toString(num).charAt((n - 1) % digits) - '0';
     }
 
