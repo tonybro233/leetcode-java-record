@@ -30,18 +30,18 @@ public class Merge_Sorted_Array {
     public void merge(int[] nums1, int m, int[] nums2, int n) {
         int t = nums1.length;
         // 先把nums1中的内容移到最后
-        for (int i = 0; i < m; i++){
-            nums1[t-1-i] = nums1[m-1-i];
+        for (int i = 0; i < m; i++) {
+            nums1[t - 1 - i] = nums1[m - 1 - i];
         }
         // 挨个置入
-        int i = t-m, j = 0, cursor = 0;
-        while (i < t || j < n){
-            if (i == t){
+        int i = t - m, j = 0, cursor = 0;
+        while (i < t || j < n) {
+            if (i == t) {
                 nums1[cursor++] = nums2[j++];
-            } else if (j == n){
+            } else if (j == n) {
                 nums1[cursor++] = nums1[i++];
             } else {
-                if (nums2[j] > nums1[i]){
+                if (nums2[j] > nums1[i]) {
                     nums1[cursor++] = nums1[i++];
                 } else {
                     nums1[cursor++] = nums2[j++];

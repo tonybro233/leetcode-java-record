@@ -24,9 +24,9 @@ public class Can_Place_Flowers {
 
     public boolean canPlaceFlowers(int[] flowerbed, int n) {
         int last = -1, len = flowerbed.length, max = 0;
-        for (int i = 0; i < len; i++){
-            if (flowerbed[i] == 1){
-                if (last >= 0){
+        for (int i = 0; i < len; i++) {
+            if (flowerbed[i] == 1) {
+                if (last >= 0) {
                     // 中间空隙
                     int gap = i - last - 1;
                     if (gap > 2) {
@@ -40,7 +40,7 @@ public class Can_Place_Flowers {
             }
         }
 
-        if (last >= 0){
+        if (last >= 0) {
             // 末尾空隙
             max += (len - last - 1) / 2;
         } else {

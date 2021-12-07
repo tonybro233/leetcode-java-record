@@ -26,21 +26,21 @@ public class _4Sum {
     public List<List<Integer>> fourSum(int[] nums, int target) {
         List<List<Integer>> result = new ArrayList<>();
         Arrays.sort(nums);
-        for (int i = 0; i < nums.length - 3; i++){
-            if (i != 0 && nums[i] == nums[i-1]){
+        for (int i = 0; i < nums.length - 3; i++) {
+            if (i != 0 && nums[i] == nums[i - 1]) {
                 continue;
             }
-            for (int f = nums.length-1; f >= i+3; f--){
-                if (f < nums.length - 1 && nums[f] == nums[f+1]){
+            for (int f = nums.length - 1; f >= i + 3; f--) {
+                if (f < nums.length - 1 && nums[f] == nums[f + 1]) {
                     continue;
                 }
-                int j = i+1, k = f-1;
-                while (j < k){
-                    if (nums[i]+nums[j]+nums[k]+nums[f] < target) {
+                int j = i + 1, k = f - 1;
+                while (j < k) {
+                    if (nums[i] + nums[j] + nums[k] + nums[f] < target) {
                         j++;
-                    } else if (nums[i]+nums[j]+nums[k]+nums[f] > target) {
+                    } else if (nums[i] + nums[j] + nums[k] + nums[f] > target) {
                         k--;
-                    } else{
+                    } else {
                         List<Integer> solve = new ArrayList<>();
                         solve.add(nums[i]);
                         solve.add(nums[j]);
@@ -48,8 +48,12 @@ public class _4Sum {
                         solve.add(nums[f]);
                         result.add(solve);
                         // 防止重复
-                        do{j++;}while(j<k && nums[j]==nums[j-1]);
-                        do{k--;}while(j<k && nums[k]==nums[k+1]);
+                        do {
+                            j++;
+                        } while (j < k && nums[j] == nums[j - 1]);
+                        do {
+                            k--;
+                        } while (j < k && nums[k] == nums[k + 1]);
                     }
                 }
             }

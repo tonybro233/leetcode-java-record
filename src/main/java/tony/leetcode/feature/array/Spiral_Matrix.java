@@ -28,12 +28,12 @@ public class Spiral_Matrix {
     public List<Integer> spiralOrder(int[][] matrix) {
         List<Integer> res = new ArrayList<Integer>();
         // 维护4个值作为范围，按照向右、向下、向左、向上的顺序循环
-        int down = matrix.length-1;
-        if (down < 0){
+        int down = matrix.length - 1;
+        if (down < 0) {
             return res;
         }
 
-        int right = matrix[0].length-1;
+        int right = matrix[0].length - 1;
 
         int top = 0;
         int left = 0;
@@ -43,18 +43,18 @@ public class Spiral_Matrix {
             }
             top++;
 
-            for(int i = top; i <= down; i++){
+            for (int i = top; i <= down; i++) {
                 res.add(matrix[i][right]);
             }
             right--;
-            if( down - top >= 0 ){
-                for(int i = right; i>= left; i--){
+            if (down - top >= 0) {
+                for (int i = right; i >= left; i--) {
                     res.add(matrix[down][i]);
                 }
             }
             down--;
-            if( right - left >= 0 ){
-                for(int i = down; i >= top; i--){
+            if (right - left >= 0) {
+                for (int i = down; i >= top; i--) {
                     res.add(matrix[i][left]);
                 }
             }

@@ -35,21 +35,21 @@ public class Kdiff_Pairs_in_an_Array {
         int result = 0;
         int c1 = 0, c2 = 1;
 
-        while (c2 < n){
-            if (c1 >= c2){
+        while (c2 < n) {
+            if (c1 >= c2) {
                 c2 = c1 + 1;
                 continue;
             }
-            if (nums[c2] - nums[c1] == k){
+            if (nums[c2] - nums[c1] == k) {
                 result++;
                 int v1 = nums[c1], v2 = nums[c2];
-                while (c1 < n && nums[c1] == v1){
+                while (c1 < n && nums[c1] == v1) {
                     c1++;
                 }
-                while (c2 < n && nums[c2] == v2){
+                while (c2 < n && nums[c2] == v2) {
                     c2++;
                 }
-            } else if (nums[c2] - nums[c1] < k){
+            } else if (nums[c2] - nums[c1] < k) {
                 c2++;
             } else {
                 c1++;

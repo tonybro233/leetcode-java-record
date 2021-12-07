@@ -21,13 +21,33 @@ import java.util.*;
 
 public class Random_Pick_Index {
 
+    private int[] nums;
+
+    public void init(int[] nums) {
+        this.nums = nums;
+    }
+
+    public int pick2(int target) {
+        // 因为要取下标，所以不能做排序
+
+        // 水塘抽样法
+        int res = 0;
+        int count = 0;
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] == target) {
+                count++;
+                if (random.nextInt(count) == 0) {
+                    res = i;
+                }
+            }
+        }
+        return res;
+    }
+
+
+    // 基本的蠢方法，也能ac
     private Map<Integer, List<Integer>> map = new HashMap<>();
     private Random random = new Random();
-
-    // 看了注意，我还以为需要什么骚操作，结果就是这么普通的解法ac了
-    // 初始化的时候进行存储
-    // 不过看了下提交记录，直接在pick里遍历数组貌似更快。。
-
     public Random_Pick_Index(int[] nums) {
         for (int i =0 ;i < nums.length; i++){
             List<Integer> list = map.getOrDefault(nums[i], new ArrayList<>());

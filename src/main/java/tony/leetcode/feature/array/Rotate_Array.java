@@ -34,12 +34,12 @@ public class Rotate_Array {
         reverse(nums, k, n - 1); // 恢复原来0 ~ k-1个数的顺序
     }
 
-    private void reverse(int[] nums, int begin, int end){
-        if (begin >= end){
+    private void reverse(int[] nums, int begin, int end) {
+        if (begin >= end) {
             return;
         }
-        int mid = (begin + end)/2;
-        for (int i = begin, j = end; i <= mid; i++, j--){
+        int mid = (begin + end) / 2;
+        for (int i = begin, j = end; i <= mid; i++, j--) {
             int tmp = nums[i];
             nums[i] = nums[j];
             nums[j] = tmp;

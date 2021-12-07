@@ -35,32 +35,32 @@ import java.util.List;
 public class Remove_Duplicates_from_Sorted_Array_II {
 
     public int removeDuplicates2(int[] nums) {
-        if(nums == null){
+        if (nums == null) {
             return 0;
         }
-        if(nums.length <= 2){
+        if (nums.length <= 2) {
             return nums.length;
         }
         int k = 0;
-        for(int i = 0; i<nums.length; i++){
+        for (int i = 0; i < nums.length; i++) {
             // 有序数列如此判断判断即可
-            if(k < 2 || nums[i] != nums[k-2] ){
+            if (k < 2 || nums[i] != nums[k - 2]) {
                 nums[k++] = nums[i];
             }
         }
-        return k ;
+        return k;
     }
 
     public int removeDuplicates(int[] nums) {
-        if (nums.length == 0){
+        if (nums.length == 0) {
             return 0;
         }
         Deque<Integer> skips = new ArrayDeque<>();
         int count = 1;
         int current = nums[0];
-        for (int i = 1;i < nums.length;i++){
-            if (current == nums[i]){
-                if (count == 2){
+        for (int i = 1; i < nums.length; i++) {
+            if (current == nums[i]) {
+                if (count == 2) {
                     skips.addLast(i);
                 } else {
                     count++;
@@ -70,15 +70,15 @@ public class Remove_Duplicates_from_Sorted_Array_II {
                 count = 1;
             }
         }
-        if (skips.size() == 0){
+        if (skips.size() == 0) {
             return nums.length;
         }
         int result = nums.length - skips.size();
 
         Integer skip = skips.pollFirst();
         int cursor = 0;
-        for (int i = 0; i < nums.length; i++){
-            if (null == skip){
+        for (int i = 0; i < nums.length; i++) {
+            if (null == skip) {
                 nums[cursor++] = nums[i];
             } else {
                 if (skip != i) {

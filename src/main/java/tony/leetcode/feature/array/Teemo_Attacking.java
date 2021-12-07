@@ -16,8 +16,8 @@ public class Teemo_Attacking {
         int tmpEnd = -1;
         int total = 0;
         Arrays.sort(timeSeries);
-        for (int ea : timeSeries){
-            if (ea <= tmpEnd){
+        for (int ea : timeSeries) {
+            if (ea <= tmpEnd) {
                 tmpEnd = ea + duration;
             } else {
                 total += tmpEnd - tmpBegin;
@@ -25,7 +25,7 @@ public class Teemo_Attacking {
                 tmpEnd = ea + duration;
             }
         }
-        if (tmpBegin != -1){
+        if (tmpBegin != -1) {
             total += tmpEnd - tmpBegin;
         }
 

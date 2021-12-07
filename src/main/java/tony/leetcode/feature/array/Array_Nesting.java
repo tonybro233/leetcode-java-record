@@ -16,7 +16,7 @@ public class Array_Nesting {
 
     /**
      * 如果不注释掉下面的那一句，将会超时
-     *
+     * <p>
      * 可以注释掉是因为符合题目条件的话，数组中所有元素都会被划分为N个独立的环
      * 这他妈的。。
      *
@@ -26,11 +26,11 @@ public class Array_Nesting {
     public int arrayNesting(int[] nums) {
         int max = 0;
         Set<Integer> record = new HashSet<>();
-        for (int i = 0; i < nums.length; i++){
+        for (int i = 0; i < nums.length; i++) {
             // record.clear();
             int current = 0;
             int val = i;
-            while (!record.contains(val)){
+            while (!record.contains(val)) {
                 record.add(val);
                 current++;
                 val = nums[val];

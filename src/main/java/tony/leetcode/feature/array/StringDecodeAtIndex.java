@@ -15,9 +15,9 @@ package tony.leetcode.feature.array;
 
 public class StringDecodeAtIndex {
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         StringDecodeAtIndex go = new StringDecodeAtIndex();  // 768077956   2147483647
-        System.out.println(go.decodeAtIndex("czjkk9elaqwiz7s6kgvl4gjixan3ky7jfdg3kyop3husw3fm2 89thisef8blt7a7zr5v5lhxqpntenvxnmlq7l34ay3jaayikjps",4979929));
+        System.out.println(go.decodeAtIndex("czjkk9elaqwiz7s6kgvl4gjixan3ky7jfdg3kyop3husw3fm2 89thisef8blt7a7zr5v5lhxqpntenvxnmlq7l34ay3jaayikjps", 4979929));
     }
 
     public String decodeAtIndex(String S, int K) {
@@ -25,13 +25,13 @@ public class StringDecodeAtIndex {
         long count = 0;
         long k = K; // 阴逼要用long
         char[] chars = S.toCharArray();
-        for (char c : chars){
-            if (Character.isLetter(c)){
+        for (char c : chars) {
+            if (Character.isLetter(c)) {
                 count++;
-            }else if (Character.isDigit(c)){
+            } else if (Character.isDigit(c)) {
                 count *= (c - '0');
             }
-            if (count >= K){
+            if (count >= K) {
                 break;
             }
             record++;
@@ -39,12 +39,12 @@ public class StringDecodeAtIndex {
 
         // record = chars.length - 1;
 
-        for (; record >= 0;record--){
-            if (Character.isDigit(chars[record])){
+        for (; record >= 0; record--) {
+            if (Character.isDigit(chars[record])) {
                 int digit = chars[record] - '0';
                 count /= digit;
                 k = k % count;
-            }else {
+            } else {
                 if (k % count == 0) {
                     return Character.toString(chars[record]);
                 }
@@ -60,37 +60,37 @@ public class StringDecodeAtIndex {
         int record = 1;
         long count = 0;
         char[] chars = S.toCharArray();
-        for (char c : chars){
-            if (Character.isLetter(c)){
+        for (char c : chars) {
+            if (Character.isLetter(c)) {
                 count++;
-            }else if (Character.isDigit(c)){
+            } else if (Character.isDigit(c)) {
                 int digit = c - '0';
                 count *= digit;
             }
-            if (count >= K){
+            if (count >= K) {
                 break;
             }
         }
-        if (count == K){
-            if (Character.isLetter(chars[record-1])){
-                return Character.toString(chars[record-1]);
-            }else{
-                for (int i = record-2; i>=0; i--){
-                    if (Character.isLetter(chars[i])){
+        if (count == K) {
+            if (Character.isLetter(chars[record - 1])) {
+                return Character.toString(chars[record - 1]);
+            } else {
+                for (int i = record - 2; i >= 0; i--) {
+                    if (Character.isLetter(chars[i])) {
                         return Character.toString(chars[i]);
                     }
                 }
                 return "";
             }
-        }else{
+        } else {
             // 如果不等于，最后一位必然是数字
             long left = count - K;
             int record2 = record;
-            for (; record2 >= 0;record2--){
-                if (Character.isDigit(chars[record2])){
+            for (; record2 >= 0; record2--) {
+                if (Character.isDigit(chars[record2])) {
                     int digit = chars[record2] - '0';
                     count /= digit;
-                }else if (K % (count--) == 0){
+                } else if (K % (count--) == 0) {
                     return Character.toString(chars[record2]);
                 }
             }
@@ -105,27 +105,25 @@ public class StringDecodeAtIndex {
         int count = 0;
         char[] chars = S.toCharArray();
         StringBuilder sb = new StringBuilder();
-        for (char c : chars){
-            if (Character.isLetter(c)){
+        for (char c : chars) {
+            if (Character.isLetter(c)) {
                 sb.append(c);
                 count++;
-            }else if (Character.isDigit(c)){
+            } else if (Character.isDigit(c)) {
                 int digit = Integer.valueOf(Character.toString(c));
                 count *= digit;
                 String now = sb.toString();
-                for (int i = 0; i < digit-1;i++){
+                for (int i = 0; i < digit - 1; i++) {
                     sb.append(now);
                 }
             }
-            if (count >= K){
+            if (count >= K) {
                 break;
             }
         }
 
-        return Character.toString(sb.charAt(K-1));
+        return Character.toString(sb.charAt(K - 1));
     }
-
-
 
 
 }

@@ -16,29 +16,29 @@ package tony.leetcode.feature.array.double_pointer;
 public class Valid_Palindrome {
 
     public boolean isPalindrome(String s) {
-        if (null == s || "".equals(s)){
+        if (null == s || "".equals(s)) {
             return true;
         }
         char[] chars = s.toCharArray();
-        int cur1 = 0, cur2 = chars.length-1;
-        while (cur2 > cur1){
-            while (cur1 < chars.length && !Character.isLetterOrDigit(chars[cur1])){
+        int cur1 = 0, cur2 = chars.length - 1;
+        while (cur2 > cur1) {
+            while (cur1 < chars.length && !Character.isLetterOrDigit(chars[cur1])) {
                 cur1++;
             }
-            while (cur2 >= 0 && !Character.isLetterOrDigit(chars[cur2])){
+            while (cur2 >= 0 && !Character.isLetterOrDigit(chars[cur2])) {
                 cur2--;
             }
-            if (cur1 >= cur2){
+            if (cur1 >= cur2) {
                 return true;
             }
-            if (Character.toLowerCase(chars[cur1++]) != Character.toLowerCase(chars[cur2--])){
+            if (Character.toLowerCase(chars[cur1++]) != Character.toLowerCase(chars[cur2--])) {
                 return false;
             }
         }
         return true;
     }
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         boolean op = new Valid_Palindrome().isPalindrome("OP");
         System.out.println(op);
     }

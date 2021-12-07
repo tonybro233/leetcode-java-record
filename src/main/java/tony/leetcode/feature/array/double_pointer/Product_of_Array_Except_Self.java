@@ -24,11 +24,11 @@ public class Product_of_Array_Except_Self {
         Arrays.fill(re, 1); // 初始化为1
         int left = 1, right = 1; // 乘数初始为1
         int n = nums.length;
-        for (int i = 0;i < n;i++){
+        for (int i = 0; i < n; i++) {
             re[i] *= left;
-            re[n-i-1] *= right;
+            re[n - i - 1] *= right;
             left *= nums[i];
-            right *= nums[n-i-1];
+            right *= nums[n - i - 1];
         }
         return re;
     }

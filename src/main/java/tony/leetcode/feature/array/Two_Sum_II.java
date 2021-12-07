@@ -20,19 +20,19 @@ public class Two_Sum_II {
     public int[] twoSum(int[] numbers, int target) {
         int[] result = new int[2];
         int pos = Arrays.binarySearch(numbers, target);
-        if (pos < 0){
+        if (pos < 0) {
             pos = -pos + 1;
         } else {
             pos += 1;
         }
 
-        for (int i = 0; i < pos; i++){
+        for (int i = 0; i < pos; i++) {
             int val = target - numbers[i];
-            int pos2 = Arrays.binarySearch(numbers, i+1, numbers.length, val);
-            if (pos2 > 0){
+            int pos2 = Arrays.binarySearch(numbers, i + 1, numbers.length, val);
+            if (pos2 > 0) {
                 // 注意审题
-                result[0] = i+1;
-                result[1] = pos2+1;
+                result[0] = i + 1;
+                result[1] = pos2 + 1;
                 break;
             }
         }

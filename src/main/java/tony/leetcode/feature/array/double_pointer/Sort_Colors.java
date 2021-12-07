@@ -22,28 +22,28 @@ public class Sort_Colors {
 
     // 维护双指针，循环将0,2交换到两边
     public void sortColors(int[] nums) {
-        if (nums.length == 0){
+        if (nums.length == 0) {
             return;
         }
         int low = -1, high = nums.length;
         int current = 0;
-        while (low < high && current < nums.length){
+        while (low < high && current < nums.length) {
             int val = nums[current];
-            if (val == 0){
+            if (val == 0) {
                 // low一定不会大于current
                 low++;
-                if (low < current){
+                if (low < current) {
                     exch(nums, low, current);
                 }
-                if (low == current){
+                if (low == current) {
                     current++;
                 }
-            } else if (val == 2){
+            } else if (val == 2) {
                 high--;
-                if (high > current){
+                if (high > current) {
                     exch(nums, high, current);
                 }
-                if (high == current){
+                if (high == current) {
                     break; // 可以直接跳出
                 }
             } else {
@@ -52,7 +52,7 @@ public class Sort_Colors {
         }
     }
 
-    private void exch(int[] nums, int a, int b){
+    private void exch(int[] nums, int a, int b) {
         int tmp = nums[a];
         nums[a] = nums[b];
         nums[b] = tmp;

@@ -30,48 +30,48 @@ public class Set_Matrix_Zeroes {
         // 为了不使用额外的空间
         // 先计算第一行和第一列是否需要清零，但是先不进行清零
         boolean rowzero = false, colzero = false;
-        for (int i = 0; i < m;i++){
-            if (matrix[i][0] == 0){
+        for (int i = 0; i < m; i++) {
+            if (matrix[i][0] == 0) {
                 colzero = true;
             }
         }
-        for (int i = 0; i < n;i++){
-            if (matrix[0][i] == 0){
+        for (int i = 0; i < n; i++) {
+            if (matrix[0][i] == 0) {
                 rowzero = true;
             }
         }
         // 使用第一行和第一列标记行列是否需要清零
-        for (int i = 1; i < m; i++){
-            for (int j = 1;j < n;j++){
-                if (matrix[i][j] == 0){
+        for (int i = 1; i < m; i++) {
+            for (int j = 1; j < n; j++) {
+                if (matrix[i][j] == 0) {
                     matrix[i][0] = 0;
                     matrix[0][j] = 0;
                 }
             }
         }
         // 对第一行第一列之外的内容执行清零
-        for (int i = 1; i < m; i++){
-            if (matrix[i][0] == 0){
-                for (int j = 1; j < n;j++ ){
+        for (int i = 1; i < m; i++) {
+            if (matrix[i][0] == 0) {
+                for (int j = 1; j < n; j++) {
                     matrix[i][j] = 0;
                 }
             }
         }
-        for (int j = 1; j < n; j++){
-            if (matrix[0][j] == 0){
-                for (int i = 1; i < m;i++ ){
+        for (int j = 1; j < n; j++) {
+            if (matrix[0][j] == 0) {
+                for (int i = 1; i < m; i++) {
                     matrix[i][j] = 0;
                 }
             }
         }
         // 对第一行和第一列执行清零
-        if (rowzero){
-            for (int i = 0; i < n;i++){
+        if (rowzero) {
+            for (int i = 0; i < n; i++) {
                 matrix[0][i] = 0;
             }
         }
-        if (colzero){
-            for (int i = 0; i < m;i++){
+        if (colzero) {
+            for (int i = 0; i < m; i++) {
                 matrix[i][0] = 0;
             }
         }

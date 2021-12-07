@@ -19,41 +19,41 @@ public class Move_Zeroes {
     // 更加优雅的写法，核心思想是双指针
     public void moveZeroes2(int[] nums) {
         int index = 0;
-        for(int i = 0; i < nums.length; i++) {
-            if(nums[i] != 0) {
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] != 0) {
                 nums[index++] = nums[i];
             }
         }
-        for(int i = index; i < nums.length; i++) {
+        for (int i = index; i < nums.length; i++) {
             nums[i] = 0;
         }
     }
 
     public void moveZeroes(int[] nums) {
         List<Integer> zeros = new ArrayList<>();
-        for (int i = 0; i < nums.length; i++){
-            if (nums[i] == 0){
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] == 0) {
                 zeros.add(i);
             }
         }
-        if (zeros.size() == 0 || zeros.size() == nums.length){
+        if (zeros.size() == 0 || zeros.size() == nums.length) {
             return;
         }
-        for (int i = 0; i < zeros.size(); i++){
-            if (i == zeros.size()-1){
-                for (int j = zeros.get(i); j < nums.length - 1;j++){
-                    nums[j-i] = nums[j+1];
+        for (int i = 0; i < zeros.size(); i++) {
+            if (i == zeros.size() - 1) {
+                for (int j = zeros.get(i); j < nums.length - 1; j++) {
+                    nums[j - i] = nums[j + 1];
                 }
 
             } else {
-                for (int j = zeros.get(i); j < zeros.get(i+1) - 1;j++){
-                    nums[j-i] = nums[j+1];
+                for (int j = zeros.get(i); j < zeros.get(i + 1) - 1; j++) {
+                    nums[j - i] = nums[j + 1];
                 }
             }
         }
-        int i = nums.length-1;
+        int i = nums.length - 1;
         int count = zeros.size();
-        while (count > 0){
+        while (count > 0) {
             nums[i--] = 0;
             count--;
         }

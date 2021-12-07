@@ -18,7 +18,7 @@ public class Container_With_Most_Water {
         int hi = height.length - 1;
         int max = 0;
         // 从左右两端开始判断缩小，缩小短的一方，因为缩小长的一方体积必然减小
-        while (hi > lo){
+        while (hi > lo) {
             boolean b = height[lo] > height[hi];
             int v = (b ? height[hi] : height[lo]) * (hi - lo);
             max = max > v ? max : v;

@@ -18,10 +18,10 @@ public class Spiral_Matrix_II {
         int[][] result = new int[n][n];
         boolean right = true, down = false, left = false, up = false;
         int x = 0, y = 0;
-        for (int i = 1; i <= n*n;i++){
+        for (int i = 1; i <= n * n; i++) {
             result[x][y] = i;
-            if (right){
-                if (y+1 == n || result[x][y+1] != 0){
+            if (right) {
+                if (y + 1 == n || result[x][y + 1] != 0) {
                     right = false;
                     down = true;
                     x++;
@@ -31,8 +31,8 @@ public class Spiral_Matrix_II {
                 // 不能漏这个continue
                 continue;
             }
-            if (down){
-                if (x+1 == n || result[x+1][y] != 0){
+            if (down) {
+                if (x + 1 == n || result[x + 1][y] != 0) {
                     down = false;
                     left = true;
                     y--;
@@ -41,8 +41,8 @@ public class Spiral_Matrix_II {
                 }
                 continue;
             }
-            if (left){
-                if (y == 0 || result[x][y-1] != 0){
+            if (left) {
+                if (y == 0 || result[x][y - 1] != 0) {
                     left = false;
                     up = true;
                     x--;
@@ -51,12 +51,12 @@ public class Spiral_Matrix_II {
                 }
                 continue;
             }
-            if (up){
-                if (x == 0 || result[x-1][y] != 0){
+            if (up) {
+                if (x == 0 || result[x - 1][y] != 0) {
                     up = false;
                     right = true;
                     y++;
-                }else {
+                } else {
                     x--;
                 }
             }
@@ -65,7 +65,7 @@ public class Spiral_Matrix_II {
         return result;
     }
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         new Spiral_Matrix_II().generateMatrix(3);
     }
 }

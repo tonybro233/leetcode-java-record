@@ -18,14 +18,14 @@ import java.util.List;
 public class Find_All_Duplicates_in_an_Array {
 
     public List<Integer> findDuplicates(int[] nums) {
-        if (nums.length < 2){
+        if (nums.length < 2) {
             return new ArrayList<>();
         }
         // 注意审题，直接用正负来复用数组
         List<Integer> result = new ArrayList<>(nums.length / 2);
-        for (int i =0 ; i < nums.length; i++){
-            if (nums[Math.abs(nums[i])-1] > 0){
-                nums[Math.abs(nums[i])-1] *= -1;
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[Math.abs(nums[i]) - 1] > 0) {
+                nums[Math.abs(nums[i]) - 1] *= -1;
             } else {
                 result.add(Math.abs(nums[i]));
             }
@@ -34,8 +34,8 @@ public class Find_All_Duplicates_in_an_Array {
         return result;
     }
 
-    public static void main(String[] args){
-        List<Integer> duplicates = new Find_All_Duplicates_in_an_Array().findDuplicates(new int[]{2,2,4});
+    public static void main(String[] args) {
+        List<Integer> duplicates = new Find_All_Duplicates_in_an_Array().findDuplicates(new int[]{2, 2, 4});
         System.out.println(duplicates);
     }
 }
