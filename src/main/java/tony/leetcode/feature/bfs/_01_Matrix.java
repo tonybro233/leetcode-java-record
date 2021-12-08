@@ -39,52 +39,52 @@ public class _01_Matrix {
         int[][] result = new int[row][col];
         Deque<Integer> rowque = new LinkedList<>(), colque = new LinkedList<>();
         int round = 1, count = 0;
-        for (int i = 0; i < row; i++){
-            for (int j = 0; j < col; j++){
-                if (matrix[i][j] == 0){
+        for (int i = 0; i < row; i++) {
+            for (int j = 0; j < col; j++) {
+                if (matrix[i][j] == 0) {
                     rowque.addLast(i);
                     colque.addLast(j);
                     count++;
                 }
             }
         }
-        while (null != rowque.peekFirst()){
+        while (null != rowque.peekFirst()) {
             int tmp = 0;
-            for (int i = 0; i < count; i++){
+            for (int i = 0; i < count; i++) {
                 Integer x = rowque.pollFirst();
                 Integer y = colque.pollFirst();
                 try {
-                    if (matrix[x-1][y] == 1 && result[x-1][y] == 0){
-                        result[x-1][y] = round;
-                        rowque.addLast(x-1);
+                    if (matrix[x - 1][y] == 1 && result[x - 1][y] == 0) {
+                        result[x - 1][y] = round;
+                        rowque.addLast(x - 1);
                         colque.addLast(y);
                         tmp++;
                     }
-                } catch (ArrayIndexOutOfBoundsException ignore){}
+                } catch (ArrayIndexOutOfBoundsException ignore) { }
                 try {
-                    if (matrix[x+1][y] == 1 && result[x+1][y] == 0){
-                        result[x+1][y] = round;
-                        rowque.addLast(x+1);
+                    if (matrix[x + 1][y] == 1 && result[x + 1][y] == 0) {
+                        result[x + 1][y] = round;
+                        rowque.addLast(x + 1);
                         colque.addLast(y);
                         tmp++;
                     }
-                } catch (ArrayIndexOutOfBoundsException ignore){}
+                } catch (ArrayIndexOutOfBoundsException ignore) { }
                 try {
-                    if (matrix[x][y-1] == 1 && result[x][y-1] == 0){
-                        result[x][y-1] = round;
+                    if (matrix[x][y - 1] == 1 && result[x][y - 1] == 0) {
+                        result[x][y - 1] = round;
                         rowque.addLast(x);
-                        colque.addLast(y-1);
+                        colque.addLast(y - 1);
                         tmp++;
                     }
-                } catch (ArrayIndexOutOfBoundsException ignore){}
+                } catch (ArrayIndexOutOfBoundsException ignore) { }
                 try {
-                    if (matrix[x][y+1] == 1 && result[x][y+1] == 0){
-                        result[x][y+1] = round;
+                    if (matrix[x][y + 1] == 1 && result[x][y + 1] == 0) {
+                        result[x][y + 1] = round;
                         rowque.addLast(x);
-                        colque.addLast(y+1);
+                        colque.addLast(y + 1);
                         tmp++;
                     }
-                } catch (ArrayIndexOutOfBoundsException ignore){}
+                } catch (ArrayIndexOutOfBoundsException ignore) { }
             }
             count = tmp;
             round++;

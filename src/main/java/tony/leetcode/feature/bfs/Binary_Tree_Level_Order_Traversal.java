@@ -86,7 +86,7 @@ public class Binary_Tree_Level_Order_Traversal {
                 num = next;
                 next = 0;
                 result.add(rowResult);
-                rowResult = new ArrayList<Integer>();
+                rowResult = new ArrayList<>();
             }
         }
         return result;

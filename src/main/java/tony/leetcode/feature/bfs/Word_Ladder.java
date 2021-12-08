@@ -38,12 +38,12 @@ public class Word_Ladder {
 
         while (!visited.contains(endWord)) {
             Set<String> temp = new HashSet<>();
-            for (String word: visited) {
+            for (String word : visited) {
                 for (int i = 0; i < word.length(); i++) {
                     // 不断获取所有"相邻"的节点，
                     char[] chars = word.toCharArray();
-                    for (int j = (int)'a'; j < (int)'z' + 1; j++) {
-                        chars[i] = (char)j;
+                    for (int j = (int) 'a'; j < (int) 'z' + 1; j++) {
+                        chars[i] = (char) j;
                         String newWord = new String(chars);
                         if (wordSet.contains(newWord)) {
                             temp.add(newWord);
@@ -55,7 +55,7 @@ public class Word_Ladder {
             }
             // 每次循环都表示找到了相邻节点
             dist += 1;
-            if (temp.size() == 0) { // it nevert get to the endWord
+            if (temp.size() == 0) { // it never get to the endWord
                 return 0;
             }
 
@@ -65,9 +65,14 @@ public class Word_Ladder {
         return dist;
     }
 
-    public static void main(String[] args){
-        new Word_Ladder().ladderLength("hit","cog",new ArrayList<String>(){{
-            add("hot");add("dot");add("dog");add("lot");add("log");add("cog");
+    public static void main(String[] args) {
+        new Word_Ladder().ladderLength("hit", "cog", new ArrayList<String>() {{
+            add("hot");
+            add("dot");
+            add("dog");
+            add("lot");
+            add("log");
+            add("cog");
         }});
     }
 

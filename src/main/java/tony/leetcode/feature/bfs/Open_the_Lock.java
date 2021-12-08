@@ -51,29 +51,29 @@ public class Open_the_Lock {
 
     public int openLock(String[] deadends, String target) {
         Set<String> deadSet = new HashSet<>(), dupSet = new HashSet<>();
-        for (String dead : deadends){
+        for (String dead : deadends) {
             deadSet.add(dead);
         }
-        if (deadSet.contains("0000")){
+        if (deadSet.contains("0000")) {
             return -1;
         }
         Deque<String> deque = new LinkedList<>();
         deque.addLast("0000");
         int count = 1, result = 1;
-        while (null != deque.peekFirst()){
+        while (null != deque.peekFirst()) {
             int nextCount = 0;
-            for (int i = 0; i < count;i++){
+            for (int i = 0; i < count; i++) {
                 String str = deque.pollFirst();
                 char[] chars = str.toCharArray();
-                for (int j = 0;j < 4;j++){
+                for (int j = 0; j < 4; j++) {
                     char old = chars[j];
                     // 前拨
-                    chars[j] = old == '9' ? '0' : (char)(chars[j]+1);
+                    chars[j] = old == '9' ? '0' : (char) (chars[j] + 1);
                     String s1 = new String(chars);
-                    if (s1.equals(target)){
+                    if (s1.equals(target)) {
                         return result;
                     }
-                    if (!deadSet.contains(s1) && !dupSet.contains(s1)){
+                    if (!deadSet.contains(s1) && !dupSet.contains(s1)) {
                         deque.addLast(s1);
                         dupSet.add(s1);
                         nextCount++;
@@ -81,12 +81,12 @@ public class Open_the_Lock {
                     chars[j] = old;
 
                     // 后拨
-                    chars[j] = old == '0' ? '9' : (char)(chars[j]-1);
+                    chars[j] = old == '0' ? '9' : (char) (chars[j] - 1);
                     String s2 = new String(chars);
-                    if (s2.equals(target)){
+                    if (s2.equals(target)) {
                         return result;
                     }
-                    if (!deadSet.contains(s2) && !dupSet.contains(s2)){
+                    if (!deadSet.contains(s2) && !dupSet.contains(s2)) {
                         deque.addLast(s2);
                         dupSet.add(s2);
                         nextCount++;

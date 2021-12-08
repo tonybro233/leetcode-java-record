@@ -38,33 +38,33 @@ import java.util.*;
 public class Minimum_Genetic_Mutation {
     public int minMutation(String start, String end, String[] bank) {
         Set<String> banks = new HashSet<>(Arrays.asList(bank));
-        char[] candidate = new char[]{'A','C','G','T'};
+        char[] candidate = new char[]{'A', 'C', 'G', 'T'};
 
         Set<String> visited = new HashSet<>(); // 相当于bfs中的每一层
         visited.add(start);
-        int resoult = 0;
-        while (!visited.contains(end)){
+        int result = 0;
+        while (!visited.contains(end)) {
             Set<String> temp = new HashSet<>();
-            for (String each : visited){
-                for (int i = 0; i < each.length(); i++){
+            for (String each : visited) {
+                for (int i = 0; i < each.length(); i++) {
                     char[] chars = each.toCharArray();
-                    for (char c : candidate){
+                    for (char c : candidate) {
                         chars[i] = c;
                         String newWord = new String(chars);
-                        if (banks.contains(newWord)){
+                        if (banks.contains(newWord)) {
                             temp.add(newWord);
                             banks.remove(newWord);
                         }
                     }
                 }
             }
-            resoult++;
-            if (temp.size() == 0){
+            result++;
+            if (temp.size() == 0) {
                 return -1;
             }
             visited = temp;
         }
 
-        return resoult;
+        return result;
     }
 }
