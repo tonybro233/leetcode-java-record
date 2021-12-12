@@ -27,31 +27,31 @@ import java.util.Arrays;
 public class Search_Insert_Position {
 
     public int searchInsert(int[] nums, int target) {
-        int left = 0, right = nums.length-1, mid = 0;
-        while (left <= right){
+        int left = 0, right = nums.length - 1, mid = 0;
+        while (left <= right) {
             mid = (left + right) / 2;
-            if (nums[mid] == target){
+            if (nums[mid] == target) {
                 return mid;
-            } else if (nums[mid] > target){
+            } else if (nums[mid] > target) {
                 right = mid - 1;
             } else {
                 left = mid + 1;
             }
         }
 
-        if (nums[left] >= target){
+        if (nums[left] >= target) {
             return left;
         } else {
             return left + 1;
         }
     }
 
-    public int searchInsert2(int[] nums, int target){
+    public int searchInsert2(int[] nums, int target) {
         int i = Arrays.binarySearch(nums, target);
-        if (i >= 0){
+        if (i >= 0) {
             return i;
         } else {
-            return -(i+1);
+            return -(i + 1);
         }
     }
 }

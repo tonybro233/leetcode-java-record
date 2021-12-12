@@ -10,21 +10,18 @@ package tony.leetcode.feature.binary_search;
 
 public class Find_Peak_Element {
 
-    /**
-     * 因为边界是负无穷，所以如果一个值大于右值则左边一定有一个峰值，反之右边一定有个峰值
-     * @param nums
-     * @return
-     */
     public int findPeakElement(int[] nums) {
-        int min=0, max=nums.length-1;
-        while (min < max) {
-            int mid = (min + max)/2;
-            if (nums[mid] > nums[mid+1]) {
-                max = mid;
+        int low = 0, high = nums.length - 1;
+
+        // 因为边界是负无穷，所以如果一个值大于右值则左边一定有一个峰值，反之右边一定有个峰值
+        while (low < high) {
+            int mid = (low + high) / 2;
+            if (nums[mid] > nums[mid + 1]) {
+                high = mid;
             } else {
-                min = mid + 1;
+                low = mid + 1;
             }
         }
-        return min;
+        return low;
     }
 }

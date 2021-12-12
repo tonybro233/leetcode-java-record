@@ -16,20 +16,20 @@ package tony.leetcode.feature.binary_search;
 public class Valid_Perfect_Square {
 
     public boolean isPerfectSquare(int num) {
-        if (num == 1){
+        if (num == 1) {
             return true;
         }
-        int left = 1, right = num/2;
-        while (left <= right){
-            int mid = left + (right-left)/2;
+        int left = 1, right = num / 2;
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
             int val = num / mid;
-            if (val == mid && num % mid == 0){
+            if (val == mid && num % mid == 0) {
                 return true;
             }
-            if (val > mid){
-                left = mid+1;
+            if (val > mid) {
+                left = mid + 1;
             } else {
-                right = mid-1;
+                right = mid - 1;
             }
         }
         return false;

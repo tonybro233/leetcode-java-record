@@ -22,19 +22,19 @@ package tony.leetcode.feature.binary_search;
 public class Find_Smallest_Letter_Greater_Than_Target {
 
     public char nextGreatestLetter(char[] letters, char target) {
-        int left = 0, right = letters.length-1;
-        if (letters[right] <= target){
+        int low = 0, high = letters.length - 1;
+        if (letters[high] <= target) {
             return letters[0];
         }
-        while (left <= right){
-            int mid = left + (right - left) / 2;
+        while (low <= high) {
+            int mid = low + (high - low) / 2;
             if (letters[mid] <= target) {
-                left = mid + 1;
+                low = mid + 1;
             } else {
-                right = mid - 1;
+                high = mid - 1;
             }
         }
 
-        return letters[left];
+        return letters[low];
     }
 }

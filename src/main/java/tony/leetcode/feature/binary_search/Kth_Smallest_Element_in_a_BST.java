@@ -53,11 +53,11 @@ public class Kth_Smallest_Element_in_a_BST {
     }
 
     private void inorder(TreeNode r, int k) {
-        if(r == null) {
+        if (r == null) {
             return;
         }
         inorder(r.left, k);
-        if(++counter == k) {
+        if (++counter == k) {
             ret = r.val;
             return;
         }
@@ -69,11 +69,11 @@ public class Kth_Smallest_Element_in_a_BST {
         List<Integer> record = new ArrayList<>();
         preorder(root, record);
         Collections.sort(record);
-        return record.get(k-1);
+        return record.get(k - 1);
     }
 
-    private void preorder(TreeNode node, List<Integer> record){
-        if (null == node){
+    private void preorder(TreeNode node, List<Integer> record) {
+        if (null == node) {
             return;
         }
         record.add(node.val);

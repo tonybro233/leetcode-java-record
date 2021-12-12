@@ -3,6 +3,7 @@ package tony.leetcode.feature.binary_search;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 // 658. 找到 K 个最接近的元素
 // 给定一个排序好的数组，两个整数 k 和 x，从数组中找到最靠近 x（两数之差最小）的 k 个数。
@@ -45,4 +46,39 @@ public class Find_K_Closest_Elements {
 
         return result;
     }
+
+    public List<Integer> findClosestElements2(int[] arr, int k, int x) {
+        int low = 0;
+        int high = arr.length - 1;
+        while (low <= high) {
+            int mid = low + (high - low) / 2;
+            if (arr[mid] < x) {
+                low = mid + 1;
+            } else if (arr[mid] == x) {
+                low = mid + 1;
+            } else if (arr[mid] > x) {
+                high = mid - 1;
+            }
+        }
+
+        // high 是小于等于 x 的最大值
+        int lowIdx = Math.max(0, high - k + 1);
+        while (lowIdx + k < arr.length && x - arr[lowIdx] > arr[lowIdx + k] - x) {
+            lowIdx++;
+        }
+
+        return Arrays.stream(arr)
+                .boxed()
+                .collect(Collectors.toList())
+                .subList(lowIdx, lowIdx + k);
+    }
+
+    public static void main(String[] args) {
+        List<Integer> list = new Find_K_Closest_Elements().findClosestElements2(
+                new int[]{1, 2, 3, 4, 5}, 4, 3
+        );
+        System.out.println(list);
+    }
+
+
 }

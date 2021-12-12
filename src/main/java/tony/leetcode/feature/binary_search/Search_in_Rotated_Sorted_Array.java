@@ -20,8 +20,40 @@ import java.util.Arrays;
 
 public class Search_in_Rotated_Sorted_Array {
 
+    public int search3(int[] nums, int target) {
+        int n = nums.length;
+        if (n == 0) {
+            return -1;
+        }
+        if (n == 1) {
+            return nums[0] == target ? 0 : -1;
+        }
+        int low = 0, high = nums.length - 1;
+        while (low <= high) {
+            int mid = low + (high - low) / 2;
+            if (nums[mid] == target) {
+                return mid;
+            }
+            if (nums[0] < nums[mid]) {
+                if (nums[0] < target && target < nums[mid]) {
+                    high = mid - 1;
+                } else {
+                    low = mid + 1;
+                }
+            } else {
+                if (nums[mid] < target && target < nums[high]) {
+                    low = mid + 1;
+                } else {
+                    high = mid - 1;
+                }
+            }
+        }
+
+        return -1;
+    }
+
     public int search2(int[] nums, int target) {
-        if(nums.length == 1 && target == nums[0]){
+        if (nums.length == 1 && target == nums[0]) {
             return 0;
         }
 
@@ -31,10 +63,10 @@ public class Search_in_Rotated_Sorted_Array {
 
         while (left < right) {
             mid = (left + right) / 2;
-            if (target == nums[left]){
+            if (target == nums[left]) {
                 return left;
             }
-            if (target == nums[right]){
+            if (target == nums[right]) {
                 return right;
             }
             if (nums[mid] == target) {
@@ -66,46 +98,46 @@ public class Search_in_Rotated_Sorted_Array {
     }
 
     public int search(int[] nums, int target) {
-        if (nums == null || nums.length == 0){
+        if (nums == null || nums.length == 0) {
             return -1;
         }
-        return search(nums, target, 0, nums.length-1);
+        return search(nums, target, 0, nums.length - 1);
     }
 
-    private int search(int[] nums, int target, int lo, int hi){
-        if (lo > hi){
+    private int search(int[] nums, int target, int lo, int hi) {
+        if (lo > hi) {
             return -1;
         }
         int mid = (lo + hi) / 2;
-        if (nums[mid] >= nums[lo]){
+        if (nums[mid] >= nums[lo]) {
             // mid左边有序
-            int i = Arrays.binarySearch(nums, lo,mid+1, target);
-            if (i >= 0){
+            int i = Arrays.binarySearch(nums, lo, mid + 1, target);
+            if (i >= 0) {
                 return i;
             }
             i = search(nums, target, mid + 1, hi);
-            if (i >= 0){
+            if (i >= 0) {
                 return i;
-            } else{
+            } else {
                 return -1;
             }
         } else {
             // mid右边有序
-            int i = Arrays.binarySearch(nums, mid , hi+1, target);
-            if (i >= 0){
+            int i = Arrays.binarySearch(nums, mid, hi + 1, target);
+            if (i >= 0) {
                 return i;
             }
             i = search(nums, target, lo, mid - 1);
-            if (i >= 0){
+            if (i >= 0) {
                 return i;
-            } else{
+            } else {
                 return -1;
             }
         }
     }
 
-    public static void main(String[] args){
-        int search = new Search_in_Rotated_Sorted_Array().search(new int[]{4,5,6,7,0,1,2}, 3);
+    public static void main(String[] args) {
+        int search = new Search_in_Rotated_Sorted_Array().search(new int[]{4, 5, 6, 7, 0, 1, 2}, 3);
         System.out.println(search);
     }
 }

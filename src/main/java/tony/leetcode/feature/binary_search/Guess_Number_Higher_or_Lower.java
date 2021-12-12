@@ -1,10 +1,7 @@
 package tony.leetcode.feature.binary_search;
 
-import com.sun.imageio.plugins.common.BogusColorSpace;
-
 import java.time.Duration;
 import java.time.Instant;
-import java.time.Period;
 
 // 374
 // 我们正在玩一个猜数字游戏。 游戏规则如下：
@@ -18,34 +15,25 @@ import java.time.Period;
 
 public class Guess_Number_Higher_or_Lower {
 
-    int targt = 1702766719;
-
-    public static void main(String[] args){
-        Instant begin = Instant.now();
-        new Guess_Number_Higher_or_Lower().guess(2126753390);
-        Instant end = Instant.now();
-        System.out.println(Duration.between(begin, end));
-    }
-
     public int guessNumber(int n) {
         int low = 1;
         int high = n;
-        while (low <= high){
+        while (low <= high) {
             // int mid = (low+high)/2;   // 越界
             int mid = low + (high - low) / 2;
             int re = guess(mid);
-            if (0 == re){
+            if (0 == re) {
                 return mid;
-            } else if (re < 0){
-                high = mid-1;
+            } else if (re < 0) {
+                high = mid - 1;
             } else {
-                low = mid+1;
+                low = mid + 1;
             }
         }
         return -1;
     }
 
-    private int guess(int val){
+    private int guess(int val) {
         if (val == targt) {
             return 0;
         } else if (val < targt) {
@@ -53,5 +41,14 @@ public class Guess_Number_Higher_or_Lower {
         } else {
             return 1;
         }
+    }
+
+    int targt = 1702766719;
+
+    public static void main(String[] args) {
+        Instant begin = Instant.now();
+        new Guess_Number_Higher_or_Lower().guess(2126753390);
+        Instant end = Instant.now();
+        System.out.println(Duration.between(begin, end));
     }
 }

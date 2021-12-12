@@ -20,20 +20,20 @@ package tony.leetcode.feature.binary_search;
 public class Find_Minimum_in_Rotated_Sorted_Array {
 
     public int findMin(int[] nums) {
-        if(nums == null || nums.length == 0) {
+        if (nums == null || nums.length == 0) {
             return -1;
         }
 
-        int low = 0, high = nums.length-1;
-        while(low < high){
+        int low = 0, high = nums.length - 1;
+        while (low < high) {
             int mid = low + (high - low) / 2;
-            if (nums[mid] > nums[low]){
-                if (nums[low] < nums[high]){
+            if (nums[mid] > nums[low]) {
+                if (nums[low] < nums[high]) {
                     return nums[low];
                 } else {
                     low = mid + 1;
                 }
-            } else if (nums[mid] < nums[low]){
+            } else if (nums[mid] < nums[low]) {
                 low++;
             } else {
                 // low mid相等
@@ -44,8 +44,26 @@ public class Find_Minimum_in_Rotated_Sorted_Array {
         return nums[low];
     }
 
-    public static void main(String[] args){
-        int min = new Find_Minimum_in_Rotated_Sorted_Array().findMin(new int[]{3, 4, 5, 1, 2});
+    public int findMin2(int[] nums) {
+        int low = 0;
+        int high = nums.length - 1;
+        while (low < high) {
+            int mid = low + (high - low) / 2;
+            if (nums[mid] > nums[high]) {
+                low = mid + 1;
+            } else if (nums[mid] == nums[high]) {
+                // 这种情况不存在
+
+            } else if (nums[mid] < nums[high]) {
+                high = mid;
+            }
+        }
+
+        return nums[low];
+    }
+
+    public static void main(String[] args) {
+        int min = new Find_Minimum_in_Rotated_Sorted_Array().findMin2(new int[]{1, 2, 3, 4, 5, 6});
         System.out.println(min);
     }
 }

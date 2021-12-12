@@ -24,18 +24,18 @@ package tony.leetcode.feature.binary_search;
 public class Find_Minimum_in_Rotated_Sorted_Array_II {
 
     public int findMin(int[] nums) {
-        if(nums == null || nums.length == 0) {
+        if (nums == null || nums.length == 0) {
             return -1;
         }
 
-        int low = 0, high = nums.length-1;
-        while(low < high){
+        int low = 0, high = nums.length - 1;
+        while (low < high) {
             int mid = low + (high - low) / 2;
             // 使用上界来处理
             if (nums[mid] < nums[high]) {
                 high = mid;
             } else if (nums[mid] > nums[high]) {
-                low = mid+1;
+                low = mid + 1;
             } else {
                 high--;
             }

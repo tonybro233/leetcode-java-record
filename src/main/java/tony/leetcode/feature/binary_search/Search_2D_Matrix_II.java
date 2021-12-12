@@ -24,13 +24,13 @@ public class Search_2D_Matrix_II {
 
     public boolean searchMatrix(int[][] matrix, int target) {
         int m = matrix.length;
-        if (m == 0){
+        if (m == 0) {
             return false;
         }
         int n = matrix[0].length;
-        for (int i = 0; i < m; i++){
-            for (int j = n-1; j >=0 ;j--){
-                if (matrix[i][j] < target){
+        for (int i = 0; i < m; i++) {
+            for (int j = n - 1; j >= 0; j--) {
+                if (matrix[i][j] < target) {
                     break;
                 } else if (matrix[i][j] == target) {
                     return true;
@@ -47,16 +47,16 @@ public class Search_2D_Matrix_II {
         }
         int rowCount = matrix.length;
         int colCount = matrix[0].length;
-        int i,j;
-        for (i=rowCount-1,j=0;i>=0&&j<colCount;) {
-            if(target == matrix[i][j]) {
+        int i, j;
+        for (i = rowCount - 1, j = 0; i >= 0 && j < colCount; ) {
+            if (target == matrix[i][j]) {
                 return true;
             }
-            if(target < matrix[i][j]) {
+            if (target < matrix[i][j]) {
                 i--;
                 continue;
             }
-            if(target > matrix[i][j]) {
+            if (target > matrix[i][j]) {
                 j++;
                 continue;
             }

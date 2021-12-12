@@ -17,19 +17,18 @@ import java.util.LinkedList;
 
 public class Binary_Search_Tree_Iterator {
 
-    private Deque<TreeNode> stack;
+    private Deque<TreeNode> stack = new LinkedList<>();
 
     public Binary_Search_Tree_Iterator(TreeNode root) {
-        stack = new LinkedList<>();
-        init(root);
+        pushNode(root);
     }
 
     /** @return the next smallest number */
     public int next() {
         // 最后的左子节点最小
-        TreeNode min = stack.pollLast();
+        TreeNode min = stack.pop();
         // 初始化节点的右子节点
-        init(min.right);
+        pushNode(min.right);
         return min.val;
     }
 
@@ -38,12 +37,11 @@ public class Binary_Search_Tree_Iterator {
         return !stack.isEmpty();
     }
 
-    private void init(TreeNode node){
-        if (null == node){
-            return;
+    private void pushNode(TreeNode node) {
+        // 左子节点压栈
+        while (node != null) {
+            stack.push(node);
+            node = node.left;
         }
-        // 依次加入自身和左子节点
-        stack.addLast(node);
-        init(node.left);
     }
 }

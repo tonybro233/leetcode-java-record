@@ -23,30 +23,30 @@ public class _3Sum {
     public List<List<Integer>> threeSum2(int[] nums) {
         List<List<Integer>> result = new ArrayList<>();
         int n = nums.length;
-        if (n < 3){
+        if (n < 3) {
             return result;
         }
         Arrays.sort(nums);
-        for (int i = 0; i < n-2 && nums[i] <= 0;i++){
+        for (int i = 0; i < n - 2 && nums[i] <= 0; i++) {
             int target = -nums[i];
-            int j = i+1, k = n-1;
-            while (j < k){
+            int j = i + 1, k = n - 1;
+            while (j < k) {
                 int sum = nums[j] + nums[k];
-                if (sum == target){
+                if (sum == target) {
                     result.add(Arrays.asList(nums[i], nums[j++], nums[k--]));
-                    while (j < k && nums[j] == nums[j-1]){
+                    while (j < k && nums[j] == nums[j - 1]) {
                         j++;
                     }
-                    while (k > j && nums[k] == nums[k+1]){
+                    while (k > j && nums[k] == nums[k + 1]) {
                         k--;
                     }
-                } else if (sum < target){
+                } else if (sum < target) {
                     j++;
-                } else if (sum > target){
+                } else {
                     k--;
                 }
             }
-            while (i+1 < n && nums[i] == nums[i+1]){
+            while (i + 1 < n && nums[i] == nums[i + 1]) {
                 i++;
             }
         }
@@ -56,21 +56,21 @@ public class _3Sum {
     public List<List<Integer>> threeSum(int[] nums) {
         List<List<Integer>> result = new ArrayList<>();
         int n = nums.length;
-        if (n < 3){
+        if (n < 3) {
             return result;
         }
         Arrays.sort(nums);
-        for (int i = 0; i < n-2 && nums[i] <= 0;i++){
-            if (i > 0 && nums[i] == nums[i-1]){
+        for (int i = 0; i < n - 2 && nums[i] <= 0; i++) {
+            if (i > 0 && nums[i] == nums[i - 1]) {
                 continue;
             }
-            for (int j = i+1; j < n-1;j++){
-                if (j > i+1 && nums[j] == nums[j-1]){
+            for (int j = i + 1; j < n - 1; j++) {
+                if (j > i + 1 && nums[j] == nums[j - 1]) {
                     continue;
                 }
-                int val = -(nums[i]+nums[j]);
+                int val = -(nums[i] + nums[j]);
                 int k = Arrays.binarySearch(nums, j + 1, n, val);
-                if (k > 0){
+                if (k > 0) {
                     result.add(Arrays.asList(nums[i], nums[j], nums[k]));
                 }
             }

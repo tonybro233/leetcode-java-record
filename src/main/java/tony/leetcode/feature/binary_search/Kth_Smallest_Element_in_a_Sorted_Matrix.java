@@ -20,11 +20,48 @@ import java.util.PriorityQueue;
 
 public class Kth_Smallest_Element_in_a_Sorted_Matrix {
 
+
+    public int kthSmallest3(int[][] matrix, int k) {
+        // 注意是 n x n
+        int n = matrix.length;
+        int low = matrix[0][0];
+        int high = matrix[n - 1][n - 1];
+        while (low <= high) {
+            int mid = low + (high - low) / 2;
+            // 这里是 >= 降低上界
+            // 所以low是 >= 目标的最小值，high是 < 目标的最大值
+            // 如果mid减少没有引起判断函数变化，mid一定会继续减少
+            // 所以在跳出循环前mid一定在矩阵中，所以low也一定在矩阵中
+            if (lessOrEqual(matrix, mid) >= k) {
+                high = mid - 1;
+            } else {
+                low = mid + 1;
+            }
+        }
+        return low;
+    }
+
+    private int lessOrEqual(int[][] matrix, int value) {
+        int len = matrix.length;
+        int i = len - 1;
+        int j = 0;
+        int num = 0;
+        while (i >= 0 && j < len) {
+            if (matrix[i][j] <= value) {
+                num += i + 1;
+                j++;
+            } else {
+                j--;
+            }
+        }
+        return num;
+    }
+
     // 变体二分
     public int kthSmallest2(int[][] matrix, int k) {
         int n = matrix.length;
         int m = matrix[0].length;
-        int low = matrix[0][0], high = matrix[n -  1][m - 1];
+        int low = matrix[0][0], high = matrix[n - 1][m - 1];
         while (low <= high) {
             int mid = low + (high - low) / 2;
             if (lessNum(matrix, mid) >= k) {
@@ -42,9 +79,9 @@ public class Kth_Smallest_Element_in_a_Sorted_Matrix {
         int m = matrix[0].length;
         int p = 0;
         int ans = 0;
-        for (int i = n - 1; i >= 0; -- i) {
+        for (int i = n - 1; i >= 0; --i) {
             while (p < m && matrix[i][p] <= val) {
-                p ++ ;
+                p++;
             }
             ans += p;
         }
@@ -54,22 +91,22 @@ public class Kth_Smallest_Element_in_a_Sorted_Matrix {
     // 直接使用优先队列
     public int kthSmallest(int[][] matrix, int k) {
         int n = matrix.length;
-        PriorityQueue<Integer> priorityQueue = new PriorityQueue<>(n*n);
-        for (int i = 0; i < n;i++){
-            for (int j = 0; j < n; j++){
+        PriorityQueue<Integer> priorityQueue = new PriorityQueue<>(n * n);
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
                 priorityQueue.add(matrix[i][j]);
             }
         }
         int result = 0;
-        for (int i = 0; i < k;i++){
+        for (int i = 0; i < k; i++) {
             result = priorityQueue.poll();
         }
 
         return result;
     }
 
-    public static void main(String[] args){
-        int[][] ints = {{1,4,7,11,15},{2,5,8,12,19},{3,6,9,16,22},{10,13,14,17,24},{18,21,23,26,30}};
+    public static void main(String[] args) {
+        int[][] ints = {{1, 4, 7, 11, 15}, {2, 5, 8, 12, 19}, {3, 6, 9, 16, 22}, {10, 13, 14, 17, 24}, {18, 21, 23, 26, 30}};
         int i = new Kth_Smallest_Element_in_a_Sorted_Matrix().kthSmallest(ints, 5);
         System.out.println(i);
     }

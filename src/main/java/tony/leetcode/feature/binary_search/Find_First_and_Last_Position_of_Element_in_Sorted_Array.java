@@ -20,7 +20,7 @@ import java.util.Arrays;
 public class Find_First_and_Last_Position_of_Element_in_Sorted_Array {
 
     public int[] searchRange(int[] nums, int target) {
-        int[] result = new int[]{-1,-1};
+        int[] result = new int[]{-1, -1};
 
         if (nums == null || nums.length == 0) {
             return result;
@@ -28,17 +28,17 @@ public class Find_First_and_Last_Position_of_Element_in_Sorted_Array {
 
         int left = 0, right = nums.length - 1;
         boolean got = false;
-        while (left <= right){
+        while (left <= right) {
             int mid = left + (right - left) / 2;
             if (nums[mid] == target) {
                 got = true;
-                if (nums[left] < target){
+                if (nums[left] < target) {
                     left++;
                 }
-                if (nums[right] > target){
+                if (nums[right] > target) {
                     right--;
                 }
-                if (nums[left] == target && nums[right] == target){
+                if (nums[left] == target && nums[right] == target) {
                     break;
                 }
             } else if (nums[mid] < target) {
@@ -56,7 +56,7 @@ public class Find_First_and_Last_Position_of_Element_in_Sorted_Array {
         return result;
     }
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         int[] ints = new Find_First_and_Last_Position_of_Element_in_Sorted_Array().searchRange(
                 new int[]{5, 7, 7, 8, 8, 10}, 8
         );
