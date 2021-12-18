@@ -1,7 +1,7 @@
 package tony.leetcode.feature.dfs;
 
 // 733. 图像渲染
-//  有一幅以二维整数数组表示的图画，每一个整数表示该图画的像素值大小，数值在 0 到 65535 之间。
+// 有一幅以二维整数数组表示的图画，每一个整数表示该图画的像素值大小，数值在 0 到 65535 之间。
 // 给你一个坐标 (sr, sc) 表示图像渲染开始的像素值（行 ，列）和一个新的颜色值 newColor，让你重新上色这幅图像。
 //
 // 为了完成上色工作，从初始坐标开始，记录初始坐标的上下左右四个方向上像素值与初始坐标相同的相连像素点，
@@ -29,29 +29,20 @@ package tony.leetcode.feature.dfs;
 public class Flood_Fill {
 
     public int[][] floodFill(int[][] image, int sr, int sc, int newColor) {
-        int oldColor = image[sr][sc];
-        if (newColor == oldColor){
-            return image;
-        }
-
-        image[sr][sc] = newColor;
-        dfs(image, sr-1, sc, oldColor, newColor);
-        dfs(image, sr+1, sc, oldColor, newColor);
-        dfs(image, sr, sc-1, oldColor, newColor);
-        dfs(image, sr, sc+1, oldColor, newColor);
-
-        return image;
+        return dfs(image, sr, sc, image[sr][sc], newColor);
     }
 
-    private void dfs(int[][] image, int sr, int sc, int oldColor, int newColor){
+    private int[][] dfs(int[][] image, int sr, int sc, int oldColor, int newColor) {
         int xmax = image.length, ymax = image[0].length;
-        if (sr < 0 || sr >= xmax || sc < 0 || sc >= ymax || image[sr][sc] != oldColor){
-            return;
+        if (sr < 0 || sr >= xmax || sc < 0 || sc >= ymax || image[sr][sc] != oldColor) {
+
+        } else {
+            image[sr][sc] = newColor;
+            dfs(image, sr - 1, sc, oldColor, newColor);
+            dfs(image, sr + 1, sc, oldColor, newColor);
+            dfs(image, sr, sc - 1, oldColor, newColor);
+            dfs(image, sr, sc + 1, oldColor, newColor);
         }
-        image[sr][sc] = newColor;
-        dfs(image, sr-1, sc, oldColor, newColor);
-        dfs(image, sr+1, sc, oldColor, newColor);
-        dfs(image, sr, sc-1, oldColor, newColor);
-        dfs(image, sr, sc+1, oldColor, newColor);
+        return image;
     }
 }

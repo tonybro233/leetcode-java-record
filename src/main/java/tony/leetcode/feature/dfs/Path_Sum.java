@@ -2,7 +2,7 @@ package tony.leetcode.feature.dfs;
 
 import tony.util.TreeNode;
 
-// 112
+// 112. 路径总和
 // 给定一个二叉树和一个目标和，判断该树中是否存在根节点到叶子节点的路径，这条路径上所有节点值相加等于目标和。
 // 说明: 叶子节点是指没有子节点的节点。
 //
@@ -20,16 +20,28 @@ import tony.util.TreeNode;
 
 public class Path_Sum {
 
-    public boolean hasPathSum(TreeNode root, int sum) {
+    public boolean hasPathSum(TreeNode root, int targetSum) {
+        if (null == root) {
+            return false;
+        }
+        if (root.left == null && root.right == null && root.val == targetSum) {
+            return true;
+        }
+        return hasPathSum(root.left, targetSum - root.val) ||
+                hasPathSum(root.right, targetSum - root.val);
+    }
 
+
+
+    public boolean hasPathSum2(TreeNode root, int sum) {
         return search(root, sum);
     }
 
-    private boolean search(TreeNode node, int left){
-        if (null == node){
+    private boolean search(TreeNode node, int left) {
+        if (null == node) {
             return false;
         }
-        if (node.val == left){
+        if (node.val == left) {
             // 必须是叶子节点
             if (node.left == null && node.right == null) {
                 return true;

@@ -21,17 +21,16 @@ import tony.util.TreeNode;
 public class Maximum_Depth_of_Binary_Tree {
 
     public int maxDepth(TreeNode root) {
-
         return dfs(root, 0);
     }
 
-    public int dfs(TreeNode node, int now){
-        if (null == node){
+    public int dfs(TreeNode node, int now) {
+        if (null == node) {
             return now;
         }
         now++;
         int l = dfs(node.left, now);
         int r = dfs(node.right, now);
-        return Math.max(l,r);
+        return Math.max(l, r);
     }
 }

@@ -33,10 +33,10 @@ public class Matchsticks_to_Square {
             return false;
         }
         int sum = 0;
-        for (int i = 0;i < nums.length;i++) {
+        for (int i = 0; i < nums.length; i++) {
             sum += nums[i];
         }
-        if(sum % 4 != 0) {
+        if (sum % 4 != 0) {
             return false;
         }
         // 排序之后，从大值开始匹配，保证小值可以组成边
@@ -44,24 +44,25 @@ public class Matchsticks_to_Square {
         boolean[] flag = new boolean[nums.length];
 
         // 拆成4次dfs
-        for(int i = 0;i < 4;i++){
-            if(!dfs(nums,flag,nums.length -1,sum/4)){
+        for (int i = 0; i < 4; i++) {
+            if (!dfs(nums, flag, nums.length - 1, sum / 4)) {
                 return false;
             }
         }
         return true;
     }
-    private boolean dfs(int[] nums,boolean[] flag,int cursor,int target){
-        if(target == 0){
+
+    private boolean dfs(int[] nums, boolean[] flag, int cursor, int target) {
+        if (target == 0) {
             return true;
         }
-        for(int i = cursor;i >= 0;i--){
-            if(!flag[i]){
-                if (target-nums[i] < 0) {
+        for (int i = cursor; i >= 0; i--) {
+            if (!flag[i]) {
+                if (target - nums[i] < 0) {
                     continue;
                 }
                 flag[i] = true;
-                if(dfs(nums,flag,i-1,target-nums[i])){
+                if (dfs(nums, flag, i - 1, target - nums[i])) {
                     return true;
                 }
                 flag[i] = false;
@@ -73,14 +74,14 @@ public class Matchsticks_to_Square {
     // 超时解法
     public boolean makesquare(int[] nums) {
         int n = nums.length;
-        if (n == 0){
+        if (n == 0) {
             return false;
         }
         int avg = 0;
-        for (int i = 0; i < n; i++){
+        for (int i = 0; i < n; i++) {
             avg += nums[i];
         }
-        if (0 != avg % 4){
+        if (0 != avg % 4) {
             return false;
         }
         avg /= 4;
@@ -88,24 +89,24 @@ public class Matchsticks_to_Square {
         return dfs(nums, 0, 0, 0, 0, 0, avg);
     }
 
-    private boolean dfs(int[] nums, int cursor, int left, int right, int top, int bottom, int avg){
-        if (cursor == nums.length){
+    private boolean dfs(int[] nums, int cursor, int left, int right, int top, int bottom, int avg) {
+        if (cursor == nums.length) {
             return left == right && left == top && left == bottom;
         }
-        if (left > avg || right > avg || top > avg || bottom > avg){
+        if (left > avg || right > avg || top > avg || bottom > avg) {
             return false;
         }
         int val = nums[cursor];
-        if (dfs(nums, cursor+1, left+val, right, top, bottom, avg)){
+        if (dfs(nums, cursor + 1, left + val, right, top, bottom, avg)) {
             return true;
         }
-        if (dfs(nums, cursor+1, left, right+val, top, bottom,avg)){
+        if (dfs(nums, cursor + 1, left, right + val, top, bottom, avg)) {
             return true;
         }
-        if (dfs(nums, cursor+1, left, right, top+val, bottom,avg)){
+        if (dfs(nums, cursor + 1, left, right, top + val, bottom, avg)) {
             return true;
         }
-        if (dfs(nums, cursor+1, left, right, top, bottom+val,avg)){
+        if (dfs(nums, cursor + 1, left, right, top, bottom + val, avg)) {
             return true;
         }
 

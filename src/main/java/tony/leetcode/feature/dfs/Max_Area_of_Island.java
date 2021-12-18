@@ -31,13 +31,13 @@ public class Max_Area_of_Island {
     public int maxAreaOfIsland(int[][] grid) {
         int result = 0;
         int n1 = grid.length;
-        if (n1 == 0){
+        if (n1 == 0) {
             return 0;
         }
         int n2 = grid[0].length;
-        for (int i = 0;i < n1;i++){
-            for (int j = 0;j < n2;j++){
-                if (grid[i][j] == 1){
+        for (int i = 0; i < n1; i++) {
+            for (int j = 0; j < n2; j++) {
+                if (grid[i][j] == 1) {
                     area = 0;
                     dfs(grid, i, j);
                     result = Math.max(result, area);
@@ -47,16 +47,16 @@ public class Max_Area_of_Island {
         return result;
     }
 
-    private void dfs(int[][] grid, int x, int y){
+    private void dfs(int[][] grid, int x, int y) {
         int n1 = grid.length, n2 = grid[0].length;
-        if (x < 0 || x >= n1 || y < 0 || y >= n2 || grid[x][y] <= 0){
+        if (x < 0 || x >= n1 || y < 0 || y >= n2 || grid[x][y] <= 0) {
             return;
         }
         grid[x][y] = -1;
         area++;
-        dfs(grid, x+1, y);
-        dfs(grid, x-1, y);
-        dfs(grid, x, y+1);
-        dfs(grid, x, y-1);
+        dfs(grid, x + 1, y);
+        dfs(grid, x - 1, y);
+        dfs(grid, x, y + 1);
+        dfs(grid, x, y - 1);
     }
 }

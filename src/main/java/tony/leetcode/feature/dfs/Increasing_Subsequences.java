@@ -26,23 +26,23 @@ public class Increasing_Subsequences {
     }
 
     // 重复值比较难处理，数组本身并不是有序的，因此直接用Set去重
-    private void dfs(int[] nums, int pos, Deque<Integer> current, Set<List<Integer>> set){
+    private void dfs(int[] nums, int pos, Deque<Integer> current, Set<List<Integer>> set) {
         int n = nums.length;
-        if (pos >= n){
+        if (pos >= n) {
             return;
         }
 
         // 采用值
-        if (null == current.peekLast() || current.peekLast() <= nums[pos]){
+        if (null == current.peekLast() || current.peekLast() <= nums[pos]) {
             current.addLast(nums[pos]);
             if (current.size() > 1) {
                 set.add(new ArrayList<>(current));
             }
-            dfs(nums, pos+1, current, set);
+            dfs(nums, pos + 1, current, set);
             current.pollLast();
         }
 
         // 不采用值
-        dfs(nums, pos+1, current, set);
+        dfs(nums, pos + 1, current, set);
     }
 }

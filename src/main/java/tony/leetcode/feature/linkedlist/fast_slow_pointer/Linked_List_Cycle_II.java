@@ -18,30 +18,31 @@ import java.util.Set;
 public class Linked_List_Cycle_II {
 
     public ListNode detectCycle(ListNode head) {
-        if (null == head){
+        if (null == head) {
             return null;
         }
         ListNode slow = head, fast = head;
         boolean got = false;
         // 快慢指针确定是否有环
-        while (slow.next != null && fast.next != null && fast.next.next != null){
+        while (slow.next != null && fast.next != null && fast.next.next != null) {
             slow = slow.next;
             fast = fast.next.next;
-            if (slow.equals(fast)){
+            if (slow.equals(fast)) {
                 got = true;
                 break;
             }
         }
 
-        if (!got){
+        if (!got) {
             return null;
         }
 
         // 头部到入环点相距A，入环点距离快慢指针交点距离为B
-        // 相遇时慢指针走了A+B，快指针走了2（A+B），因此慢指针再走A+B就能回到交点
+        // 相遇时慢指针走了A+B，快指针走了2（A+B），
+        // 因此慢指针再走A+B就能回到交点 => 慢指针再走A就能回到入环点
         // 再用一个从头开始的指针和慢指针一起走A，就会在入环点相交（A+B-B）
         ListNode tmp = head;
-        while(tmp != slow){
+        while (tmp != slow) {
             tmp = tmp.next;
             slow = slow.next;
         }
@@ -50,14 +51,14 @@ public class Linked_List_Cycle_II {
 
     // 不知是给hash方法下药了还是OJ判断了Set，给出超时
     public ListNode detectCycle2(ListNode head) {
-        if (null == head){
+        if (null == head) {
             return null;
         }
         Set<ListNode> record = new HashSet<>();
         record.add(head);
-        while (head.next != null){
+        while (head.next != null) {
             head = head.next;
-            if (record.contains(head)){
+            if (record.contains(head)) {
                 return head;
             }
         }

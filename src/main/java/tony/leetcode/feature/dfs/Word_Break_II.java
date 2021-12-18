@@ -42,27 +42,27 @@ import java.util.stream.Collectors;
 
 public class Word_Break_II {
 
-    private HashMap<String,List<String>> map = new HashMap<>();
+    private HashMap<String, List<String>> map = new HashMap<>();
 
     public List<String> wordBreak2(String s, List<String> wordDict) {
         List<String> list = new ArrayList<>();
         // 比如 aaabb, [a, aa,b, bb]的情况，a a a和 a aa这两个中间态在运算时可以用map加速
-        if(map.containsKey(s)) {
+        if (map.containsKey(s)) {
             return map.get(s);
         }
-        if("".equals(s)){
+        if ("".equals(s)) {
             list.add("");
             return list;
         }
-        for(String word : wordDict){
-            if(s.startsWith(word)){
+        for (String word : wordDict) {
+            if (s.startsWith(word)) {
                 List<String> res = wordBreak2(s.substring(word.length()), wordDict);
-                for(String str : res){
-                    list.add(word+("".equals(str) ? "":" ")+str);
+                for (String str : res) {
+                    list.add(word + ("".equals(str) ? "" : " ") + str);
                 }
             }
         }
-        map.put(s,list);
+        map.put(s, list);
         return list;
     }
 
@@ -73,19 +73,19 @@ public class Word_Break_II {
 
         // Word_Break中的判断，如果不判断将会超时
         boolean[] record = new boolean[s.length()];
-        for (int i = 0; i < s.length();i++){
-            if (dict.contains(s.substring(0, i+1))){
+        for (int i = 0; i < s.length(); i++) {
+            if (dict.contains(s.substring(0, i + 1))) {
                 record[i] = true;
                 continue;
             }
-            for (int j = 0; j < i; j++){
-                if (record[j] && dict.contains(s.substring(j+1, i+1))){
+            for (int j = 0; j < i; j++) {
+                if (record[j] && dict.contains(s.substring(j + 1, i + 1))) {
                     record[i] = true;
                     break;
                 }
             }
         }
-        if (!record[s.length()-1]){
+        if (!record[s.length() - 1]) {
             return result;
         }
 
@@ -93,25 +93,25 @@ public class Word_Break_II {
         return result;
     }
 
-    private void go(Set<String> dict, String s, int current, int ed,List<String> ea, List<String> result){
+    private void go(Set<String> dict, String s, int current, int ed, List<String> ea, List<String> result) {
         if (ed == s.length()) {
             result.add(ea.stream().collect(Collectors.joining(" ")));
             return;
         }
 
-        for (; ed < s.length(); ed++){
+        for (; ed < s.length(); ed++) {
             String s1 = s.substring(current, ed + 1);
-            if (dict.contains(s1)){
+            if (dict.contains(s1)) {
                 ea.add(s1);
-                go(dict, s, ed+1, ed+1, ea, result);
-                ea.remove(ea.size()-1);
+                go(dict, s, ed + 1, ed + 1, ea, result);
+                ea.remove(ea.size() - 1);
             }
         }
 
     }
 
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         String[] strings = {"a", "aa", "aaa", "aaaa", "aaaaa", "aaaaaa", "aaaaaaa", "aaaaaaaa", "aaaaaaaaa", "aaaaaaaaaa"};
         List<String> list = Arrays.asList(strings);
         List<String> list1 = new Word_Break_II().wordBreak2("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"

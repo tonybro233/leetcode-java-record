@@ -35,27 +35,27 @@ public class Pacific_Atlantic_Water_Flow {
 
     public List<int[]> pacificAtlantic(int[][] matrix) {
         List<int[]> result = new ArrayList<>();
-        if (null == matrix || matrix.length == 0){
+        if (null == matrix || matrix.length == 0) {
             return result;
         }
         int m = matrix.length, n = matrix[0].length;
         // 分别从边界逆向搜索可达坐标
         boolean[][] pacific = new boolean[m][n], atlantic = new boolean[m][n];
         // x、y增量数组表示上下左右移动
-        int[][] dirs = new int[][]{{1,0},{-1,0},{0,1},{0,-1}};
-        for (int i = 0; i < m;i++){
+        int[][] dirs = new int[][]{{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
+        for (int i = 0; i < m; i++) {
             dfs(matrix, pacific, i, 0, Integer.MIN_VALUE, dirs);
-            dfs(matrix, atlantic, i, n-1,Integer.MIN_VALUE, dirs);
+            dfs(matrix, atlantic, i, n - 1, Integer.MIN_VALUE, dirs);
         }
-        for (int i = 0; i < n;i++){
+        for (int i = 0; i < n; i++) {
             dfs(matrix, pacific, 0, i, Integer.MIN_VALUE, dirs);
-            dfs(matrix, atlantic, m-1, i, Integer.MIN_VALUE, dirs);
+            dfs(matrix, atlantic, m - 1, i, Integer.MIN_VALUE, dirs);
         }
         // 从边上逆向都可达的点满足要求
-        for (int i = 0; i < m; i++){
-            for (int j = 0; j < n; j++){
-                if (pacific[i][j] && atlantic[i][j]){
-                    result.add(new int[]{i,j});
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                if (pacific[i][j] && atlantic[i][j]) {
+                    result.add(new int[]{i, j});
                 }
             }
         }
@@ -63,13 +63,13 @@ public class Pacific_Atlantic_Water_Flow {
         return result;
     }
 
-    private void dfs(int[][] matrix, boolean[][] mark, int x, int y, int from, int[][] dirs){
+    private void dfs(int[][] matrix, boolean[][] mark, int x, int y, int from, int[][] dirs) {
         if (x < 0 || y < 0 || x >= matrix.length || y >= matrix[0].length
-                || mark[x][y] || matrix[x][y] < from){
+                || mark[x][y] || matrix[x][y] < from) {
             return;
         }
         mark[x][y] = true;
-        for (int[] dir : dirs){
+        for (int[] dir : dirs) {
             dfs(matrix, mark, x + dir[0], y + dir[1], matrix[x][y], dirs);
         }
     }

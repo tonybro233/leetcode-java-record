@@ -25,23 +25,23 @@ public class Friend_Circles {
         int n = M.length;
         int[] mark = new int[n];
         int count = 0;
-        for (int i = 0; i < n; i++){
-            if (mark[i] == 0){
+        for (int i = 0; i < n; i++) {
+            if (mark[i] == 0) {
                 count++;
-                dfs(i,M,mark);
+                dfs(i, M, mark);
             }
         }
         return count;
     }
 
-    private void dfs(int p,int[][] M, int[] mark){
-        if (mark[p] != 0){
+    private void dfs(int p, int[][] M, int[] mark) {
+        if (mark[p] != 0) {
             return;
         }
         mark[p] = 1;
-        for (int i = 0; i < M.length; i++){
-            if (M[p][i] == 1){
-                dfs(i,M,mark);
+        for (int i = 0; i < M.length; i++) {
+            if (M[p][i] == 1) {
+                dfs(i, M, mark);
             }
         }
     }

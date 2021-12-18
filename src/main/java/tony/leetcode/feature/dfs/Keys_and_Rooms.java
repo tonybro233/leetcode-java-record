@@ -40,21 +40,21 @@ public class Keys_and_Rooms {
         int n = rooms.size();
         boolean[] mark = new boolean[n];
         dfs(rooms, 0, mark);
-        for (boolean ea : mark){
-            if (!ea){
+        for (boolean ea : mark) {
+            if (!ea) {
                 return false;
             }
         }
         return true;
     }
 
-    private void dfs(List<List<Integer>> rooms, int roomId, boolean[] mark){
-        if (mark[roomId]){
+    private void dfs(List<List<Integer>> rooms, int roomId, boolean[] mark) {
+        if (mark[roomId]) {
             return;
         }
         mark[roomId] = true;
         List<Integer> keys = rooms.get(roomId);
-        for (Integer key : keys){
+        for (Integer key : keys) {
             dfs(rooms, key, mark);
         }
     }

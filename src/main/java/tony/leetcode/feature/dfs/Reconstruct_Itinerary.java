@@ -30,7 +30,7 @@ public class Reconstruct_Itinerary {
         List<String> result = new ArrayList<>();
         // 使用map构建图结构，value类型使用PriorityQueue保证顺序
         Map<String, PriorityQueue<String>> map = new HashMap<>();
-        for (String[] ticket : tickets){
+        for (String[] ticket : tickets) {
             PriorityQueue<String> queue = map.getOrDefault(ticket[0], new PriorityQueue<>());
             queue.add(ticket[1]);
             map.put(ticket[0], queue);
@@ -42,24 +42,32 @@ public class Reconstruct_Itinerary {
         return result;
     }
 
-    private void dfs(Map<String, PriorityQueue<String>> que, String dest, List<String> result){
+    private void dfs(Map<String, PriorityQueue<String>> que, String dest, List<String> result) {
         PriorityQueue<String> set = que.get(dest);
-        while (set != null && set.size() > 0){
+        while (set != null && set.size() > 0) {
             Iterator<String> it = set.iterator();
             String next = it.next();
             it.remove();
             dfs(que, next, result);
         }
+
+        // 为了处理无回路的分叉（它必须最后遍历），所以需要遍历完自身节点之后再入队
+        // 这样无回路节点会先进入队列。比如：
+        // [JFK, AAA], [JFK, BBB], [BBB, JFK]
+        // 为了每张机票都用得到，必须先去BBB，再去AAA
+        // 如果节点有回路，那么遍历时一定会回到节点然后遍历节点的其他子节点
+        // 无回路节点一定会先进入队列
+
         // 后置加入所以结果是反的
         result.add(dest);
     }
 
-    public static void main(String[] args){
-        String[] t1 = new String[]{"MUC","LHR"};
-        String[] t2 = new String[]{"JFK","MUC"};
-        String[] t3 = new String[]{"SFO","SJC"};
-        String[] t4 = new String[]{"LHR","SFO"};
-        String[][] tickets = new String[][]{t1,t2,t3,t4};
+    public static void main(String[] args) {
+        String[] t1 = new String[]{"MUC", "LHR"};
+        String[] t2 = new String[]{"JFK", "MUC"};
+        String[] t3 = new String[]{"SFO", "SJC"};
+        String[] t4 = new String[]{"LHR", "SFO"};
+        String[][] tickets = new String[][]{t1, t2, t3, t4};
         List<String> itinerary = new Reconstruct_Itinerary().findItinerary(tickets);
         System.out.println(itinerary);
 

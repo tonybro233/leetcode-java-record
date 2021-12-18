@@ -61,27 +61,27 @@ public class Sum_Root_to_Leaf_Numbers {
     }
 
     public int sumNumbers(TreeNode root) {
-        if (null == root){
+        if (null == root) {
             return 0;
         }
         List<Integer> values = new ArrayList<>();
         dfstracking(root, 0, values);
         int result = 0;
-        for (int i = 0; i < values.size();i++){
+        for (int i = 0; i < values.size(); i++) {
             result += values.get(i);
         }
         return result;
     }
 
-    private void dfstracking(TreeNode node, int value, List<Integer> values){
+    private void dfstracking(TreeNode node, int value, List<Integer> values) {
         int newvalue = value * 10 + node.val;
-        if (node.left == null && node.right == null){
+        if (node.left == null && node.right == null) {
             values.add(newvalue);
         } else {
-            if (null != node.left){
+            if (null != node.left) {
                 dfstracking(node.left, newvalue, values);
             }
-            if (null != node.right){
+            if (null != node.right) {
                 dfstracking(node.right, newvalue, values);
             }
         }
