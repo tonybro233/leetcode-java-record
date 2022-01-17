@@ -13,8 +13,8 @@ package tony.sword_to_offer;
 
 public class _56_1_single_numbers {
 
-    // 很难立刻想到分组以及这种分组方法
     public int[] singleNumbers(int[] nums) {
+        // 很难立刻想到分组以及这种分组方法
         // 得出两个单独数的异或值
         int xor = 0;
         for (int num : nums) {

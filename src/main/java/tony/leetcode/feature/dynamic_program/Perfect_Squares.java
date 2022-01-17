@@ -16,13 +16,13 @@ package tony.leetcode.feature.dynamic_program;
 
 public class Perfect_Squares {
 
-    public int numSquares(int n){
-        int[] D = new int[n+1];
-        for (int i = 1; i <= n;i++){
+    public int numSquares(int n) {
+        int[] D = new int[n + 1];
+        for (int i = 1; i <= n; i++) {
             int min = Integer.MAX_VALUE;
             // 从本身开始减去完全平方数
-            for (int j = 1; j*j <= i;j++){
-                min = Math.min(min, D[i-j*j]+1);
+            for (int j = 1; j * j <= i; j++) {
+                min = Math.min(min, D[i - j * j] + 1);
             }
             D[i] = min;
         }
@@ -30,7 +30,7 @@ public class Perfect_Squares {
     }
 
     // 如果n很大则需要用这种
-    public int numSquares2(int n){
+    public int numSquares2(int n) {
         int mincount = Integer.MAX_VALUE;
         for (int i = (int) Math.sqrt(n); i > 1; i--) {
             int value = n - i * i;

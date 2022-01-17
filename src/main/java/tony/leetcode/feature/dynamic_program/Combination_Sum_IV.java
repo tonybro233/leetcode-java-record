@@ -28,12 +28,12 @@ package tony.leetcode.feature.dynamic_program;
 public class Combination_Sum_IV {
 
     public int combinationSum4(int[] nums, int target) {
-        int[] D = new int[target+1];
+        int[] D = new int[target + 1];
         D[0] = 1;
-        for (int i = 1; i <= target; i++){
-            for (int j = 0 ;j < nums.length; j++){
+        for (int i = 1; i <= target; i++) {
+            for (int j = 0; j < nums.length; j++) {
                 if (nums[j] <= i) {
-                    D[i] += D[i-nums[j]];
+                    D[i] += D[i - nums[j]];
                 }
             }
         }
@@ -42,15 +42,15 @@ public class Combination_Sum_IV {
 
 
     public int combinationSum4_2(int[] nums, int target) {
-        int[] dp = new int[target+1];
+        int[] dp = new int[target + 1];
         dp[0] = 1;
-        for(int i = 0; i < target; i++) {
+        for (int i = 0; i < target; i++) {
             if (dp[i] == 0) {
                 continue;
             }
             for (int num : nums) {
-                if (i+num<=target) {
-                    dp[i+num] += dp[i];
+                if (i + num <= target) {
+                    dp[i + num] += dp[i];
                 }
             }
         }

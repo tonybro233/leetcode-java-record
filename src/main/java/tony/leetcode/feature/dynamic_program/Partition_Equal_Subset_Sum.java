@@ -21,7 +21,7 @@ public class Partition_Equal_Subset_Sum {
 
     public boolean canPartition(int[] nums) {
         int sum = 0;
-        for (int i = 0; i < nums.length;i++){
+        for (int i = 0; i < nums.length; i++) {
             sum += nums[i];
         }
 
@@ -45,36 +45,36 @@ public class Partition_Equal_Subset_Sum {
         return dp[sum] == sum;
     }
 
-    // 二维数组的dp解法
+    // 二维数组的dp解法（还是背包）
     public boolean canPartition2(int[] nums) {
-        int sum=0;
-        for (int num:nums) {
-            sum+= num;
+        int sum = 0;
+        for (int num : nums) {
+            sum += num;
         }
-        if(sum % 2 == 1) {
+        if (sum % 2 == 1) {
             return false;
         }
 
-        sum /=2;
+        sum /= 2;
         int n = nums.length;
         // dp[i][j] 表示 如果我们取前i+1个数字，且背包容量为j的情况下，最多能放入的数字和
-        int dp[][]=new int[n][sum + 1];
+        int dp[][] = new int[n][sum + 1];
         // dp[0][0] 为初始状态，表示，没有任何没有东西没有体积，其余部分初始化
-        for(int i=nums[0];i<=sum;i++){
+        for (int i = nums[0]; i <= sum; i++) {
             dp[0][i] = nums[0];
         }
         //遍历n个数字，即视为n个产品
-        for(int i=1;i < n;i++){
+        for (int i = 1; i < n; i++) {
             //加入了这种物品后更新状态
-            for(int j = nums[i];j <= sum;j++){
-                dp[i][j] = Math.max(dp[i-1][j], dp[i-1][j-nums[i]] + nums[i]);
+            for (int j = nums[i]; j <= sum; j++) {
+                dp[i][j] = Math.max(dp[i - 1][j], dp[i - 1][j - nums[i]] + nums[i]);
             }
         }
         //放满了才能表示正好1/2
         return dp[n - 1][sum] == sum;
     }
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         boolean b = new Partition_Equal_Subset_Sum().canPartition(new int[]{1, 5, 11, 5});
         System.out.println(b);
     }

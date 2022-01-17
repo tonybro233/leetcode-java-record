@@ -1,6 +1,6 @@
 package tony.leetcode.feature.dynamic_program;
 
-// 486
+// 486. 预测赢家
 // 给定一个表示分数的非负整数数组。 玩家1从数组任意一端拿取一个分数，
 // 随后玩家2继续从剩余数组任意一端拿取分数，然后玩家1拿，……。
 // 每次一个玩家只能拿取一个分数，分数被拿取之后不再可取。
@@ -19,14 +19,13 @@ package tony.leetcode.feature.dynamic_program;
 
 public class Predict_the_Winner {
 
-    /**
-     * D[i][j]表示数组内i~j区间中按照规则能够取得的最大分数
-     * sum(i,j)表示数组内i~j区间中的总和
-     * 那么D[i][j] = max(sum(i+1,j) - D[i+1][j] + nums[i], sum(i,j-1) - D[i][j-1] + nums[j])
-     * 即D[i][j] = max(sum(i,j) - D[i+1][j], sum(i,j) - D[i][j-1])
-     * 而D[i][i] = nums[i]
-     */
     public boolean PredictTheWinner(int[] nums) {
+        // D[i][j]表示数组内i~j区间中按照规则能够取得的最大分数
+        // sum(i,j)表示数组内i~j区间中的总和
+        // 那么D[i][j] = max(sum(i+1,j) - D[i+1][j] + nums[i], sum(i,j-1) - D[i][j-1] + nums[j])
+        // 即D[i][j] = max(sum(i,j) - D[i+1][j], sum(i,j) - D[i][j-1])
+        // 而D[i][i] = nums[i]
+
         int n = nums.length;
         int[][] D = new int[n][n];
         int[] sum = new int[n];
@@ -42,6 +41,9 @@ public class Predict_the_Winner {
         for (int i = n - 2; i >= 0; i--) {
             int val = i == 0 ? 0 : sum[i - 1];
             for (int j = i + 1; j < n; j++) {
+                // i在计算时需要i+1已经计算完，而j在计算时需要j-1已经计算完
+                // 所以要从i = n - 2, j = n - 1 开始，并且i递减，j递增
+                // 也可以从i = 0 j = 1开始，这样j在外层循环
                 D[i][j] = Math.max(sum[j] - val - D[i + 1][j], sum[j] - val - D[i][j - 1]);
             }
         }

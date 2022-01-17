@@ -40,13 +40,13 @@ public class Exclusive_Time_of_Functions {
         int[] result = new int[n];
         Deque<Integer> threadDeque = new LinkedList<>();
         int lastTime = 0;
-        for (String log : logs){
+        for (String log : logs) {
             String[] split = log.split(":");
             boolean start = "start".endsWith(split[1]);
             int time = Integer.parseInt(split[2]);
             int tid = Integer.parseInt(split[0]);
-            if (start){
-                if (null != threadDeque.peekLast()){
+            if (start) {
+                if (null != threadDeque.peekLast()) {
                     result[threadDeque.peekLast()] += time - lastTime;
                 }
                 threadDeque.addLast(tid);
@@ -54,13 +54,13 @@ public class Exclusive_Time_of_Functions {
                 result[threadDeque.pollLast()] += time + 1 - lastTime;
             }
             // 如果是end则时间点为该秒的末尾，即需要+1
-            lastTime = start ? time : time+1;
+            lastTime = start ? time : time + 1;
         }
 
         return result;
     }
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         String[] i = new String[]{
                 "0:start:0",
                 "0:start:2",

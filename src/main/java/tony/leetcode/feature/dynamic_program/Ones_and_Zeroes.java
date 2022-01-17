@@ -1,6 +1,6 @@
 package tony.leetcode.feature.dynamic_program;
 
-// 474
+// 474. 一和零
 // 在计算机界中，我们总是追求用有限的资源获取最大的收益。
 // 现在，假设你分别支配着 m 个 0 和 n 个 1。另外，还有一个仅包含 0 和 1 字符串的数组。
 // 你的任务是使用给定的 m 个 0 和 n 个 1 ，找到能拼出存在于数组中的字符串的最大数量。
@@ -16,13 +16,12 @@ package tony.leetcode.feature.dynamic_program;
 
 public class Ones_and_Zeroes {
 
-    /**
-     * 想不出来，dp的变种
-     * m,n作为求dp的循环上限，dp二维数组是有很多'多余值'的
-     * D[i][j]代表i个0和j个1能够对当前的字符串数组下能拼出的最大数组量
-     * dp公式又是需要循环求值，根本想不到
-     */
     public int findMaxForm(String[] strs, int m, int n) {
+        // 想不出来，dp的变种
+        // m,n作为求dp的循环上限，dp二维数组是有很多'多余值'的
+        // D[i][j]代表i个0和j个1能够对当前的字符串数组下能拼出的最大数组量
+        // dp公式又是需要循环求值，根本想不到
+
         int dp[][] = new int[m + 1][n + 1];
         for (String s : strs) {
             int zero = 0, one = 0;

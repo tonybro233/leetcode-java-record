@@ -30,27 +30,28 @@ package tony.leetcode.feature.greedy;
 
 public class Wiggle_Subsequence {
 
-    // 贪心。连续的递增取最后一个值，中间值舍弃，连续递减也是一样。
-    // 这种题就是容易陷入思想误区，觉得删除元素会导致摆动变化，但其实第一个数是可以必选的
     public int wiggleMaxLength(int[] nums) {
-        int n = nums.length;
-        if (n < 2){
-            return n;
+        // 贪心。连续的递增取最后一个值，中间值舍弃，连续递减也是一样。
+        // 这种题就是容易陷入思想误区，觉得删除元素会导致摆动变化，但其实第一个数是可以必选的
+
+        if (nums.length < 2) {
+            return nums.length;
         }
         int delta = nums[1] - nums[0];
-        int count = 1 + (delta == 0 ? 0 : 1); // 注意运算优先级
-        for (int i = 2; i < n; i++){
-            int newDelta = nums[i] - nums[i-1];
-            if (delta == 0 && newDelta != 0){
-                count++;
-                delta = newDelta;
-            } else if (newDelta * delta < 0){
-                count++;
+        int result = delta == 0 ? 1 : 2;
+        for (int i = 2; i < nums.length; i++) {
+            int newDelta = nums[i] - nums[i - 1];
+            if ((delta == 0 && newDelta != 0) || newDelta * delta < 0) {
+                result++;
                 delta = newDelta;
             }
-        }
+            // 注意这个赋值不能放在这里，因为可能存在平顶的情况，delta要保持原来的正值或者负值
+            //   ___/
+            //  /
 
-        return count;
+            // delta = newDelta
+        }
+        return result;
     }
 
     // 动态规划的解法

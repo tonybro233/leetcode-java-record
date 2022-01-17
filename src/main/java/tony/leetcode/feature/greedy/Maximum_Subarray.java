@@ -17,8 +17,8 @@ public class Maximum_Subarray {
         int max = nums[0];
         // 维护以前一项为结尾的连续数组最大和
         int lastMax = nums[0];
-        for (int i = 1; i < nums.length;i++){
-            lastMax = Math.max(nums[i], lastMax+nums[i]);
+        for (int i = 1; i < nums.length; i++) {
+            lastMax = Math.max(nums[i], lastMax + nums[i]);
             max = Math.max(max, lastMax);
         }
         return max;

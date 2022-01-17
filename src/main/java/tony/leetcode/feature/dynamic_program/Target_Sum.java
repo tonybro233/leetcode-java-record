@@ -26,24 +26,25 @@ package tony.leetcode.feature.dynamic_program;
 public class Target_Sum {
 
     public int findTargetSumWays(int[] nums, int S) {
-        if (S > 1000 || S < -1000){
+        if (S > 1000 || S < -1000) {
             return 0;
         }
 
         // D[i][j] 数组前i+1个数能够组成和为j的解法数，为了表示负数-1000映射到0
         // 注意是非负整数数组以及和不超过1000，所以直接可以用2001表示
         // 用两个数组即可，因为只会复用前一组内容
-        int[][] D = new int[nums.length+1][2001];
+        // 跟暴力也没啥区别了
+        int[][] D = new int[nums.length + 1][2001];
         D[0][1000] = 1;
-        for (int i = 0; i < nums.length; i++){
-            for (int j = 0; j < 2001; j++){
+        for (int i = 0; i < nums.length; i++) {
+            for (int j = 0; j < 2001; j++) {
                 if (D[i][j] > 0) {
-                    D[i+1][j + nums[i]] += D[i][j];
-                    D[i+1][j - nums[i]] += D[i][j];
+                    D[i + 1][j + nums[i]] += D[i][j];
+                    D[i + 1][j - nums[i]] += D[i][j];
                 }
             }
         }
 
-        return D[nums.length][S+1000];
+        return D[nums.length][S + 1000];
     }
 }

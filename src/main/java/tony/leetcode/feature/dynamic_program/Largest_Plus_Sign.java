@@ -41,26 +41,31 @@ public class Largest_Plus_Sign {
 
     public int orderOfLargestPlusSign2(int N, int[][] mines) {
         int[][] grid = new int[N][N];
-        for(int[] m : grid) {
+        for (int[] m : grid) {
             Arrays.fill(m, N);// 初始化为较大值
         }
-        for(int[] m : mines) {
+        for (int[] m : mines) {
             grid[m[0]][m[1]] = 0;
         }
 
         // 使用l r u d来记录4个方向的累积值
         // 阶数为4个方向最小值，因此先初始化为最大值，计算时直接比较取小
-        for(int i = 0; i < N; i++) {
-            for(int j = 0, k = N - 1, l = 0, r = 0, u = 0, d = 0; j < N; j++, k--) {
-                grid[i][j] = Math.min(grid[i][j], l = (grid[i][j] == 0 ? 0 : l + 1));//由左至右
-                grid[i][k] = Math.min(grid[i][k], r = (grid[i][k] == 0 ? 0 : r + 1));//由右至左
-                grid[j][i] = Math.min(grid[j][i], u = (grid[j][i] == 0 ? 0 : u + 1));//由上至下
-                grid[k][i] = Math.min(grid[k][i], d = (grid[k][i] == 0 ? 0 : d + 1));//由下至上
+        // grid[][] 和 D[][]融合了
+        for (int i = 0; i < N; i++) {
+            for (int j = 0, k = N - 1, l = 0, r = 0, u = 0, d = 0; j < N; j++, k--) {
+                // 由左至右
+                grid[i][j] = Math.min(grid[i][j], l = (grid[i][j] == 0 ? 0 : l + 1));
+                // 由右至左
+                grid[i][k] = Math.min(grid[i][k], r = (grid[i][k] == 0 ? 0 : r + 1));
+                // 由上至下
+                grid[j][i] = Math.min(grid[j][i], u = (grid[j][i] == 0 ? 0 : u + 1));
+                // 由下至上
+                grid[k][i] = Math.min(grid[k][i], d = (grid[k][i] == 0 ? 0 : d + 1));
             }
         }
         int res = 0;
-        for(int i = 0; i < N; i++) {
-            for(int j = 0; j < N; j++) {
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < N; j++) {
                 res = Math.max(res, grid[i][j]);
             }
         }
@@ -68,38 +73,38 @@ public class Largest_Plus_Sign {
     }
 
     public int orderOfLargestPlusSign(int N, int[][] mines) {
-        if (N == 0){
+        if (N == 0) {
             return 0;
         }
 
-        int[][] grid = new int[N][N] ,left = new int[N][N], right = new int[N][N],
+        int[][] grid = new int[N][N], left = new int[N][N], right = new int[N][N],
                 top = new int[N][N], down = new int[N][N];
 
-        for (int i = 0;i < N;i++) {
-            for (int j = 0; j < N;j++) {
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < N; j++) {
                 grid[i][j] = 1;
             }
         }
-        for (int i = 0;i < mines.length;i++) {
+        for (int i = 0; i < mines.length; i++) {
             grid[mines[i][0]][mines[i][1]] = 0;
         }
 
-        for (int i = 0;i < N;i++){
-            for (int j = 0;j < N;j++){
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < N; j++) {
                 if (grid[i][j] != 0) {
                     left[i][j] = j > 0 ? left[i][j - 1] + 1 : 1;
                     top[i][j] = i > 0 ? top[i - 1][j] + 1 : 1;
                 }
-                if (grid[N-1-i][N-1-j] != 0){
-                    right[N-1-i][N-1-j] = j > 0 ? right[N-1-i][N-j] + 1 : 1;
-                    down[N-1-i][N-1-j] = i > 0 ? down[N-i][N-1-j] + 1 : 1;
+                if (grid[N - 1 - i][N - 1 - j] != 0) {
+                    right[N - 1 - i][N - 1 - j] = j > 0 ? right[N - 1 - i][N - j] + 1 : 1;
+                    down[N - 1 - i][N - 1 - j] = i > 0 ? down[N - i][N - 1 - j] + 1 : 1;
                 }
             }
         }
 
         int result = 0;
-        for (int i = 0; i < N;i++){
-            for (int j = 0;j < N;j++){
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < N; j++) {
                 result = Math.max(result, Math.min(left[i][j], Math.min(right[i][j], Math.min(top[i][j], down[i][j]))));
             }
         }
@@ -107,7 +112,7 @@ public class Largest_Plus_Sign {
         return result;
     }
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         int i = new Largest_Plus_Sign().orderOfLargestPlusSign(5, new int[][]{{4, 2}});
         System.out.println(i);
     }

@@ -49,30 +49,30 @@ public class Asteroid_Collision {
 
     public int[] asteroidCollision(int[] asteroids) {
         int n = asteroids.length;
-        if (n == 0){
+        if (n == 0) {
             return asteroids;
         }
         Deque<Integer> stack = new ArrayDeque<>(n);
-        for (int i = 0; i < n;i++){
-            if (null == stack.peekLast()){
+        for (int i = 0; i < n; i++) {
+            if (null == stack.peekLast()) {
                 // 栈中无元素
                 stack.addLast(asteroids[i]);
-            } else if (stack.peekLast() > 0 && asteroids[i] < 0){
+            } else if (stack.peekLast() > 0 && asteroids[i] < 0) {
                 // 发生碰撞(前面的向左后面的向右不碰撞)
                 int size = Math.abs(asteroids[i]);
                 boolean alive = true;
-                while (null != stack.peekLast() && stack.peekLast() > 0){
-                    if (stack.peekLast() > size){
+                while (null != stack.peekLast() && stack.peekLast() > 0) {
+                    if (stack.peekLast() > size) {
                         alive = false;
                         break;
                     } else {
-                        if (stack.pollLast() == size){
+                        if (stack.pollLast() == size) {
                             alive = false;
                             break;
                         }
                     }
                 }
-                if ((null == stack.peekLast() || stack.peekLast() < 0) && alive){
+                if ((null == stack.peekLast() || stack.peekLast() < 0) && alive) {
                     stack.addLast(asteroids[i]);
                 }
             } else {
@@ -82,7 +82,7 @@ public class Asteroid_Collision {
         }
 
         int[] result = new int[stack.size()];
-        for (int i = 0; i < result.length; i++){
+        for (int i = 0; i < result.length; i++) {
             result[i] = stack.pollFirst();
         }
         return result;

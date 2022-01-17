@@ -28,21 +28,21 @@ public class Evaluate_Reverse_Polish_Notation {
     // 逆波兰表达式可描述为遇到运算符就在栈中取值进行计算，为了保证连续性，计算后的值也要放入栈中
     public int evalRPN(String[] tokens) {
         Deque<Integer> valStack = new ArrayDeque<>();
-        for (String token : tokens){
-            try{
+        for (String token : tokens) {
+            try {
                 int num = Integer.parseInt(token);
                 valStack.addLast(num);
-            } catch (NumberFormatException ignore){
+            } catch (NumberFormatException ignore) {
                 Integer one = valStack.pollLast();
                 Integer two = valStack.pollLast();
                 int val = 0;
-                if ("+".equals(token)){
+                if ("+".equals(token)) {
                     val = two + one;
-                } else if ("-".equals(token)){
+                } else if ("-".equals(token)) {
                     val = two - one;
-                } else if ("*".equals(token)){
+                } else if ("*".equals(token)) {
                     val = two * one;
-                } else if ("/".equals(token)){
+                } else if ("/".equals(token)) {
                     val = two / one;
                 }
                 valStack.addLast(val);

@@ -14,9 +14,9 @@ public class Integer_Break {
         if (n == 3) {
             return 2;
         }
-        int two = 2,three = 0;
-        for (int i = 5 ; i <= n;i++){
-            if (two > 0){
+        int two = 2, three = 0;
+        for (int i = 5; i <= n; i++) {
+            if (two > 0) {
                 two--;
                 three++;
             } else {
@@ -24,21 +24,21 @@ public class Integer_Break {
                 two += 2;
             }
         }
-        return (int)(Math.pow(2,two)*Math.pow(3,three));
+        return (int) (Math.pow(2, two) * Math.pow(3, three));
     }
 
-    public int dp(int n){
+    public int dp(int n) {
         // D[i] = max{j*D[i-j],j*(i-j)}
         // 也就是说拆分成两个数字的所有组合取最大值，另外还要考虑2这个特殊值因此加上了j*(i-j)
         // D[4] = (1*D[3])(2*D[2])(3*D[1])以及2*2的max值
-        int[] dp = new int[n+1];
-        dp[0]=0;
-        dp[1]=1;
-        dp[2]=1;
-        for(int i=3;i<=n;i++){
-            dp[i]=-1;
-            for(int j=1;j<i;j++){
-                dp[i]=Math.max(j*dp[i-j],Math.max(dp[i],j*(i-j)));
+        int[] dp = new int[n + 1];
+        dp[0] = 0;
+        dp[1] = 1;
+        dp[2] = 1;
+        for (int i = 3; i <= n; i++) {
+            dp[i] = -1;
+            for (int j = 1; j < i; j++) {
+                dp[i] = Math.max(j * dp[i - j], Math.max(dp[i], j * (i - j)));
             }
         }
         return dp[n];

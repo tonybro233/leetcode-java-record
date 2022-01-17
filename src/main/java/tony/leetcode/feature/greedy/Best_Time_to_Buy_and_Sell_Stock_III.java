@@ -30,14 +30,14 @@ public class Best_Time_to_Buy_and_Sell_Stock_III {
 
     // 这个贪心解法真的骚
     public int maxProfit3(int[] prices) {
-        if (null == prices || prices.length < 2){
+        if (null == prices || prices.length < 2) {
             return 0;
         }
 
         // b1, b2, s1, s2表示买入卖出时的最大盈利值
-        int b1=Integer.MIN_VALUE, b2=Integer.MIN_VALUE;
-        int s1=0, s2=0;
-        for (int i = 0; i < prices.length; i++){
+        int b1 = Integer.MIN_VALUE, b2 = Integer.MIN_VALUE;
+        int s1 = 0, s2 = 0;
+        for (int i = 0; i < prices.length; i++) {
             b1 = Math.max(b1, -prices[i]);
             s1 = Math.max(s1, prices[i] + b1);
             b2 = Math.max(b2, -prices[i] + s1);
@@ -48,14 +48,14 @@ public class Best_Time_to_Buy_and_Sell_Stock_III {
 
     // 枚举比较第一次卖出点
     public int maxProfit2(int[] prices) {
-        if (null == prices || prices.length < 2){
+        if (null == prices || prices.length < 2) {
             return 0;
         }
         int result = 0;
 
         int cutMax = 0;
         for (int cut = 0; cut < prices.length; cut++) {
-            if (cut < prices.length - 1 && prices[cut] < prices[cut+1] ){
+            if (cut < prices.length - 1 && prices[cut] < prices[cut + 1]) {
                 continue;
             }
             /* 前一段 **/
@@ -83,33 +83,33 @@ public class Best_Time_to_Buy_and_Sell_Stock_III {
 
     // 错误，由于限制两次，在递减时可以保持不卖
     public int maxProfit(int[] prices) {
-        if (null == prices || prices.length < 2){
+        if (null == prices || prices.length < 2) {
             return 0;
         }
         Integer max1 = null, max2 = null, hold = null;
-        for (int i = 0; i < prices.length;i++){
-            if (null == hold){
-                if (i < prices.length - 1 && prices[i+1] > prices[i]){
+        for (int i = 0; i < prices.length; i++) {
+            if (null == hold) {
+                if (i < prices.length - 1 && prices[i + 1] > prices[i]) {
                     hold = prices[i];
                 }
             } else {
-                if (i < prices.length - 1){
-                    if (prices[i+1] <= prices[i]){
+                if (i < prices.length - 1) {
+                    if (prices[i + 1] <= prices[i]) {
                         int val = prices[i] - hold;
-                        if (null == max1 || val > max1){
+                        if (null == max1 || val > max1) {
                             max2 = max1;
                             max1 = val;
-                        } else if (null == max2 || val > max2){
+                        } else if (null == max2 || val > max2) {
                             max1 = val;
                         }
                         hold = null;
                     }
                 } else {
                     int val = prices[i] - hold;
-                    if (null == max1 || val > max1){
+                    if (null == max1 || val > max1) {
                         max2 = max1;
                         max1 = val;
-                    } else if (null == max2 || val > max2){
+                    } else if (null == max2 || val > max2) {
                         max1 = val;
                     }
                 }
@@ -119,7 +119,7 @@ public class Best_Time_to_Buy_and_Sell_Stock_III {
         return (max1 != null ? max1 : 0) + (max2 != null ? max2 : 0);
     }
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         int i = new Best_Time_to_Buy_and_Sell_Stock_III().maxProfit2(new int[]{1, 2, 3, 4, 5});
         System.out.println(i);
     }

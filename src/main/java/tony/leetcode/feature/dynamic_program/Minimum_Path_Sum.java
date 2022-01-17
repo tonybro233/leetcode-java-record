@@ -17,15 +17,15 @@ package tony.leetcode.feature.dynamic_program;
 public class Minimum_Path_Sum {
 
     public int minPathSum(int[][] grid) {
-        if (grid.length == 0 || grid[0].length == 0){
+        if (grid.length == 0 || grid[0].length == 0) {
             return 0;
         }
         int m = grid.length;
         int n = grid[0].length;
         int[][] D = new int[m][n];
-        for (int i = 0; i < m;i++){
-            for (int j = 0; j < n;j++){
-                if (i == 0 && j== 0){
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                if (i == 0 && j == 0) {
                     // 注意处理下0,0点
                     D[i][j] = grid[i][j];
                 } else {
@@ -36,6 +36,6 @@ public class Minimum_Path_Sum {
             }
         }
 
-        return D[m-1][n-1];
+        return D[m - 1][n - 1];
     }
 }

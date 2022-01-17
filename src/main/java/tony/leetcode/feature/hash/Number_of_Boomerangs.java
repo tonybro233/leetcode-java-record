@@ -15,17 +15,14 @@ import java.util.HashMap;
 
 public class Number_of_Boomerangs {
 
-    public static void main(String[] args){
-        int[][] input = {{0,0},{1,0},{-1,0},{0,1},{0,-1}};
+    public static void main(String[] args) {
+        int[][] input = {{0, 0}, {1, 0}, {-1, 0}, {0, 1}, {0, -1}};
         int re = new Number_of_Boomerangs().numberOfBoomerangs(input);
         System.out.print(re);
     }
 
-
-    /**
-     * 使用map记录距离(key)和边数(value)，注意j、k位置可以互换，每多一条边数量要增加原本的2倍
-     */
     public int numberOfBoomerangs(int[][] points) {
+        // 使用map记录距离(key)和边数(value)，注意j、k位置可以互换，每多一条边数量要增加原本的2倍
         int count = 0;
         int n = points.length;
         // 直接统计距离过来就可以
@@ -46,21 +43,21 @@ public class Number_of_Boomerangs {
     // 超时
     public int numberOfBoomerangs2(int[][] points) {
         int pcount = points.length;
-        if (pcount < 3){
+        if (pcount < 3) {
             return 0;
         }
         int total = 0;
-        for (int i = 0 ; i < pcount; i++){
-            for (int j = 0; j < pcount; j++){
-                if (i == j){
+        for (int i = 0; i < pcount; i++) {
+            for (int j = 0; j < pcount; j++) {
+                if (i == j) {
                     continue;
                 }
-                for (int k = 0; k < pcount; k++ ){
-                    if (j == k || i == k){
+                for (int k = 0; k < pcount; k++) {
+                    if (j == k || i == k) {
                         continue;
                     }
-                    if (distance(points[i],points[j]) == distance(points[i],points[k])){
-                        System.out.println(i+" "+j+" "+k);
+                    if (distance(points[i], points[j]) == distance(points[i], points[k])) {
+                        System.out.println(i + " " + j + " " + k);
                         total++;
                     }
                 }
@@ -69,7 +66,7 @@ public class Number_of_Boomerangs {
         return total;
     }
 
-    private double distance(int[] point1, int[] point2){
-        return Math.sqrt((point1[0] - point2[0])*(point1[0] - point2[0])+(point1[1] - point2[1])*(point1[1] - point2[1]));
+    private double distance(int[] point1, int[] point2) {
+        return Math.sqrt((point1[0] - point2[0]) * (point1[0] - point2[0]) + (point1[1] - point2[1]) * (point1[1] - point2[1]));
     }
 }

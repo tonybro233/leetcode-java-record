@@ -41,8 +41,8 @@ public class Minimum_Time_Difference {
         }
     }
 
-    // 直接将所有时间放入1440（所有分钟）长度的槽中
     public int findMinDifference2(List<String> timePoints) {
+        // 直接将所有时间放入1440（所有分钟）长度的槽中
         int len = 24 * 60;
         int[] times = new int[len];
         for (int i = 0;i < timePoints.size();i++){

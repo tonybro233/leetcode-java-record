@@ -23,6 +23,7 @@ public class Queue_Reconstruction_by_Height {
 
     public int[][] reconstructQueue2(int[][] people) {
         int n = people.length;
+        // 先按身高降序，再按人数升序
         Arrays.sort(people, (o1, o2) -> o1[0] == o2[0] ? o1[1] - o2[1] : o2[0] - o1[0]);
         List<int[]> list = new ArrayList<>();
         // K值定义为 排在h前面且身高大于或等于h的人数
@@ -37,21 +38,21 @@ public class Queue_Reconstruction_by_Height {
     public int[][] reconstructQueue(int[][] people) {
         int n = people.length;
         Arrays.sort(people, (o1, o2) -> {
-            if (o1[0] != o2[0]){
+            if (o1[0] != o2[0]) {
                 return o1[0] - o2[0];
             } else {
                 return o1[1] - o2[1];
             }
         });
         int[][] result = new int[n][2];
-        for (int[] ea : result){
+        for (int[] ea : result) {
             ea[0] = -1;
         }
-        for (int[] one : people){
+        for (int[] one : people) {
             int pos = one[1];
             int cursor = 0;
-            while (pos != 0 || result[cursor][0] != -1){
-                if (pos > 0 && (result[cursor][0] == -1 || result[cursor][0] == one[0])){
+            while (pos != 0 || result[cursor][0] != -1) {
+                if (pos > 0 && (result[cursor][0] == -1 || result[cursor][0] == one[0])) {
                     pos--;
                 }
                 cursor++;
@@ -63,12 +64,12 @@ public class Queue_Reconstruction_by_Height {
         return result;
     }
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         int[][] ints = new Queue_Reconstruction_by_Height().reconstructQueue2(
                 new int[][]{{7, 0}, {4, 4}, {7, 1}, {5, 0}, {6, 1}, {5, 2}}
         );
-        for (int[] ea : ints){
-            System.out.print("{"+ea[0]+","+ea[1]+"} ");
+        for (int[] ea : ints) {
+            System.out.print("{" + ea[0] + "," + ea[1] + "} ");
         }
     }
 }

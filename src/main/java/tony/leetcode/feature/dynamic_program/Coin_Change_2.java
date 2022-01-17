@@ -14,18 +14,18 @@ package tony.leetcode.feature.dynamic_program;
 
 public class Coin_Change_2 {
 
-    /**
-     * 动态规划：
-     * D[i] = D[i-coins[0]] + D[i-coins[1]] + ... + D[i-coins[n-1]]
-     * D[0] = 1
-     */
     public int change(int amount, int[] coins) {
-        int[] D = new int[amount+1];
+        // D[i] = D[i-coins[0]] + D[i-coins[1]] + ... + D[i-coins[n-1]]
+        // D[0] = 1
+
+        int[] D = new int[amount + 1];
         D[0] = 1;
 
-        for (int coin : coins){
-            for (int i = coin; i <= amount;i++){
-                D[i] += D[i-coin];
+        // 这里顺序不同的组合算同一个组合，所以coin要放在外面
+        // 如果不同顺序算不同的组合，那么coin要放里面
+        for (int coin : coins) {
+            for (int i = coin; i <= amount; i++) {
+                D[i] += D[i - coin];
             }
         }
         return D[amount];

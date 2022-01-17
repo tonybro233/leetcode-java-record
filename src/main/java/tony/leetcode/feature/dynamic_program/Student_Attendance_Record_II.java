@@ -22,13 +22,11 @@ package tony.leetcode.feature.dynamic_program;
 
 public class Student_Attendance_Record_II {
 
-    /**
-     * 推断所有没有A的合法组合 ：D[i] = D[i-1] + D[i-2] + D[i-3] ——> 结尾只能是P，PL，PLL
-     * 加上A，以A为边界，两边就都是符合上述的组合 ... A ... 可以得出带A的组合数量为：
-     * 求和{ D[i]*D[n-1-i], i = 0 ~ n-1 }
-     * sum[n] = D[n-1] + D[n-2] + D[n-3] + 求和{ D[i]*D[n-1-i], i = 0 ~ n-1 }
-     */
     public int checkRecord(int n) {
+        // 推断所有没有A的合法组合 ：D[i] = D[i-1] + D[i-2] + D[i-3] ——> 结尾只能是P，PL，PLL
+        // 加上A，以A为边界，两边就都是符合上述的组合 ... A ... 可以得出带A的组合数量为：
+        // 求和{ D[i]*D[n-1-i], i = 0 ~ n-1 }
+        // sum[n] = D[n-1] + D[n-2] + D[n-3] + 求和{ D[i]*D[n-1-i], i = 0 ~ n-1 }
         if (n == 1) {
             return 3;
         } else if (n == 2) {

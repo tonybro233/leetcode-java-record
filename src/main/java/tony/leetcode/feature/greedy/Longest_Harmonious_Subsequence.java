@@ -17,15 +17,47 @@ public class Longest_Harmonious_Subsequence {
 
     public int findLHS(int[] nums) {
         Arrays.sort(nums);
-        int begin = 0,res = 0;
-        for(int end = 0;end < nums.length;end++){
-            while(nums[end] - nums[begin] > 1) {
+        int begin = 0, res = 0;
+        for (int end = 0; end < nums.length; end++) {
+            while (nums[end] - nums[begin] > 1) {
                 begin++;
             }
             if (nums[end] - nums[begin] == 1) {
-                res = Math.max(res,end - begin + 1);
+                res = Math.max(res, end - begin + 1);
             }
         }
         return res;
     }
+
+    public int findLHS2(int[] nums) {
+        Arrays.sort(nums);
+        int idx = 0;
+        int lastVal = nums[0];
+        int nextIdx = getNext(idx, nums);
+        int c1 = nextIdx - idx, c2 = 0;
+        idx = nextIdx;
+        int result = 0;
+        while (idx < nums.length) {
+            nextIdx = getNext(idx, nums);
+            c2 = nextIdx - idx;
+            if (nums[nextIdx - 1] - lastVal == 1) {
+                result = Math.max(result, c2 + c1);
+            }
+            c1 = c2;
+            lastVal = nums[nextIdx - 1];
+            idx = nextIdx;
+        }
+        return result;
+    }
+
+    private int getNext(int idx, int[] nums) {
+        int val = nums[idx++];
+        for (; idx < nums.length; idx++) {
+            if (nums[idx] != val) {
+                break;
+            }
+        }
+        return idx;
+    }
+
 }

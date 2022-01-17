@@ -15,7 +15,7 @@ public class Next_Greater_Element_I {
 
     /**
      * 我一度想用LinkedHashSet，但是这个结构并不能获取下一个entryset，同样又想用treeset，但是很明显想歪了
-     *
+     * <p>
      * 关键点在于没有重复元素，且nums1是nums2的子集
      * 由于没有重复元素，使用map记录nums2中每个值对应的更大值的角标
      * 然后遍历nums1，根据上面的map进行寻找即可
@@ -23,19 +23,19 @@ public class Next_Greater_Element_I {
     public int[] nextGreaterElement(int[] nums1, int[] nums2) {
         int[] result = new int[nums1.length];
         Map<Integer, Integer> map = new HashMap<>();
-        for (int i = 0; i < nums2.length;i++){
+        for (int i = 0; i < nums2.length; i++) {
             int val = nums2[i];
             int next = -1;
-            for (int j = i+1;j < nums2.length;j++){
-                if (nums2[j] > val){
+            for (int j = i + 1; j < nums2.length; j++) {
+                if (nums2[j] > val) {
                     next = j;
                     break;
                 }
             }
-            map.put(val,next);
+            map.put(val, next);
         }
-        for (int i = 0; i < nums1.length;i++){
-            if (-1 == map.get(nums1[i])){
+        for (int i = 0; i < nums1.length; i++) {
+            if (-1 == map.get(nums1[i])) {
                 result[i] = -1;
             } else {
                 result[i] = nums2[map.get(nums1[i])];

@@ -25,8 +25,8 @@ public class _2_Keys_Keyboard {
     // 动态规划
     public int minSteps(int n) {
         int[] D = new int[n + 1];
-        for (int i = 2;i <= n;i++) {
-            for (int j = i-1; j > 0; j--) {
+        for (int i = 2; i <= n; i++) {
+            for (int j = i - 1; j > 0; j--) {
                 if (i % j == 0) {
                     // 严格来说还是因数分解
                     // 所以最小的肯定是第一个整除然后采用paste + copy，而不可能是继续D[j]的copy
@@ -42,8 +42,8 @@ public class _2_Keys_Keyboard {
     public int minSteps2(int n) {
         int count = 0;
 
-        for(int i = 2;i <= n;i++){
-            while(n % i == 0){
+        for (int i = 2; i <= n; i++) {
+            while (n % i == 0) {
                 count += i;
                 n /= i;
             }

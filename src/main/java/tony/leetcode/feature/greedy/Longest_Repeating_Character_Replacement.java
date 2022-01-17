@@ -27,9 +27,28 @@ import java.util.Map;
 
 public class Longest_Repeating_Character_Replacement {
 
+    public int characterReplacement3(String s, int k) {
+        // 使用数组来统计区间内的计数
+        int[] num = new int[26];
+        int n = s.length();
+        int maxCount = 0;
+        int left = 0, right = 0;
+        while (right < n) {
+            num[s.charAt(right) - 'A']++;
+            maxCount = Math.max(maxCount, num[s.charAt(right) - 'A']);
+            // 保证区间长度不会递减
+            if (right - left + 1 - maxCount > k) {
+                num[s.charAt(left) - 'A']--;
+                left++;
+            }
+            right++;
+        }
+        return right - left;
+    }
+
     public int characterReplacement2(String s, int k) {
         char[] chars = s.toCharArray();
-        if (chars.length == 0){
+        if (chars.length == 0) {
             return 0;
         }
 
@@ -56,7 +75,7 @@ public class Longest_Repeating_Character_Replacement {
 
     public int characterReplacement(String s, int k) {
         char[] chars = s.toCharArray();
-        if (chars.length == 0){
+        if (chars.length == 0) {
             return 0;
         }
 
@@ -67,12 +86,12 @@ public class Longest_Repeating_Character_Replacement {
         Map<Character, Integer> map = new HashMap<>();
 
         while (p2 < chars.length) {
-            Integer c = map.getOrDefault(chars[p2], 0)+1;
+            Integer c = map.getOrDefault(chars[p2], 0) + 1;
             map.put(chars[p2], c);
             p2 += 1;
             while (p2 - p1 - getMaxVal(map) > k) {
                 // 不满足说明需要舍弃尾部
-                map.put(chars[p1], map.get(chars[p1])-1);
+                map.put(chars[p1], map.get(chars[p1]) - 1);
                 p1 += 1;
             }
             max = Math.max(max, p2 - p1);
@@ -81,10 +100,10 @@ public class Longest_Repeating_Character_Replacement {
         return max;
     }
 
-    private int getMaxVal(Map<Character, Integer> map){
+    private int getMaxVal(Map<Character, Integer> map) {
         int max = 0;
-        for (int ea : map.values()){
-            max = max > ea ? max : ea;
+        for (int ea : map.values()) {
+            max = Math.max(max, ea);
         }
         return max;
     }

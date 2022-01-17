@@ -8,9 +8,10 @@ package tony.leetcode.feature.dynamic_program;
 
 public class Unique_Paths {
 
-    // D(m,n) = D(m,n-1)+D(m-1,n)
 
     public int uniquePaths(int m, int n) {
+        // D(m,n) = D(m,n-1)+D(m-1,n)
+
         if (m == 0){
             return n;
         }

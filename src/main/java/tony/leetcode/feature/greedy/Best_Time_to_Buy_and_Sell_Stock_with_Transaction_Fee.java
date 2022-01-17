@@ -28,7 +28,7 @@ public class Best_Time_to_Buy_and_Sell_Stock_with_Transaction_Fee {
 
     public int maxProfit(int[] prices, int fee) {
         int sell = 0, buy = -prices[0];
-        for(int i = 1;i < prices.length;i++){
+        for (int i = 1; i < prices.length; i++) {
             // 保持买入状态 和 执行买入
             buy = Math.max(buy, sell - prices[i]);
             // 保持卖出状态 和 执行卖出

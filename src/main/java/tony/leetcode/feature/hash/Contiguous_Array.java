@@ -19,7 +19,8 @@ public class Contiguous_Array {
             }
         }
         // 这里很骚
-        // 获取每种sum的最小角标，如果发现sum，则从最小角标到当前角标的这一段子数组的和为0
+        // 获取每种sum的最小角标，如果再次发现sum，则说明从sum的最小角标
+        // 到当前角标的这一段子数组的和为0（因为求和值没有变）
         // 注意0的最小角标是-1
         Map<Integer, Integer> map = new HashMap<>();
         map.put(0,-1);

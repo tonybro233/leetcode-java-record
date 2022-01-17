@@ -16,8 +16,8 @@ import java.util.Arrays;
 
 public class _40_kth_smallest {
 
-    // 另外还可以使用容量为k的大顶堆
     public int[] getLeastNumbers(int[] arr, int k) {
+        // 另外还可以使用容量为k的大顶堆
         if (k > arr.length) {
             throw new IllegalArgumentException();
         } else if (k == arr.length) {

@@ -27,14 +27,14 @@ public class House_Robber {
             return nums[0];
         }
         if (n == 2) {
-            return nums[0] > nums[1] ? nums[0] : nums[1];
+            return Math.max(nums[0], nums[1]);
         }
 
         int[] val = new int[n];
         val[0] = nums[0];
-        val[1] = nums[0] > nums[1] ? nums[0] : nums[1];
+        val[1] = Math.max(nums[0], nums[1]);
         for (int i = 2; i < n; i++){
-            val[i] = val[i-2]+nums[i] > val[i-1] ? val[i-2]+nums[i] : val[i-1];
+            val[i] = Math.max(val[i - 2] + nums[i], val[i - 1]);
         }
         return val[n-1];
     }

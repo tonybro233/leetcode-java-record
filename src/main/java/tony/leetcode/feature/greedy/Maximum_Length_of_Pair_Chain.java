@@ -23,14 +23,14 @@ public class Maximum_Length_of_Pair_Chain {
 
     public int findLongestChain(int[][] pairs) {
         int n = pairs.length;
-        if (n == 0){
+        if (n == 0) {
             return 0;
         }
         Arrays.sort(pairs, Comparator.comparingInt(o -> o[1]));
         int res = 1, tmp = pairs[0][1];
 
-        for (int i = 1; i< n;i++){
-            if (pairs[i][0] > tmp){
+        for (int i = 1; i < n; i++) {
+            if (pairs[i][0] > tmp) {
                 res++;
                 tmp = pairs[i][1];
             }

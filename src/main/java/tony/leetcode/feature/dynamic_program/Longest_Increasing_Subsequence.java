@@ -18,22 +18,22 @@ public class Longest_Increasing_Subsequence {
 
     public int lengthOfLIS(int[] nums) {
         int n = nums.length;
-        if (n == 0){
+        if (n == 0) {
             return 0;
         }
         // 以下标为结尾的最长上升子序列长度
         int[] D = new int[nums.length];
-        for (int i = 0; i < n;i++){
+        for (int i = 0; i < n; i++) {
             int max = 1;
-            for (int j = 0; j < i;j++){
-                if (nums[i] > nums[j]){
-                    max = Math.max(D[j]+1, max);
+            for (int j = 0; j < i; j++) {
+                if (nums[i] > nums[j]) {
+                    max = Math.max(D[j] + 1, max);
                 }
             }
             D[i] = max;
         }
         int result = 0;
-        for (int i = 0; i < n; i++){
+        for (int i = 0; i < n; i++) {
             result = Math.max(result, D[i]);
         }
         return result;
@@ -46,21 +46,21 @@ public class Longest_Increasing_Subsequence {
      * 1. num > dp[maxL], 表示num比所有已知递增序列的尾数都大, 将num添加入dp
      * 数组尾部, 并将最长递增序列长度maxL加1
      * 2. dp[i-1] < num <= dp[i], 只更新相应的dp[i]
-     *    此时dp[i-1] < num 使得长度为i+1的递增子序列尾数可以是num
-     *    num <= dp[i] 使得dp[i]应该被更新为num
+     * 此时dp[i-1] < num 使得长度为i+1的递增子序列尾数可以是num
+     * num <= dp[i] 使得dp[i]应该被更新为num
      */
     public int lengthOfLIS2(int[] nums) {
         int maxL = 0;
         int[] dp = new int[nums.length];
-        for(int num : nums) {
+        for (int num : nums) {
             // 二分法查找, 也可以调用库函数如binary_search
             int lo = 0, hi = maxL;
 
             // 这里用了< 而不是 <=, 使得lo的最大会被取为maxL（此时dp的有效内容为0 ~ maxL-1）
             while (lo < hi) {
-                int mid = lo+(hi-lo)/2;
+                int mid = lo + (hi - lo) / 2;
                 if (dp[mid] < num) {
-                    lo = mid+1;
+                    lo = mid + 1;
                 } else {
                     hi = mid;
                 }

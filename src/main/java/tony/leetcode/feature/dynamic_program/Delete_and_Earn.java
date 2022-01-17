@@ -38,7 +38,7 @@ public class Delete_and_Earn {
         int deleteMax = 0; // 表示当前值作为最大值时，是被删掉时的最大点数
         int swap = 0, lastPos = 0;
 
-        for (int i = 0; i < nums.length;) {
+        for (int i = 0; i < nums.length; ) {
             lastPos = getLastPos(nums, i);
             if (nums[i] == current + 1) {
                 swap = deleteMax;
@@ -65,7 +65,7 @@ public class Delete_and_Earn {
     }
 
     public static void main(String[] args) {
-        int i = new Delete_and_Earn().deleteAndEarn2(new int[]{1,1,1,2,4,5,5,5,6});
+        int i = new Delete_and_Earn().deleteAndEarn2(new int[]{1, 1, 1, 2, 4, 5, 5, 5, 6});
         System.out.println(i);
     }
 

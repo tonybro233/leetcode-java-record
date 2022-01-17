@@ -27,35 +27,31 @@ import java.util.LinkedList;
 
 public class _132_Pattern {
 
-    // 从最后开始遍历，用栈来辅助维护一个次大值
     public boolean find132pattern(int[] nums) {
+        // 从最后开始遍历，用栈来维护最大值，同时维护一个次大值
         int n = nums.length;
-        if (n < 3){
+        if (n < 3) {
             return false;
         }
 
+        // 只维护2个值无法处理 1 3 2 4 5 6 这种情况
+
         int last = Integer.MIN_VALUE; // 132中的2
         Deque<Integer> sta = new LinkedList<>();// 用来存储132中的3
-        for(int i = n-1; i >= 0; i--){
+        for (int i = n - 1; i >= 0; i--) {
             // 若出现132中的1则返回正确值
             if (nums[i] < last) {
                 return true;
             }
 
-            // nums[i] >= last, sta.peek >= last
-            // last保持增大，last是pop出来的因此必然
-
             // 若当前值大于或等于2则更新2（2为栈中小于当前值的最大元素）
-            while(!sta.isEmpty() && sta.peek() < nums[i]){
+            while (!sta.isEmpty() && sta.peek() < nums[i]) {
+                // last保持为小于栈顶元素的最大值
                 last = sta.pop();
             }
 
-            // nums[i] <= sta.peek
-
             // 将当前值压入栈中, 栈内从顶至底递增，从顶至底也符合原来数组内的顺序
             sta.push(nums[i]);
-
-            // last保持为小于栈顶元素的最大值
         }
         return false;
     }

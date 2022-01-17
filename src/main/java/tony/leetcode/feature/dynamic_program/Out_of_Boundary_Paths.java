@@ -66,13 +66,11 @@ public class Out_of_Boundary_Paths {
 
     static int MOD=(int)Math.pow(10,9)+7;
 
-    /**
-         动态规划, dp[i][j][k]表示从(i, j)开始在k步内移除边界的路径数.
-         可知dp[i][j][k]只与(i, j)四周邻接点在k-1步内移除边界的路径数有关.
-         dp[i][j][k] = dp[i-1][j][k-1] + dp[i+1][j][k-1] + dp[i][j-1][k-1] + dp[i][j+1][k-1];
-         空间优化: 可以看出重复利用一个二维数组储存路径数即可(k-1步更新之后就无需保存)
-     **/
     public int findPaths2(int m, int n, int N, int i, int j) {
+        // 动态规划, dp[i][j][k]表示从(i, j)开始在k步内移除边界的路径数.
+        // 可知dp[i][j][k]只与(i, j)四周邻接点在k-1步内移除边界的路径数有关.
+        // dp[i][j][k] = dp[i-1][j][k-1] + dp[i+1][j][k-1] + dp[i][j-1][k-1] + dp[i][j+1][k-1];
+        // 空间优化: 可以看出重复利用一个二维数组储存路径数即可(k-1步更新之后就无需保存)
         int [][][] dp = new int[m][n][N+1];
         for (int a = 0;a < m;a++){
             for (int b = 0;b < n;b++){

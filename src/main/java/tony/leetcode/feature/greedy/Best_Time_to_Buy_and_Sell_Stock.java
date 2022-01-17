@@ -19,13 +19,13 @@ package tony.leetcode.feature.greedy;
 public class Best_Time_to_Buy_and_Sell_Stock {
 
     public int maxProfit(int[] prices) {
-        if (null == prices || prices.length < 2){
+        if (null == prices || prices.length < 2) {
             return 0;
         }
         int result = 0;
         int cMin = prices[0];
 
-        for (int i = 1;i < prices.length;i++){
+        for (int i = 1; i < prices.length; i++) {
             result = Math.max(prices[i] - cMin, result);
             cMin = Math.min(prices[i], cMin);
         }

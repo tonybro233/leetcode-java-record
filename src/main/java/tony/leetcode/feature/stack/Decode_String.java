@@ -22,19 +22,19 @@ public class Decode_String {
         Deque<StringBuilder> builders = new ArrayDeque<>();
         Deque<Integer> ints = new ArrayDeque<>();
         StringBuilder tmp = new StringBuilder(); // 处于操作状态的字符序列
-        for (int i = 0; i < chars.length; i++){
-            if (Character.isDigit(chars[i])){
+        for (int i = 0; i < chars.length; i++) {
+            if (Character.isDigit(chars[i])) {
                 num = num * 10 + (chars[i] - '0');
-            } else if ('[' == chars[i]){
+            } else if ('[' == chars[i]) {
                 builders.addLast(tmp);
                 ints.addLast(num);
                 tmp = new StringBuilder();
                 num = 0;
-            } else if (']' == chars[i]){
+            } else if (']' == chars[i]) {
                 String str = tmp.toString();
                 tmp = builders.pollLast();
                 Integer lastInt = ints.pollLast();
-                for (int j = 0; j < lastInt;j++){
+                for (int j = 0; j < lastInt; j++) {
                     tmp.append(str);
                 }
             } else {
@@ -45,7 +45,7 @@ public class Decode_String {
         return tmp.toString();
     }
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         String string = new Decode_String().decodeString("3[a2[c]]dd");
         System.out.println(string);
     }

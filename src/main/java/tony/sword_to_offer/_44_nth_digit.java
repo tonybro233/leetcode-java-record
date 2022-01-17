@@ -16,10 +16,10 @@ package tony.sword_to_offer;
 
 public class _44_nth_digit {
 
-    // 1 - 9 (特殊处理，不用 0 - 9)
-    // 10 - 99
-    // 100 - 999
     public int findNthDigit(int n) {
+        // 1 - 9 (特殊处理，不用 0 - 9)
+        // 10 - 99
+        // 100 - 999
         if (n < 0) {
             throw new IllegalArgumentException();
         }

@@ -19,6 +19,43 @@ import java.util.Arrays;
 
 public class Find_First_and_Last_Position_of_Element_in_Sorted_Array {
 
+    public int[] searchRange2(int[] nums, int target) {
+        if (nums == null || nums.length == 0) {
+            return new int[]{-1, -1};
+        }
+        // 取大于等于目标的最小值
+        int lowBound = bs(nums, target, true);
+        if (lowBound >= nums.length || nums[lowBound] != target) {
+            return new int[]{-1, -1};
+        }
+        // 取小于等于目标的最大值
+        int highBound = bs(nums, target, false);
+        return new int[]{lowBound, highBound};
+    }
+
+    public int bs(int[] nums, int target, boolean lower) {
+        int low = 0, high = nums.length - 1;
+        while (low <= high) {
+            int mid = low + (high - low) / 2;
+            if (nums[mid] == target) {
+                if (lower) {
+                    high = mid - 1;
+                } else {
+                    low = mid + 1;
+                }
+            } else if (nums[mid] > target) {
+                high = mid - 1;
+            } else if (nums[mid] < target) {
+                low = mid + 1;
+            }
+        }
+        if (lower) {
+            return low;
+        } else {
+            return high;
+        }
+    }
+
     public int[] searchRange(int[] nums, int target) {
         int[] result = new int[]{-1, -1};
 
@@ -30,6 +67,7 @@ public class Find_First_and_Last_Position_of_Element_in_Sorted_Array {
         boolean got = false;
         while (left <= right) {
             int mid = left + (right - left) / 2;
+            // 这样其实不满足O(log n)的复杂度要求
             if (nums[mid] == target) {
                 got = true;
                 if (nums[left] < target) {
@@ -57,8 +95,8 @@ public class Find_First_and_Last_Position_of_Element_in_Sorted_Array {
     }
 
     public static void main(String[] args) {
-        int[] ints = new Find_First_and_Last_Position_of_Element_in_Sorted_Array().searchRange(
-                new int[]{5, 7, 7, 8, 8, 10}, 8
+        int[] ints = new Find_First_and_Last_Position_of_Element_in_Sorted_Array().searchRange2(
+                new int[]{2,2}, 3
         );
         System.out.println(Arrays.toString(ints));
     }

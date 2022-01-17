@@ -18,17 +18,15 @@ package tony.leetcode.feature.dynamic_program;
 public class Climbing_Stairs {
 
     public int climbStairs(int n) {
-        if (n == 0){
-            return 0;
-        } else if (n == 1){
-            return 1;
+        if (n <= 2) {
+            return n;
         }
-        int[] record = new int[n+1];
+        int[] record = new int[n + 1];
         record[0] = 0;
         record[1] = 1;
         record[2] = 2;
-        for (int i = 3; i <= n; i++){
-            record[i] = record[i-1]+record[i-2];
+        for (int i = 3; i <= n; i++) {
+            record[i] = record[i - 1] + record[i - 2];
         }
         return record[n];
     }

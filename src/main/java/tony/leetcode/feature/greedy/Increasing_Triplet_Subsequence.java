@@ -21,18 +21,18 @@ public class Increasing_Triplet_Subsequence {
 
     public boolean increasingTriplet2(int[] nums) {
         // 需要给MAX，而不是null
-        int first = Integer.MAX_VALUE,second = Integer.MAX_VALUE;
-        if(nums.length < 3){
+        int first = Integer.MAX_VALUE, second = Integer.MAX_VALUE;
+        if (nums.length < 3) {
             return false;
         }
         // 考虑 3,4,1,2的情况可以发现尽管存在中间态：first小于second，但是first下标大于second
         // 但second总是满足前面有一个比他小的，因此只要有大于second，必然满足条件
-        for (int num : nums){
-            if (first > num){
+        for (int num : nums) {
+            if (first > num) {
                 first = num;
-            } else if (first < num && second > num){
+            } else if (first < num && second > num) {
                 second = num;
-            }else if (num > second){
+            } else if (num > second) {
                 return true;
             }
         }
@@ -40,28 +40,28 @@ public class Increasing_Triplet_Subsequence {
     }
 
     public boolean increasingTriplet(int[] nums) {
-        if (nums.length <= 2){
+        if (nums.length <= 2) {
             return false;
         }
         boolean[] mark = new boolean[nums.length];
         Integer min = nums[0];
-        for (int i = 1; i < nums.length; i++){
-            if (nums[i] > min){
+        for (int i = 1; i < nums.length; i++) {
+            if (nums[i] > min) {
                 mark[i] = true;
             } else {
                 min = nums[i];
             }
         }
         min = null;
-        for (int i = 0; i < nums.length; i++){
-            if (!mark[i]){
+        for (int i = 0; i < nums.length; i++) {
+            if (!mark[i]) {
                 continue;
             }
-            if (min == null){
+            if (min == null) {
                 min = nums[i];
                 continue;
             }
-            if (nums[i] > min){
+            if (nums[i] > min) {
                 return true;
             } else {
                 min = nums[i];

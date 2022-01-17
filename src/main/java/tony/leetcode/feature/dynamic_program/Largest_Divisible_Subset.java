@@ -23,9 +23,9 @@ public class Largest_Divisible_Subset {
 
     public List<Integer> largestDivisibleSubset(int[] nums) {
         int n = nums.length;
-        if (n == 0){
+        if (n == 0) {
             return new ArrayList<>();
-        } else if (n == 1){
+        } else if (n == 1) {
             return Collections.singletonList(nums[0]);
         }
 
@@ -39,16 +39,16 @@ public class Largest_Divisible_Subset {
         int max = 1;
         int pos = 0;
 
-        for (int i = 0; i < n;i++){
+        for (int i = 0; i < n; i++) {
             pre[i] = -1;
             count[i] = 1;
-            for (int j = 0; j < i;j++){
-                if (nums[i] % nums[j] == 0 && count[j]+1 > count[i]){
-                    count[i] = count[j]+1;
+            for (int j = 0; j < i; j++) {
+                if (nums[i] % nums[j] == 0 && count[j] + 1 > count[i]) {
+                    count[i] = count[j] + 1;
                     pre[i] = j;
                 }
             }
-            if (count[i] > max){
+            if (count[i] > max) {
                 max = count[i];
                 pos = i;
             }
@@ -56,7 +56,7 @@ public class Largest_Divisible_Subset {
 
         List<Integer> result = new ArrayList<>(n);
         int c = pos;
-        while (c != -1){
+        while (c != -1) {
             result.add(nums[c]);
             c = pre[c];
         }
@@ -64,7 +64,7 @@ public class Largest_Divisible_Subset {
         return result;
     }
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         List<Integer> list = new Largest_Divisible_Subset().largestDivisibleSubset(new int[]{1, 2, 3});
         System.out.println(list);
     }

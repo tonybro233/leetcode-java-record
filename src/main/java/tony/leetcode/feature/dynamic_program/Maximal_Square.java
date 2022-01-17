@@ -16,22 +16,22 @@ package tony.leetcode.feature.dynamic_program;
 public class Maximal_Square {
 
     public int maximalSquare(char[][] matrix) {
-        if (null == matrix || matrix.length == 0){
+        if (null == matrix || matrix.length == 0) {
             return 0;
         }
         int row = matrix.length;
         int col = matrix[0].length;
         int[][] D = new int[row][col];
         int max = 0;
-        for (int i = 0;i < row; i++){
-            for (int j = 0; j < col;j++){
-                if (matrix[i][j] == '0'){
+        for (int i = 0; i < row; i++) {
+            for (int j = 0; j < col; j++) {
+                if (matrix[i][j] == '0') {
                     continue;
                 }
-                if (i > 0 && j > 0){
+                if (i > 0 && j > 0) {
                     // 这个转移方程。。。有点秀
-                    int val = Math.min(D[i][j-1], D[i-1][j]);
-                    val = Math.min(val,  D[i-1][j-1]);
+                    int val = Math.min(D[i][j - 1], D[i - 1][j]);
+                    val = Math.min(val, D[i - 1][j - 1]);
                     D[i][j] = ++val;
                 } else {
                     // 注意给边界赋值
@@ -41,6 +41,6 @@ public class Maximal_Square {
             }
         }
 
-        return max*max;
+        return max * max;
     }
 }

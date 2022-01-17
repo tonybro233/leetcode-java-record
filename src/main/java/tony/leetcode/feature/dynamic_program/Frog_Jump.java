@@ -48,8 +48,8 @@ public class Frog_Jump {
     }
 
     /**
-     * @param i 石头下标
-     * @param k 步数
+     * @param i      石头下标
+     * @param k      步数
      * @param stones 石头数组
      */
     private boolean dfs(int i, int k, int[] stones) {
@@ -73,63 +73,63 @@ public class Frog_Jump {
     // 石头的值是不重复的
     // 使用石头值和到达石头的步数集合作为map进行操作
     public boolean canCross3(int[] stones) {
-        if (stones[1] != 1){
+        if (stones[1] != 1) {
             return false;
         }
         int n = stones.length;
         Map<Integer, Set<Integer>> D = new HashMap<>();
-        for (int i = 0; i < n;i++){
+        for (int i = 0; i < n; i++) {
             D.put(stones[i], new HashSet<>());
         }
         D.get(0).add(0);
-        for (int i = 0; i < n-1; i++){
-            for(int k : D.get(stones[i])) {
-                for(int j = k-1;j <= k+1;j++) {
-                    if(j > 0 && D.containsKey(stones[i]+j)) {
-                        D.get(stones[i]+j).add(j);
+        for (int i = 0; i < n - 1; i++) {
+            for (int k : D.get(stones[i])) {
+                for (int j = k - 1; j <= k + 1; j++) {
+                    if (j > 0 && D.containsKey(stones[i] + j)) {
+                        D.get(stones[i] + j).add(j);
                     }
                 }
             }
         }
-        return D.get(stones[n-1]).size() > 0;
+        return D.get(stones[n - 1]).size() > 0;
     }
 
     // 同样超时
     public boolean canCross2(int[] stones) {
-        if (stones[1] != 1){
+        if (stones[1] != 1) {
             return false;
         }
         int n = stones.length;
-        List<Integer> [] D = new List[n];
+        List<Integer>[] D = new List[n];
         // List数组，第一个值作为石头本身的值，后续为达到这个石头的步数值
-        for (int i = 0; i < n;i++){
+        for (int i = 0; i < n; i++) {
             D[i] = new ArrayList<>();
             D[i].add(stones[i]);
         }
         D[1].add(1);
-        for (int i = 1; i < n;i++){
-            if (1 == D[i].size()){
+        for (int i = 1; i < n; i++) {
+            if (1 == D[i].size()) {
                 continue;
             }
-            for (int j = 1; j < D[i].size();j++){
+            for (int j = 1; j < D[i].size(); j++) {
                 int val = D[i].get(j);
-                for (int k = i+1; k < n;k++){
-                    if (D[k].get(0) == D[i].get(0)+val){
+                for (int k = i + 1; k < n; k++) {
+                    if (D[k].get(0) == D[i].get(0) + val) {
                         D[k].add(val);
-                    } else if (D[k].get(0) == D[i].get(0) + val + 1){
-                        D[k].add(val+1);
-                    } else if (val > 1 && D[k].get(0) == D[i].get(0) + val - 1){
-                        D[k].add(val-1);
+                    } else if (D[k].get(0) == D[i].get(0) + val + 1) {
+                        D[k].add(val + 1);
+                    } else if (val > 1 && D[k].get(0) == D[i].get(0) + val - 1) {
+                        D[k].add(val - 1);
                     }
                 }
             }
         }
-        return D[n-1].size() > 1;
+        return D[n - 1].size() > 1;
     }
 
     // 使用bfs进行搜索，超时
     public boolean canCross(int[] stones) {
-        if (stones[1] != 1){
+        if (stones[1] != 1) {
             return false;
         }
         int n = stones.length;
@@ -137,32 +137,32 @@ public class Frog_Jump {
         Deque<Integer> steps = new ArrayDeque<>(); // 达到这个石头的步数
         cursor.addLast(1);
         steps.addLast(1);
-        while (true){
+        while (true) {
             Integer pos = cursor.pollLast();
             Integer step = steps.pollLast();
-            if (pos == null){
+            if (pos == null) {
                 return false;
             }
-            if (pos == n-1){
+            if (pos == n - 1) {
                 return true;
             }
-            for (int i = pos+1; i < n; i++){
-                if (stones[i] == stones[pos] + step){
+            for (int i = pos + 1; i < n; i++) {
+                if (stones[i] == stones[pos] + step) {
                     cursor.addFirst(i);
                     steps.addFirst(step);
-                } else if (stones[i] == stones[pos] + step + 1){
+                } else if (stones[i] == stones[pos] + step + 1) {
                     cursor.addFirst(i);
-                    steps.addFirst(step+1);
-                } else if (step > 1 && stones[i] == stones[pos] + step -1){
+                    steps.addFirst(step + 1);
+                } else if (step > 1 && stones[i] == stones[pos] + step - 1) {
                     cursor.addFirst(i);
-                    steps.addFirst(step-1);
+                    steps.addFirst(step - 1);
                 }
             }
         }
     }
 
-    public static void main(String[] args){
-        boolean b = new Frog_Jump().canCross2(new int[]{0,1,2,3,4,8,9,11});
+    public static void main(String[] args) {
+        boolean b = new Frog_Jump().canCross2(new int[]{0, 1, 2, 3, 4, 8, 9, 11});
         System.out.println(b);
     }
 }

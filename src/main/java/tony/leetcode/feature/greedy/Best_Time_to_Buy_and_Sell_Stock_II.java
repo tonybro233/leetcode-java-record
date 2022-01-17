@@ -28,34 +28,34 @@ package tony.leetcode.feature.greedy;
 
 public class Best_Time_to_Buy_and_Sell_Stock_II {
 
-    // 直接累加每天的差值就ok
     public int maxProfit2(int[] prices) {
-        if(prices==null || prices.length<2) {
+        // 直接累加每天的差值就ok
+        if (prices == null || prices.length < 2) {
             return 0;
         }
-        int maxDev=0;
-        for(int i=1;i < prices.length;i++){
-            if(prices[i] > prices[i-1]){
-                maxDev += prices[i]-prices[i-1];
+        int maxDev = 0;
+        for (int i = 1; i < prices.length; i++) {
+            if (prices[i] > prices[i - 1]) {
+                maxDev += prices[i] - prices[i - 1];
             }
         }
         return maxDev;
     }
 
     public int maxProfit(int[] prices) {
-        if (null == prices || prices.length < 2){
+        if (null == prices || prices.length < 2) {
             return 0;
         }
         int result = 0;
         Integer hold = null;
-        for (int i = 0; i < prices.length;i++){
-            if (null == hold){
-                if (i < prices.length - 1 && prices[i+1] > prices[i]){
+        for (int i = 0; i < prices.length; i++) {
+            if (null == hold) {
+                if (i < prices.length - 1 && prices[i + 1] > prices[i]) {
                     hold = prices[i];
                 }
             } else {
-                if (i < prices.length - 1){
-                    if (prices[i+1] <= prices[i]){
+                if (i < prices.length - 1) {
+                    if (prices[i + 1] <= prices[i]) {
                         result += prices[i] - hold;
                         hold = null;
                     }

@@ -23,24 +23,24 @@ public class House_Robber_II {
             return nums[0];
         }
         if (n == 2) {
-            return nums[0] > nums[1] ? nums[0] : nums[1];
+            return Math.max(nums[0], nums[1]);
         }
 
         // 抢第一间房，不可以抢最后一间，转移方程同 打家劫舍I
         int[] val = new int[n];
         val[0] = nums[0];
-        val[1] = nums[0] > nums[1] ? nums[0] : nums[1];
+        val[1] = Math.max(nums[0], nums[1]);
         for (int i = 2; i < n - 1; i++){
-            val[i] = val[i-2]+nums[i] > val[i-1] ? val[i-2]+nums[i] : val[i-1];
+            val[i] = Math.max(val[i - 2] + nums[i], val[i - 1]);
         }
         int max1 = val[n-2];
 
         // 抢最后一间，不可以抢第一间
         val = new int[n];
         val[1] = nums[1];
-        val[2] = nums[1] > nums[2] ? nums[1] : nums[2];
+        val[2] = Math.max(nums[1], nums[2]);
         for (int i = 3; i < n;i++){
-            val[i] = val[i-2]+nums[i] > val[i-1] ? val[i-2]+nums[i] : val[i-1];
+            val[i] = Math.max(val[i - 2] + nums[i], val[i - 1]);
         }
         int max2 = val[n-1];
 
