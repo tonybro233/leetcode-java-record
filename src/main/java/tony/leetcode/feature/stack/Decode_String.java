@@ -17,32 +17,31 @@ import java.util.*;
 public class Decode_String {
 
     public String decodeString(String s) {
-        char[] chars = s.toCharArray();
+        Deque<Integer> numStack = new LinkedList<>();
+        Deque<StringBuilder> bufferStack = new LinkedList<>();
+        StringBuilder buffer = new StringBuilder();
         int num = 0;
-        Deque<StringBuilder> builders = new ArrayDeque<>();
-        Deque<Integer> ints = new ArrayDeque<>();
-        StringBuilder tmp = new StringBuilder(); // 处于操作状态的字符序列
-        for (int i = 0; i < chars.length; i++) {
-            if (Character.isDigit(chars[i])) {
-                num = num * 10 + (chars[i] - '0');
-            } else if ('[' == chars[i]) {
-                builders.addLast(tmp);
-                ints.addLast(num);
-                tmp = new StringBuilder();
+        for (int i = 0; i < s.length(); i++) {
+            if (Character.isDigit(s.charAt(i))) {
+                num = num * 10 + (s.charAt(i) - '0');
+            } else if ('[' == s.charAt(i)) {
+                numStack.addLast(num);
                 num = 0;
-            } else if (']' == chars[i]) {
-                String str = tmp.toString();
-                tmp = builders.pollLast();
-                Integer lastInt = ints.pollLast();
-                for (int j = 0; j < lastInt; j++) {
-                    tmp.append(str);
+                bufferStack.addLast(buffer);
+                buffer = new StringBuilder();
+            } else if (']' == s.charAt(i)) {
+                String str = buffer.toString();
+                num = numStack.pollLast();
+                buffer = bufferStack.pollLast();
+                while (num > 0) {
+                    num--;
+                    buffer.append(str);
                 }
             } else {
-                tmp.append(chars[i]);
+                buffer.append(s.charAt(i));
             }
         }
-
-        return tmp.toString();
+        return buffer.toString();
     }
 
     public static void main(String[] args) {

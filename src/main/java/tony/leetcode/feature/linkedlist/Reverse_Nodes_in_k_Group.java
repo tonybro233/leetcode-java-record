@@ -25,25 +25,25 @@ public class Reverse_Nodes_in_k_Group {
             return head;
         }
 
+        // 做n * k次头插法
+        // pre ->      1 -> 2 -> 3 -> 4 -> 5
+        // pre -> 2 -> 1 ->      3 -> 4 -> 5
+        // 2 -> 1(pre) ->      3 -> 4 -> 5
+        // 2 -> 1(pre) -> 4 -> 3 ->      5
+
         ListNode dummy = new ListNode(0);
         dummy.next = head;
-
-        ListNode prev = dummy, cur, next;
-        while (true) {
-            if (!hasKLeft(prev, k)) {
-                break;
-            }
-
-            // 反转k个节点
-            cur = prev.next;
-            for (int i = 0; i < k - 1;i++) {
+        ListNode pre = dummy, cur = null, next = null;
+        while (hasKLeft(pre, k)) {
+            cur = pre.next;
+            for (int i = 0; i < k - 1; i++) {
                 next = cur.next;
                 cur.next = next.next;
-                next.next = prev.next;
-                prev.next = next;
+                next.next = pre.next;
+                pre.next = next;
             }
 
-            prev = cur;
+            pre = cur;
         }
 
         return dummy.next;

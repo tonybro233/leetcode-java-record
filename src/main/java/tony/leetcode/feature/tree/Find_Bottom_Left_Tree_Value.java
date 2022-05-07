@@ -13,7 +13,7 @@ public class Find_Bottom_Left_Tree_Value {
 
     // 很明显的BFS，但是需要记录层数
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         TreeNode input = new TreeNode(2);
         TreeNode t2 = new TreeNode(1);
         TreeNode t3 = new TreeNode(3);
@@ -31,24 +31,24 @@ public class Find_Bottom_Left_Tree_Value {
         level.offer(0);
         int result = root.val;
         int current = -1;
-        while (true){
+        while (true) {
             TreeNode now = que.pollLast();
             Integer le = level.pollLast();
-            if (le != current){
+            if (le != current) {
                 result = now.val;
                 current = le;
             }
             int num = 0;
-            if (null != now.left){
+            if (null != now.left) {
                 que.addFirst(now.left);
-                level.addFirst(le+1);
+                level.addFirst(le + 1);
             }
-            if (null != now.right){
+            if (null != now.right) {
                 que.addFirst(now.right);
-                level.addFirst(le+1);
+                level.addFirst(le + 1);
             }
 
-            if (null == que.peekLast()){
+            if (null == que.peekLast()) {
                 break;
             }
         }

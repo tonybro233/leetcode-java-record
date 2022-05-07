@@ -19,27 +19,22 @@ public class Remove_Nth_Node_From_End_of_List {
 
     // 要考虑好删除头结点的问题
     public ListNode removeNthFromEnd(ListNode head, int n) {
-        if (null == head){
-            return null;
-        }
-        ListNode explorer = head, target = head, cursor = new ListNode(0);
-        cursor.next = null;
-        while (n > 0){
-            explorer = explorer.next;
-            n--;
-        }
-
-        while (null != explorer){
-            explorer = explorer.next;
-            cursor.next = target;
-            target = target.next;
+        ListNode dummy = new ListNode(0);
+        dummy.next = head;
+        ListNode pre = dummy;
+        ListNode fast = head;
+        for (int i = 0; i < n; i++ ) {
+            if (fast == null) {
+                return head;
+            }
+            fast = fast.next;
         }
 
-        if (target == head){
-            return head.next;
-        } else {
-            cursor.next.next = target.next;
-            return head;
+        while (fast != null) {
+            fast = fast.next;
+            pre = pre.next;
         }
+        pre.next = pre.next.next;
+        return dummy.next;
     }
 }

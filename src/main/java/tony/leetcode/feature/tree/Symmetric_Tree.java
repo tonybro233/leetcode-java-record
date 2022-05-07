@@ -4,7 +4,7 @@ import tony.util.TreeNode;
 
 import java.util.*;
 
-// 101
+// 101 对称二叉树
 // 给定一个二叉树，检查它是否是镜像对称的。
 //
 // 例如，二叉树 [1,2,2,3,4,4,3] 是对称的。
@@ -29,18 +29,18 @@ public class Symmetric_Tree {
 
     public boolean isSymmetric(TreeNode root) {
         // return midorder(root, new ArrayList<>(), root, null);
-        if (null == root){
+        if (null == root) {
             return true;
         }
         return compare(root.left, root.right);
     }
 
     // 递归解法
-    private boolean compare(TreeNode left, TreeNode right){
-        if (null == left && null == right){
+    private boolean compare(TreeNode left, TreeNode right) {
+        if (null == left && null == right) {
             return true;
         }
-        if (null != left && null != right && left.val == right.val){
+        if (null != left && null != right && left.val == right.val) {
             return compare(left.left, right.right) && compare(left.right, right.left);
         }
         return false;
@@ -53,13 +53,13 @@ public class Symmetric_Tree {
         }
         // 注意java的队列一般不让插入null
         Deque<TreeNode> q1 = new ArrayDeque<>(), q2 = new ArrayDeque<>();
-        if (root.left == null && root.right == null){
+        if (root.left == null && root.right == null) {
             return true;
         }
         try {
             q1.push(root.left);
             q2.push(root.right);
-        }catch (NullPointerException e){
+        } catch (NullPointerException e) {
             return false;
         }
 
@@ -71,23 +71,23 @@ public class Symmetric_Tree {
                 return false;
             }
             boolean null1 = false, null2 = false;
-            if (null != node1.left && null != node2.right){
+            if (null != node1.left && null != node2.right) {
                 q1.push(node1.left);
                 q2.push(node2.right);
-            } else if (null == node1.left && null == node2.right){
+            } else if (null == node1.left && null == node2.right) {
                 null1 = true;
             } else {
                 return false;
             }
-            if (null != node1.right && null != node2.left){
+            if (null != node1.right && null != node2.left) {
                 q1.push(node1.right);
                 q2.push(node2.left);
-            } else if (null == node1.right && null == node2.left){
+            } else if (null == node1.right && null == node2.left) {
                 null2 = true;
             } else {
                 return false;
             }
-            if (null1 && null2){
+            if (null1 && null2) {
                 return true;
             }
         }
@@ -100,33 +100,33 @@ public class Symmetric_Tree {
     //   2   2
     //    \   \
     //    3    3
-    private boolean midorder(TreeNode node, List<Integer> vals, TreeNode root, Integer midpos){
-        if (null == node){
+    private boolean midorder(TreeNode node, List<Integer> vals, TreeNode root, Integer midpos) {
+        if (null == node) {
             return true;
         }
         if (!midorder(node.left, vals, root, midpos)) {
             return false;
         }
 
-        if (node.equals(root)){
+        if (node.equals(root)) {
             midpos = vals.size();
         } else if (null != midpos) {
             // 这样只检查了后半部分是否对称，如果不存在后半部分出现错误解
             int pos = midpos - (vals.size() - midpos);
-            if (pos < 0 || vals.get(pos) != node.val){
+            if (pos < 0 || vals.get(pos) != node.val) {
                 return false;
             }
         }
         vals.add(node.val);
         System.out.println(node.val);
 
-        if (!midorder(node.right, vals, root, midpos)){
+        if (!midorder(node.right, vals, root, midpos)) {
             return false;
         }
         return true;
     }
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         TreeNode root = new TreeNode(1);
         TreeNode n1 = new TreeNode(2);
         TreeNode n2 = new TreeNode(2);

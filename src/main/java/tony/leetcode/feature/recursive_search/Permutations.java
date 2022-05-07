@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-// 46
+// 46. 全排列
 // 给定一个没有重复数字的序列，返回其所有可能的全排列。
 //
 // 示例:
@@ -20,6 +20,31 @@ import java.util.List;
 //   [3,2,1]
 // ]
 public class Permutations {
+
+    // 回溯解法
+    public List<List<Integer>> permute2(int[] nums) {
+        boolean[] mark = new boolean[nums.length];
+        List<List<Integer>> result = new ArrayList<>();
+        search(nums, mark, new ArrayList<>(nums.length), result);
+        return result;
+    }
+
+    private void search(int[] nums, boolean[] mark, List<Integer> buffer, List<List<Integer>> result) {
+        if (buffer.size() == nums.length) {
+            result.add(new ArrayList<>(buffer));
+            return;
+        }
+
+        for (int i = 0; i < nums.length; i++) {
+            if (!mark[i]) {
+                mark[i] = true;
+                buffer.add(nums[i]);
+                search(nums, mark, buffer, result);
+                buffer.remove(buffer.size() - 1);
+                mark[i] = false;
+            }
+        }
+    }
 
     public List<List<Integer>> permute(int[] nums) {
         List<List<Integer>> result = new ArrayList<>();

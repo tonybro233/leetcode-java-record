@@ -43,7 +43,7 @@ public class Multiply_Strings {
                 d[i + 1] += carry; // 数组足够长，最后一位是不会溢出的
             }
         }
-        while (sb.length() > 0 && sb.charAt(0) == '0') {
+        while (sb.length() > 1 && sb.charAt(0) == '0') {
             sb.deleteCharAt(0);
         }
         return sb.length() == 0 ? "0" : sb.toString();

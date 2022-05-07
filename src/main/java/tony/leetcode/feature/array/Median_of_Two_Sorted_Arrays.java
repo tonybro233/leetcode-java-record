@@ -58,7 +58,7 @@ public class Median_of_Two_Sorted_Arrays {
     public double findMedianSortedArrays3(int[] nums1, int[] nums2) {
         // 保证num1是更短的数组
         if (nums1.length > nums2.length) {
-            return findMedianSortedArrays(nums2, nums1);
+            return findMedianSortedArrays3(nums2, nums1);
         }
 
         int len = nums1.length + nums2.length;
@@ -84,9 +84,9 @@ public class Median_of_Two_Sorted_Arrays {
         // num1做二分
         int low = 0, high = nums1.length; // 这里high取的是length
         int leftCount1 = 0, leftCount2 = 0;
-        while (low <= high) {
+        while (low <= high) { // 取了<= 因为允许high = nums1.length
             leftCount1 = low + (high - low) / 2;
-            leftCount2 = (len + 1) / 2 - leftCount1;
+            leftCount2 = (len + 1) / 2 - leftCount1; // 这里采用了 + 1 保证左侧更多
 
             double L1 = leftCount1 == 0 ? Integer.MIN_VALUE : nums1[leftCount1 - 1];
             double R1 = leftCount1 == nums1.length ? Integer.MAX_VALUE : nums1[leftCount1];

@@ -19,6 +19,79 @@ import java.util.PriorityQueue;
 
 public class Kth_Largest_Element_in_an_Array {
 
+    public int findKthLargest3(int[] nums, int k) {
+        // 快排优化
+        return sort(nums, 0, nums.length - 1, k);
+    }
+
+    private int sort(int[] nums, int low, int high, int k) {
+        int mid = partition(nums, low, high);
+        int rightCount = high - mid + 1; // 包括mid在内mid右边有几个
+        if (rightCount == k) {
+            // 正好切分到第k个
+            return nums[mid];
+        } else if (rightCount > k) {
+            // 超过k个大值，搜右区间
+            return sort(nums, mid + 1, high, k);
+        } else {
+            // 不到k个大值，搜左区间
+            return sort(nums, low, mid - 1, k - rightCount);
+        }
+    }
+
+    private int partition(int[] nums, int low, int high) {
+        int mid = low + (high - low) / 2;
+        int val = nums[mid];
+        exch(nums, mid, high);
+        int pivot = low - 1;
+        for (int i = low; i <= high; i++) {
+            if (nums[i] <= val) {
+                pivot++;
+                if (pivot < i) {
+                    exch(nums, pivot, i);
+                }
+            }
+        }
+        return pivot;
+    }
+
+    public int findKthLargest2(int[] nums, int k) {
+        // 堆排序
+        // 从大到小做下沉操作构建堆结构
+        for (int i = nums.length / 2 - 1; i >= 0; i--) {
+            sink(nums, i, nums.length);
+        }
+
+        // 头部交换到尾部做下沉，依次取出最大值
+        for (int i = nums.length; i > 1; i--) {
+            exch(nums, 0, i - 1);
+            sink(nums, 0, i - 1);
+        }
+
+        return nums[nums.length - k];
+    }
+
+    private void sink(int[] nums, int idx, int limit) {
+        int next;
+        while ((next = (idx + 1) * 2 - 1) < limit) {
+            if (next + 1 < limit && nums[next + 1] > nums[next]) {
+                next++;
+            }
+            if (nums[idx] < nums[next]) {
+                exch(nums, idx, next);
+                idx = next;
+            } else {
+                break;
+            }
+        }
+    }
+
+    private void exch(int[] nums, int i, int j) {
+        int tmp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = tmp;
+    }
+
     public int findKthLargest(int[] nums, int k) {
         // 这题一眼看过去就是用大根堆，但是并不如排序后获取效率高，堆主要作用还是维护最大值
         PriorityQueue<Integer> priorityQueue = new PriorityQueue<>(

@@ -32,31 +32,31 @@ public class Most_Frequent_Subtree_Sum {
     public int[] findFrequentTreeSum(TreeNode root) {
         update(root);
         int max = Integer.MIN_VALUE;
-        for (Integer val : map.values()){
+        for (Integer val : map.values()) {
             max = Math.max(max, val);
         }
         List<Integer> list = new ArrayList<>();
         for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
-            if (max == entry.getValue()){
+            if (max == entry.getValue()) {
                 list.add(entry.getKey());
             }
         }
 
         int[] result = new int[list.size()];
-        for (int i = 0; i < list.size();i++){
+        for (int i = 0; i < list.size(); i++) {
             result[i] = list.get(i);
         }
 
         return result;
     }
 
-    private int update(TreeNode node){
-        if (null == node){
+    private int update(TreeNode node) {
+        if (null == node) {
             return 0;
         }
         int sum = update(node.left) + update(node.right) + node.val;
         node.val = sum;
-        map.put(sum, map.getOrDefault(sum, 0)+1);
+        map.put(sum, map.getOrDefault(sum, 0) + 1);
 
         return sum;
     }

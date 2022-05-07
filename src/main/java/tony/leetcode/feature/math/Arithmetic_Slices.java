@@ -27,14 +27,14 @@ public class Arithmetic_Slices {
 
     public int numberOfArithmeticSlices2(int[] A) {
         int ans = 0;
-        if(A.length<3) {
+        if (A.length < 3) {
             return ans;
         }
-        for (int i = 0; i < A.length - 2; i++){
-            if (A[i+2]-A[i+1] == A[i+1]-A[i]){
+        for (int i = 0; i < A.length - 2; i++) {
+            if (A[i + 2] - A[i + 1] == A[i + 1] - A[i]) {
                 ans++;
-                for (int j = i+3; j <A.length ; j++){
-                    if (A[j]-A[j-1]==A[j-1]-A[j-2]){
+                for (int j = i + 3; j < A.length; j++) {
+                    if (A[j] - A[j - 1] == A[j - 1] - A[j - 2]) {
                         ans++;
                     } else {
                         break;
@@ -52,18 +52,18 @@ public class Arithmetic_Slices {
         int gap = 0;
 
         // 求出所有个数大于3的等差数列
-        for (int i = 0; i < A.length; i++){
+        for (int i = 0; i < A.length; i++) {
             int val = A[i];
-            if (current.size() == 0){
+            if (current.size() == 0) {
                 current.add(val);
             } else if (current.size() == 1) {
                 current.add(val);
                 gap = current.get(1) - current.get(0);
             } else {
-                if (val - current.get(current.size() - 1) == gap){
+                if (val - current.get(current.size() - 1) == gap) {
                     current.add(val);
                 } else {
-                    if (current.size() > 2){
+                    if (current.size() > 2) {
                         record.add(current);
                         current = new ArrayList<>();
                         current.add(val);
@@ -77,14 +77,14 @@ public class Arithmetic_Slices {
                 }
             }
         }
-        if (current.size() > 2){
+        if (current.size() > 2) {
             record.add(current);
         }
 
         int result = 0;
         // 求出每个等差数列的子等差数列（1+2+...+n-2）
-        for (List<Integer> slice : record){
-            int each = (1+ slice.size()-2)*(slice.size()-2)/2;
+        for (List<Integer> slice : record) {
+            int each = (1 + slice.size() - 2) * (slice.size() - 2) / 2;
             result += each;
         }
 

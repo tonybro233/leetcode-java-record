@@ -29,19 +29,19 @@ public class Linked_List_Cycle {
 
     // 不使用额外空间
     // 使用快慢指针来校验，快指针每一步走2次，慢指针走1次，如果有环，快指针必定能追上慢指针
-    public boolean hasCycle2(ListNode node) {
-        if (node == null || node.next == null) {
+    public boolean hasCycle2(ListNode head) {
+        if (head == null || head.next == null) {
             return false;
         }
-        ListNode fast = node.next;
-        ListNode slow = node;
-        while (fast != null && fast.next.next != null) {
-            if (fast.equals(slow)) {
-                return true;
+        ListNode slow = head;
+        ListNode fast = head.next;
+        while (slow != fast) {
+            if (fast == null || fast.next == null) {
+                return false;
             }
-            fast = fast.next.next;
             slow = slow.next;
+            fast = fast.next.next;
         }
-        return false;
+        return true;
     }
 }

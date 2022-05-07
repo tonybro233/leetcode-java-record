@@ -27,36 +27,36 @@ public class Binary_Tree_Inorder_Traversal {
     public List<Integer> inorderTraversal2(TreeNode root) {
         Deque<TreeNode> stack = new LinkedList<>();
         List<Integer> result = new ArrayList<>();
-        if (null == root){
+        if (null == root) {
             return result;
         }
         TreeNode last = null;
         stack.addLast(root);
-        while (null != stack.peekLast()){
+        while (null != stack.peekLast()) {
             TreeNode node = stack.peekLast();
-            if (null == node.left && null == node.right){
+            if (null == node.left && null == node.right) {
                 // 叶子节点
                 result.add(node.val);
                 last = stack.pollLast();
                 continue;
             }
-            if (null != node.right && last == node.right){
+            if (null != node.right && last == node.right) {
                 // 右节点返回
                 last = stack.pollLast();
                 continue;
             }
-            if (null == node.left){
+            if (null == node.left) {
                 // 只有右节点
                 result.add(node.val);
                 stack.addLast(node.right);
             } else {
-                if (last != node.left){
+                if (last != node.left) {
                     // 左节点入队
                     stack.addLast(node.left);
                 } else {
                     // 左节点返回
                     result.add(node.val);
-                    if (null != node.right){
+                    if (null != node.right) {
                         stack.addLast(node.right);
                     } else {
                         last = stack.pollLast();
@@ -74,8 +74,8 @@ public class Binary_Tree_Inorder_Traversal {
         return result;
     }
 
-    private void go(TreeNode node, List<Integer> result){
-        if (null == node){
+    private void go(TreeNode node, List<Integer> result) {
+        if (null == node) {
             return;
         }
         go(node.left, result);

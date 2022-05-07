@@ -25,23 +25,23 @@ public class Minimum_Depth_of_Binary_Tree {
 
     // bfs
     public int minDepth(TreeNode root) {
-        if (null == root){
+        if (null == root) {
             return 0;
         }
         Deque<TreeNode> deque = new ArrayDeque<>();
         int result = 1;
         deque.addFirst(root);
-        while (true){
+        while (true) {
             int count = deque.size();
-            while (count > 0){
+            while (count > 0) {
                 TreeNode node = deque.pollLast();
-                if (node.left == null && node.right == null){
+                if (node.left == null && node.right == null) {
                     return result;
                 }
-                if (null != node.left){
+                if (null != node.left) {
                     deque.addFirst(node.left);
                 }
-                if (null != node.right){
+                if (null != node.right) {
                     deque.addFirst(node.right);
                 }
                 count--;
@@ -52,7 +52,7 @@ public class Minimum_Depth_of_Binary_Tree {
 
     // 自递归的解法
     public int minDepth2(TreeNode root) {
-        if(root == null) {
+        if (root == null) {
             return 0;
         }
         if (root.left == null) {

@@ -65,10 +65,31 @@ public class ChainReverse {
         return result;
     }
 
+    /**
+     * 翻转前n个节点
+     */
+    public static ListNode inverseN(ListNode head, int n) {
+        ListNode dummy = new ListNode(0);
+        dummy.next = head;
+        ListNode tail = head, next = null;
+
+        for (int i = 0; i < n - 1; i++) {
+            next = tail.next;
+            if (null == next) {
+                break;
+            }
+            tail.next = next.next;
+            next.next= dummy.next;
+            dummy.next = next;
+        }
+
+        return dummy.next;
+    }
+
     public static void printList(ListNode head) {
-        System.out.print("begin: ");
+        System.out.print("begin->");
         while (head != null) {
-            System.out.print(head.val + " ");
+            System.out.print(head.val + "->");
             head = head.next;
         }
         System.out.println("End");

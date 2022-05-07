@@ -43,18 +43,18 @@ public class Populating_Next_Right_Pointers_in_Each_Node {
 
     // 使用BFS，没有使用完美二叉树这个条件，对于不完美二叉树也适用
     public void connect(TreeLinkNode root) {
-        if (null == root){
+        if (null == root) {
             return;
         }
         Deque<TreeLinkNode> stack = new ArrayDeque<>();
         stack.addLast(root);
-        while (stack.peekFirst() != null){
+        while (stack.peekFirst() != null) {
             int count = stack.size();
             TreeLinkNode current = null;
-            for (int i = 0 ; i < count;i++){
+            for (int i = 0; i < count; i++) {
                 TreeLinkNode node = stack.pollFirst();
-                if (null != node.left){
-                    if (null == current){
+                if (null != node.left) {
+                    if (null == current) {
                         current = node.left;
                     } else {
                         current.next = node.left;
@@ -62,8 +62,8 @@ public class Populating_Next_Right_Pointers_in_Each_Node {
                     }
                     stack.addLast(node.left);
                 }
-                if (null != node.right){
-                    if (null == current){
+                if (null != node.right) {
+                    if (null == current) {
                         current = node.right;
                     } else {
                         current.next = node.right;

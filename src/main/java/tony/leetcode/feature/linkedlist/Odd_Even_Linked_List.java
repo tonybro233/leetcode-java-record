@@ -23,7 +23,7 @@ import tony.util.ListNode;
 public class Odd_Even_Linked_List {
 
     public ListNode oddEvenList(ListNode head) {
-        if (null == head || null == head.next){
+        if (null == head || null == head.next) {
             return head;
         }
         ListNode second = head.next;
@@ -31,8 +31,8 @@ public class Odd_Even_Linked_List {
         ListNode fcur = head;
         ListNode cur = second.next;
         boolean even = false;
-        while (cur != null){
-            if (even){
+        while (cur != null) {
+            if (even) {
                 scur.next = cur;
                 scur = cur;
             } else {
@@ -47,13 +47,16 @@ public class Odd_Even_Linked_List {
         return head;
     }
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         ListNode n1 = new ListNode(1);
         ListNode n2 = new ListNode(2);
         ListNode n3 = new ListNode(3);
         ListNode n4 = new ListNode(4);
         ListNode n5 = new ListNode(5);
-        n1.next = n2; n2.next = n3; n3.next = n4; n4.next = n5;
+        n1.next = n2;
+        n2.next = n3;
+        n3.next = n4;
+        n4.next = n5;
         ListNode listNode = new Odd_Even_Linked_List().oddEvenList(n1);
     }
 }

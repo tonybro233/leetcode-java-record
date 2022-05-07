@@ -24,27 +24,27 @@ import java.util.LinkedList;
 public class Flatten_a_Multilevel_Doubly_Linked_List {
 
     public Node flatten(Node head) {
-        if (null == head){
+        if (null == head) {
             return null;
         }
         Deque<Node> deque = new LinkedList<>();
         Node current = head;
-        while (null != current){
+        while (null != current) {
             Node next;
-            if (null == current.child){
+            if (null == current.child) {
                 next = current.next;
             } else {
-                if (null != current.next){
+                if (null != current.next) {
                     deque.addFirst(current.next);
                 }
                 next = current.child;
             }
-            if (next == null && null != deque.peekFirst()){
+            if (next == null && null != deque.peekFirst()) {
                 next = deque.pollFirst();
             }
 
             // 注意是个双向链表，并且扁平化要把child置空
-            if (null != next){
+            if (null != next) {
                 next.prev = current;
             }
             current.next = next;
@@ -64,7 +64,8 @@ class Node {
     public Node next;
     public Node child;
 
-    public Node() {}
+    public Node() {
+    }
 
     public Node(int val, Node prev, Node next, Node child) {
         this.val = val;

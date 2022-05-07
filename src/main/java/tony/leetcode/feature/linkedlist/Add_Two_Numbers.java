@@ -2,7 +2,7 @@ package tony.leetcode.feature.linkedlist;
 
 import tony.util.ListNode;
 
-// 2. Add Two Numbers
+// 2. 两数相加
 // 给出两个 非空 的链表用来表示两个非负的整数。其中，它们各自的位数是按照 逆序 的方式存储的，
 // 并且它们的每个节点只能存储 一位 数字。
 //
@@ -21,13 +21,13 @@ public class Add_Two_Numbers {
         ListNode dummy = new ListNode(0);
         ListNode current = dummy;
         int left = 0;
-        while (l1 != null || l2 != null){
+        while (l1 != null || l2 != null) {
             int val = left;
-            if (l1 != null){
+            if (l1 != null) {
                 val += l1.val;
                 l1 = l1.next;
             }
-            if (l2 != null){
+            if (l2 != null) {
                 val += l2.val;
                 l2 = l2.next;
             }
@@ -36,7 +36,7 @@ public class Add_Two_Numbers {
             current.next = new ListNode(val);
             current = current.next;
         }
-        if (left != 0){
+        if (left != 0) {
             current.next = new ListNode(left);
         }
 

@@ -31,6 +31,7 @@ import java.util.Arrays;
 public class Delete_and_Earn {
 
     public int deleteAndEarn2(int[] nums) {
+        // 首先要想到对数组排序不会对结果造成改变
         Arrays.sort(nums);
 
         int current = -1;

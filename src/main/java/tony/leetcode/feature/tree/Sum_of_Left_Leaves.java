@@ -18,15 +18,15 @@ import tony.util.TreeNode;
 public class Sum_of_Left_Leaves {
 
     public int sumOfLeftLeaves(TreeNode root) {
-        return goDfs(root, false,0); // 根节点不算左叶子
+        return goDfs(root, false, 0); // 根节点不算左叶子
     }
 
-    private int goDfs(TreeNode node, boolean left,int sum){
-        if (null == node){
+    private int goDfs(TreeNode node, boolean left, int sum) {
+        if (null == node) {
             return sum;
         }
 
-        if (node.left == null && node.right == null && left){
+        if (node.left == null && node.right == null && left) {
             sum += node.val;
         } else {
             sum = goDfs(node.left, true, sum);

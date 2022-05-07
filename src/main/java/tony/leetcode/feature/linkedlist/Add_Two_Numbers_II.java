@@ -19,8 +19,8 @@ public class Add_Two_Numbers_II {
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
         List<ListNode> a1 = new ArrayList<>();
         List<ListNode> a2 = new ArrayList<>();
-        while (true){
-            if (null != l1){
+        while (true) {
+            if (null != l1) {
                 a1.add(l1);
                 l1 = l1.next;
             } else {
@@ -28,11 +28,11 @@ public class Add_Two_Numbers_II {
             }
         }
 
-        while (true){
-            if (null != l2){
+        while (true) {
+            if (null != l2) {
                 a2.add(l2);
                 l2 = l2.next;
-            } else{
+            } else {
                 break;
             }
         }
@@ -40,15 +40,15 @@ public class Add_Two_Numbers_II {
         Collections.reverse(a1);
         Collections.reverse(a2);
 
-        int max = Math.max(a1.size(),a2.size());
+        int max = Math.max(a1.size(), a2.size());
         ListNode begin = null, cursor = null;
         int adder = 0;
-        for (int i = 0; i < max; i++){
+        for (int i = 0; i < max; i++) {
             int val = adder;
-            if (i < a1.size()){
+            if (i < a1.size()) {
                 val += a1.get(i).val;
             }
-            if (i < a2.size()){
+            if (i < a2.size()) {
                 val += a2.get(i).val;
             }
 
@@ -56,7 +56,7 @@ public class Add_Two_Numbers_II {
             val = val % 10;
 
             ListNode current = new ListNode(val);
-            if (null == begin){
+            if (null == begin) {
                 begin = current;
                 cursor = current;
             } else {
@@ -64,11 +64,11 @@ public class Add_Two_Numbers_II {
                 cursor = current;
             }
         }
-        if (adder != 0){
+        if (adder != 0) {
             cursor.next = new ListNode(adder);
         }
         ListNode tmp = new ListNode(0);
-        while (begin != null){
+        while (begin != null) {
             ListNode next = begin.next;
             begin.next = tmp.next;
             tmp.next = begin;

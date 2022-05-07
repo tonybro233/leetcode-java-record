@@ -19,19 +19,29 @@ import java.util.PriorityQueue;
 
 public class Merge_k_Sorted_Lists {
 
+    /**
+     * 假设k个列表，列表长度最大为n
+     * 三种方法：
+     * 1. 一个一个顺序合并：这个和所有链表按照head一起合并应该是一样的
+     *      时间复杂度 O(k^2*n) 空间复杂度 O(1)
+     * 2. 归并法：8个合成4个，4个合成2个，如此执行
+     *      时间复杂度 O(kn*logk) 空间复杂度 O(logk)
+     * 3. 优先队列：把所有头节点放入优先队列，然后出队，出队节点的next存入优先队列
+     *      时间复杂度 O(kn*logk) 空间复杂度 O(k)
+     */
     public ListNode mergeKLists(ListNode[] lists) {
         ListNode dummy = new ListNode(0);
         ListNode current = dummy;
         PriorityQueue<ListNode> queue = new PriorityQueue<>(Comparator.comparingInt(n -> n.val));
-        for (int i = 0; i < lists.length; i++){
-            if (null != lists[i]){
+        for (int i = 0; i < lists.length; i++) {
+            if (null != lists[i]) {
                 queue.add(lists[i]);
             }
         }
-        while (queue.peek() != null){
+        while (queue.peek() != null) {
             ListNode node = queue.poll();
             current.next = node;
-            if (null != node.next){
+            if (null != node.next) {
                 queue.add(node.next);
             }
             current = current.next;

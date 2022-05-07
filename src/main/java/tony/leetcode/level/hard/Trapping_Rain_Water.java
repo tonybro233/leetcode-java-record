@@ -14,19 +14,21 @@ public class Trapping_Rain_Water {
         if (n == 0){
             return 0;
         }
-        int[] rmax = new int[n];
+        // 求出每个柱子左右方向的最大值
+        // 然后两者取小再与柱高取差值，就能得出当前柱子上方能存的水量
         int[] lmax = new int[n];
-        rmax[0] = 0;
+        int[] rmax = new int[n];
+        lmax[0] = 0;
         for (int i = 1; i < n; i++){
-            rmax[i] = Math.max(rmax[i-1], height[i-1]);
+            lmax[i] = Math.max(lmax[i-1], height[i-1]);
         }
-        lmax[n-1] = 0;
+        rmax[n-1] = 0;
         for (int i = n-2; i >= 0; i--){
-            lmax[i] = Math.max(lmax[i+1], height[i+1]);
+            rmax[i] = Math.max(rmax[i+1], height[i+1]);
         }
         int result = 0;
         for (int i = 1; i < n-1; i++){
-            int limit = Math.min(rmax[i], lmax[i]);
+            int limit = Math.min(lmax[i], rmax[i]);
             if (limit > height[i]){
                 result += limit - height[i];
             }

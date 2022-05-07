@@ -50,46 +50,46 @@ public class Lowest_Common_Ancestor_Of_BST {
         List<TreeNode> pPath = new ArrayList<>(), qPath = new ArrayList<>();
         dfs(root, pPath, p, qPath, q);
         TreeNode result = null;
-        for (int i =0 ;i < Math.min(pPath.size(), qPath.size());i++){
-            if (pPath.get(i).equals(qPath.get(i))){
+        for (int i = 0; i < Math.min(pPath.size(), qPath.size()); i++) {
+            if (pPath.get(i).equals(qPath.get(i))) {
                 result = pPath.get(i);
             }
         }
         return result;
     }
 
-    private void dfs(TreeNode node, List<TreeNode> pPath, TreeNode p , List<TreeNode> qPath, TreeNode q){
-        if (node == null){
+    private void dfs(TreeNode node, List<TreeNode> pPath, TreeNode p, List<TreeNode> qPath, TreeNode q) {
+        if (node == null) {
             return;
         }
         boolean pGet = false, qGet = false;
-        if (pPath.size() == 0 || !p.equals(pPath.get(pPath.size()-1))){
+        if (pPath.size() == 0 || !p.equals(pPath.get(pPath.size() - 1))) {
             pPath.add(node);
-            if (node.equals(p)){
+            if (node.equals(p)) {
                 pGet = true;
             }
         }
-        if (qPath.size() == 0 || !q.equals(qPath.get(qPath.size()-1))){
+        if (qPath.size() == 0 || !q.equals(qPath.get(qPath.size() - 1))) {
             qPath.add(node);
-            if (node.equals(q)){
+            if (node.equals(q)) {
                 qGet = true;
             }
         }
-        if (pGet && qGet){
+        if (pGet && qGet) {
             return;
         }
 
         dfs(node.left, pPath, p, qPath, q);
         dfs(node.right, pPath, p, qPath, q);
-        if (pPath.size() != 0 && !p.equals(pPath.get(pPath.size()-1))){
-            pPath.remove(pPath.size()-1);
+        if (pPath.size() != 0 && !p.equals(pPath.get(pPath.size() - 1))) {
+            pPath.remove(pPath.size() - 1);
         }
-        if (qPath.size() != 0 && !q.equals(qPath.get(qPath.size()-1))){
-            qPath.remove(qPath.size()-1);
+        if (qPath.size() != 0 && !q.equals(qPath.get(qPath.size() - 1))) {
+            qPath.remove(qPath.size() - 1);
         }
     }
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         TreeNode t1 = new TreeNode(6);
         TreeNode t2 = new TreeNode(2);
         TreeNode t3 = new TreeNode(8);

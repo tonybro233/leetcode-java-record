@@ -13,20 +13,20 @@ import java.util.Deque;
 
 public class Lowest_Common_Ancestor_of_a_Binary_Tree {
 
-    // 递归自身，查看p，q处于左子树还是右子树，分类讨论
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
-        if(root == null || root == p || root == q) {
+        // 递归自身，查看p，q处于左子树还是右子树，分类讨论
+        if (root == null || root == p || root == q) {
             return root;
         }
 
         TreeNode l = lowestCommonAncestor(root.left, p, q);
         TreeNode r = lowestCommonAncestor(root.right, p, q);
 
-        if(l == null && r == null) {
+        if (l == null && r == null) {
             // 不在本节点下
             return null;
         }
-        if(l != null && r != null) {
+        if (l != null && r != null) {
             // 分别在左右子树，则共祖为root
             return root;
         } else {
@@ -37,10 +37,10 @@ public class Lowest_Common_Ancestor_of_a_Binary_Tree {
 
     // 丑陋的dfs解法
     public TreeNode lowestCommonAncestor2(TreeNode root, TreeNode p, TreeNode q) {
-        if (root == null || p == null || q == null){
+        if (root == null || p == null || q == null) {
             return null;
         }
-        if (p == root || q == root){
+        if (p == root || q == root) {
             return root;
         }
 
@@ -48,13 +48,13 @@ public class Lowest_Common_Ancestor_of_a_Binary_Tree {
         Deque<TreeNode> pathq = new ArrayDeque<>();
         boolean b1 = findPath(root, p, pathp);
         boolean b2 = findPath(root, q, pathq);
-        if (!b1 || !b2){
+        if (!b1 || !b2) {
             return null;
         }
         TreeNode result = null;
-        while (null != pathp.peekFirst() && null != pathq.peekFirst()){
+        while (null != pathp.peekFirst() && null != pathq.peekFirst()) {
             TreeNode tmp = pathp.pollFirst();
-            if (!tmp.equals(pathq.pollFirst())){
+            if (!tmp.equals(pathq.pollFirst())) {
                 return result;
             }
             result = tmp;
@@ -63,9 +63,9 @@ public class Lowest_Common_Ancestor_of_a_Binary_Tree {
         return result;
     }
 
-    private boolean findPath(TreeNode node, TreeNode target, Deque<TreeNode> stack){
+    private boolean findPath(TreeNode node, TreeNode target, Deque<TreeNode> stack) {
         stack.addLast(node);
-        if (node == target){
+        if (node == target) {
             return true;
         }
         boolean b = false;
@@ -76,14 +76,14 @@ public class Lowest_Common_Ancestor_of_a_Binary_Tree {
             b = findPath(node.right, target, stack);
         }
 
-        if (!b){
+        if (!b) {
             stack.pollLast();
         }
 
         return b;
     }
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         TreeNode root = new TreeNode(3);
         TreeNode n5 = new TreeNode(5);
         TreeNode n1 = new TreeNode(1);

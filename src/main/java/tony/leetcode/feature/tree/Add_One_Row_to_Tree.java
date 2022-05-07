@@ -62,7 +62,7 @@ public class Add_One_Row_to_Tree {
 
     // 常规bfs
     public TreeNode addOneRow(TreeNode root, int v, int d) {
-        if (1 == d){
+        if (1 == d) {
             TreeNode newRoot = new TreeNode(v);
             newRoot.left = root;
             return newRoot;
@@ -71,21 +71,21 @@ public class Add_One_Row_to_Tree {
         Deque<TreeNode> deque = new LinkedList<>();
         deque.addLast(root);
 
-        while (d > 2){
+        while (d > 2) {
             int size = deque.size();
-            for (int i = 0;i < size;i++){
+            for (int i = 0; i < size; i++) {
                 TreeNode node = deque.pollFirst();
-                if (null != node.left){
+                if (null != node.left) {
                     deque.addLast(node.left);
                 }
-                if (null != node.right){
+                if (null != node.right) {
                     deque.addLast(node.right);
                 }
             }
             d--;
         }
 
-        while (null != deque.peekFirst()){
+        while (null != deque.peekFirst()) {
             TreeNode node = deque.pollFirst();
             TreeNode newLeft = new TreeNode(v), newRight = new TreeNode(v);
             newLeft.left = node.left;

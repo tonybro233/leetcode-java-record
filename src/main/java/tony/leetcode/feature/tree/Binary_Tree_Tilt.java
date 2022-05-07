@@ -36,14 +36,14 @@ public class Binary_Tree_Tilt {
         return tilt;
     }
 
-    private int go(TreeNode node){
-        if (node == null){
+    private int go(TreeNode node) {
+        if (node == null) {
             return 0;
         }
         int l = go(node.left);
         int r = go(node.right);
 
-        tilt += Math.abs(l-r);
-        return l+r+node.val;
+        tilt += Math.abs(l - r);
+        return l + r + node.val;
     }
 }

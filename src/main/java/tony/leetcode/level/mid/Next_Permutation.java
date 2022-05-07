@@ -15,8 +15,16 @@ import java.util.Arrays;
 public class Next_Permutation {
 
     public void nextPermutation2(int[] nums) {
+        // 要变大，则交换的值A和B(A在B左边) B > A
+        // A必须是最靠近右边的一个可能值
+        // 这可以得出A的后面都是递减的(否则轮不到A来交换)，这样起码A后面的一个值可以和A交换使得排列变大
+        // 为了变大的幅度尽可能小，那么要找A后面比A大的最小值来当B
+        // 因为A后面是递减的，所以只要从尾部开始遍历即可找到B
+        // 为了变大的幅度尽可能小，AB交换后，B后面可能要重排为最小组合
+        // 因为交换以后B的后面还是递减的，所以只需要反向就可以得到最小组合
+
         int i = nums.length - 2;
-        // 已经保证了i之后都是递减的
+        // 保证i之后(不包括i)是递减的，并且nums[i] < nums[i+1]
         while (i >= 0 && nums[i + 1] <= nums[i]) {
             i--;
         }

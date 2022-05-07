@@ -37,4 +37,34 @@ public class Maximum_Length_of_Repeated_Subarray {
 
         return result;
     }
+
+
+    public int findLength2(int[] nums1, int[] nums2) {
+        // 对齐两个数组然后获取最大的子数组
+        int result = 0;
+        for (int i = 0; i < nums1.length; i++) {
+            result = Math.max(result, maxLen(nums1, i, nums2, 0));
+        }
+        for (int i = 0; i < nums2.length; i++) {
+            result = Math.max(result, maxLen(nums1, 0, nums2, i));
+        }
+        return result;
+    }
+
+    private int maxLen(int[] A, int sa, int[] B, int sb) {
+        int res = 0;
+        int k = 0;
+        int incr = 0;
+        while (A.length > sa + incr && B.length > sb + incr) {
+            if (A[sa + incr] == B[sb + incr]) {
+                k++;
+            } else {
+                k = 0;
+            }
+            res = Math.max(res, k);
+            incr++;
+        }
+        return res;
+    }
+
 }

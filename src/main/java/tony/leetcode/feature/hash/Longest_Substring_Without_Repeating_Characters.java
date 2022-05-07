@@ -18,31 +18,28 @@ public class Longest_Substring_Without_Repeating_Characters {
 
     // 维护当前无重复子串的尾部位置，读取下一个字符时，如果有重复，则砍掉重复数字之前的内容。没有重复则更新最大值
     public int lengthOfLongestSubstring(String s) {
-        String re = "";
-        StringBuilder sb = new StringBuilder();
         char[] chars = s.toCharArray();
         int max = 0;
         int count = 0;
         int bottom = 0;
         Map<Character, Integer> map = new HashMap<>();
-        for (int i =0 ; i < chars.length; i++){
-            Character ea = chars[i];
-            Integer integer = map.get(ea);
-            if (null == integer || integer < bottom){
-                map.put(ea,i);
+        for (int i = 0; i < chars.length; i++) {
+            char ea = chars[i];
+            Integer index = map.get(ea);
+            if (null == index || index < bottom) {
                 count++;
-                max = max > count ? max : count;
-            }else{
-                count = i - integer;
-                map.put(ea,i);
-                bottom = integer + 1;
+                max = Math.max(max, count);
+            } else {
+                count = i - index;
+                bottom = index + 1;
             }
+            map.put(ea, i);
         }
 
         return max;
     }
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         Longest_Substring_Without_Repeating_Characters go = new Longest_Substring_Without_Repeating_Characters();
         int size = go.lengthOfLongestSubstring("tmmzuxt");
         System.out.println(size);

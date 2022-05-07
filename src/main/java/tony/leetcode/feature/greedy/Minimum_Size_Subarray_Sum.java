@@ -14,10 +14,39 @@ package tony.leetcode.feature.greedy;
 
 public class Minimum_Size_Subarray_Sum {
 
+    public int minSubArrayLen(int target, int[] nums) {
+        if (null == nums || nums.length == 0 || target <= 0) {
+            return 0;
+        }
+        int left = 0, right = 0, result = Integer.MAX_VALUE;
+        if (nums[0] >= target) {
+            return 1;
+        }
+        int current = nums[0];
+        while (true) {
+            right++;
+            if (right >= nums.length) {
+                break;
+            }
+            current += nums[right];
+            if (current >= target) {
+                while (current >= target) {
+                    current -= nums[left++];
+                }
+                result = Math.min(right - left + 2, result);
+            }
+        }
+        if (result == Integer.MAX_VALUE) {
+            result = 0;
+        }
+        return result;
+    }
+
     public int minSubArrayLen2(int s, int[] nums) {
         int k = 0;
         int minLen = Integer.MAX_VALUE;
         int sum = 0;
+        // 滑动窗口
         for (int i = 0; i < nums.length; ++i) {
             sum += nums[i];
             if (sum >= s) {

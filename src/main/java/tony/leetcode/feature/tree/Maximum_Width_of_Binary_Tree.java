@@ -2,6 +2,7 @@ package tony.leetcode.feature.tree;
 
 import tony.util.TreeNode;
 
+import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.LinkedList;
 
@@ -60,47 +61,45 @@ import java.util.LinkedList;
 public class Maximum_Width_of_Binary_Tree {
 
     public int widthOfBinaryTree(TreeNode root) {
-        int max = 0;
-        if (null == root){
-            return max;
+        int result = 0;
+        if (null == root) {
+            return result;
         } else {
-            max = 1;
+            result = 1;
         }
-        Deque<TreeNode> nodeDeque = new LinkedList<>();
-        // 本题没有用到TreeNode的val，因此可以直接利用val而不是再用另外的Deque
-        Deque<Integer> posDeque = new LinkedList<>();
-        nodeDeque.addLast(root);
-        posDeque.addLast(1);
-        int count = 1;
-        while (0 != count){
-            int tmp = 0;
-            Integer begin = null;
-            for (int i = 0; i < count;i++){
-                TreeNode node = nodeDeque.pollFirst();
-                Integer pos = posDeque.pollFirst();
-                if (null != node.left){
-                    if (null == begin){
-                        begin = pos*2-1;
-                    } else {
-                        max = Math.max(pos*2-1 - begin + 1, max);
-                    }
-                    nodeDeque.addLast(node.left);
-                    posDeque.addLast(pos*2-1);
-                    tmp++;
+
+        Deque<TreeNode> queue = new ArrayDeque<>();
+        // 本题没有用到TreeNode的val，因此可以直接利用val而不是再用另外的Deque，如果允许修改的话
+        Deque<Integer> posQueue = new ArrayDeque<>();
+        queue.addLast(root);
+        posQueue.addLast(1);
+
+        while (!posQueue.isEmpty()) {
+            Integer begin = null, end = null;
+            int len = queue.size();
+            for (int i = 0; i < len; i++) {
+                TreeNode node = queue.pollFirst();
+                Integer pos = posQueue.pollFirst();
+                if (null == begin) {
+                    begin = pos;
+                } else {
+                    end = pos;
                 }
-                if (null != node.right){
-                    if (null == begin){
-                        begin = pos*2;
-                    } else {
-                        max = Math.max(pos*2 - begin + 1, max);
-                    }
-                    nodeDeque.addLast(node.right);
-                    posDeque.addLast(pos*2);
-                    tmp++;
+                if (null != node.left) {
+                    queue.addLast(node.left);
+                    posQueue.addLast(pos * 2 - 1);
+                }
+                if (null != node.right) {
+                    queue.addLast(node.right);
+                    posQueue.addLast(pos * 2);
                 }
             }
-            count = tmp;
+            if (null != end) {
+                result = Math.max(result, end - begin + 1);
+            }
         }
-        return max;
+
+        return result;
     }
+
 }

@@ -41,24 +41,30 @@ public class Spiral_Matrix {
             for (int i = left; i <= right; i++) {
                 res.add(matrix[top][i]);
             }
-            top++;
+            if (++top > down) {
+                break;
+            }
 
             for (int i = top; i <= down; i++) {
                 res.add(matrix[i][right]);
             }
-            right--;
-            if (down - top >= 0) {
-                for (int i = right; i >= left; i--) {
-                    res.add(matrix[down][i]);
-                }
+            if (--right < left) {
+                break;
             }
-            down--;
-            if (right - left >= 0) {
-                for (int i = down; i >= top; i--) {
-                    res.add(matrix[i][left]);
-                }
+
+            for (int i = right; i >= left; i--) {
+                res.add(matrix[down][i]);
             }
-            left++;
+            if (--down < top) {
+                break;
+            }
+
+            for (int i = down; i >= top; i--) {
+                res.add(matrix[i][left]);
+            }
+            if (++left > right) {
+                break;
+            }
         }
         return res;
     }

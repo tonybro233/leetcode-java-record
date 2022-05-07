@@ -17,7 +17,7 @@ public class HeapSort<T extends Comparable<T>> extends SortBase<T> {
     public void sort(T[] a) {
         int N = a.length;
         // 使用下沉让数组堆有序（大根）
-        for (int i = (N - 1) / 2 - 1; i >= 0; i--) {
+        for (int i = N / 2 - 1; i >= 0; i--) {
             sink(a, i, N);
         }
 
@@ -57,7 +57,7 @@ public class HeapSort<T extends Comparable<T>> extends SortBase<T> {
      * @param pos 元素位置
      */
     private void swim(T[] a, int pos) {
-        while ((pos + 1) / 2 - 1 >= 1) {
+        while ((pos + 1) / 2 - 1 >= 0) {
             int next = (pos + 1) / 2 - 1;
             if (a[pos].compareTo(a[next]) > 0) {
                 exch(a, pos, next);

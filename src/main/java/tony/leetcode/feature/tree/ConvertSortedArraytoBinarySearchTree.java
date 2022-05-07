@@ -28,22 +28,22 @@ import tony.util.TreeNode;
 public class ConvertSortedArraytoBinarySearchTree {
 
     public TreeNode sortedArrayToBST(int[] nums) {
-        if (null == nums || nums.length == 0){
+        if (null == nums || nums.length == 0) {
             return null;
         }
 
-        return build(nums,0, nums.length-1);
+        return build(nums, 0, nums.length - 1);
     }
 
-    // 由于二叉搜索树的性质可根据中点进行处理
-    public TreeNode build(int[] nums, int min, int max){
-        if (min > max){
+    public TreeNode build(int[] nums, int min, int max) {
+        // 由于二叉搜索树的性质可根据中点进行处理
+        if (min > max) {
             return null;
         }
-        int mid = (min+max)/2;
+        int mid = (min + max) / 2;
         TreeNode node = new TreeNode(nums[mid]);
-        node.left = build(nums, min, mid-1);
-        node.right = build(nums, mid+1, max);
+        node.left = build(nums, min, mid - 1);
+        node.right = build(nums, mid + 1, max);
         return node;
     }
 }

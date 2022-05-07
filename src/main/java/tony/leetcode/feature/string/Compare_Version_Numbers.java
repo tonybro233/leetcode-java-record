@@ -42,6 +42,48 @@ package tony.leetcode.feature.string;
 
 public class Compare_Version_Numbers {
 
+    public int compareVersion2(String version1, String version2) {
+        int idx1 = 0, idx2 = 0;
+        int len1 = version1.length(), len2 = version2.length();
+        while (idx1 < len1 || idx2 < len2) {
+            int v1 = 0;
+            if (idx1 < len1) {
+                int next1 = findNext(version1, idx1, len1);
+                for (int i = idx1; i < next1; i++) {
+                    v1 *= 10;
+                    v1 += version1.charAt(i) - '0';
+                }
+                idx1 = next1 + 1;
+            }
+            int v2 = 0;
+            if (idx2 < len2) {
+                int next2 = findNext(version2, idx2, len2);
+                for (int i = idx2; i < next2; i++) {
+                    v2 *= 10;
+                    v2 += version2.charAt(i) - '0';
+                }
+                idx2 = next2 + 1;
+            }
+
+            if (v1 > v2) {
+                return 1;
+            }
+            if (v1 < v2) {
+                return -1;
+            }
+        }
+        return 0;
+    }
+
+    private int findNext(String str, int idx, int len) {
+        for (; idx < len; idx++) {
+            if (str.charAt(idx) == '.') {
+                return idx;
+            }
+        }
+        return idx;
+    }
+
     public int compareVersion(String version1, String version2) {
         String[] sp1 = version1.split("\\.");
         String[] sp2 = version2.split("\\.");

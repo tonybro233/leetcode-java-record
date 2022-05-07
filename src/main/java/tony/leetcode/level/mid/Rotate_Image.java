@@ -42,10 +42,43 @@ package tony.leetcode.level.mid;
 
 public class Rotate_Image {
 
+    public void rotate3(int[][] matrix) {
+        if (null == matrix || matrix.length == 0) {
+            return;
+        }
+        int len = matrix.length;
+        int half = len / 2;
+        for (int i = 0; i < half; i++) {
+            // 每行除了最后一个点 每个点做4次交换
+            int limit = len - 1 - i;
+            for (int j = i; j < limit; j++) {
+                int k = len - 1 - j;
+
+                int last = matrix[i][j];
+
+                int tmp = matrix[i][k];
+                matrix[i][k] = last;
+                last = tmp;
+
+                tmp = matrix[k][k];
+                matrix[k][k] = last;
+                last = tmp;
+
+                tmp = matrix[k][j];
+                matrix[k][j] = last;
+                last = tmp;
+
+                matrix[i][j] = last;
+            }
+        }
+
+    }
+
     public void rotate(int[][] matrix) {
         int n = matrix.length;
         // (x, y) -> (n - x, y) -> (y, n - x)
-        // 先上下翻转，再按对角线翻转
+        // 先上下翻转，再按对角线(左上到右下)翻转
+        // 或者也可以 先对角线(左上到右下)翻转 再左右翻转
         for (int i = 0; i < n/2; i++){
             for (int j = 0; j < n;j++){
                 int tmp = matrix[i][j];
@@ -74,16 +107,16 @@ public class Rotate_Image {
             // i , j-k, i+k, j
             for(int k=0;k<j-i;k++){
                 int tmp   = m[i][i+k];
-                m[i][i+k] = m[j-k][i];
-                m[j-k][i] = m[j][j-k];
-                m[j][j-k] = m[i+k][j];
-                m[i+k][j] = tmp;
+                m[i][i+k] = m[j-k][i]; // 左下 换到 左上
+                m[j-k][i] = m[j][j-k]; // 右下 换到 左下
+                m[j][j-k] = m[i+k][j]; // 右上 换到 右下
+                m[i+k][j] = tmp;       // 左上 换到 右上
             }
         }
     }
 
 
     public static void main(String[] args){
-        new Rotate_Image().rotate(new int[][]{new int[]{1,2,3},new int[]{4,5,6}, new int[]{7,8,9}});
+        new Rotate_Image().rotate3(new int[][]{new int[]{1,2,3},new int[]{4,5,6}, new int[]{7,8,9}});
     }
 }

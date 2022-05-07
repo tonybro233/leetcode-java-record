@@ -15,11 +15,9 @@ import java.util.Arrays;
 
 public class Product_of_Array_Except_Self {
 
-    /**
-     * 初始化输出数组各项为1，使用两个指针分别从两端依次计算后乘到各个位置上
-     * 这种解法有点骚的
-     */
     public int[] productExceptSelf(int[] nums) {
+        // 初始化输出数组各项为1，使用两个指针分别从两端依次计算后乘到各个位置上
+        // 这种解法有点骚的
         int[] re = new int[nums.length];
         Arrays.fill(re, 1); // 初始化为1
         int left = 1, right = 1; // 乘数初始为1
