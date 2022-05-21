@@ -58,6 +58,39 @@ public class Coin_Change {
         return D[amount] == amount + 1 ? -1 : D[amount];
     }
 
+    public int coinChange3(int[] coins, int amount) {
+        int[] D = new int[amount + 1];
+        Arrays.fill(D, amount + 1);
+        D[0] = 0;
+        for (int coin : coins) {
+            // 简化的多重背包，从小到大遍历容量
+            for (int i = coin; i <= amount; i++) {
+                D[i] = Math.min(D[i], D[i - coin] + 1);
+            }
+
+            // for (int i = 1; i <= amount; i++) {
+            //     if (i >= coin) {
+            //         D[i] = Math.min(D[i], D[i - coin] + 1);
+            //     }
+            // }
+
+            // 最朴素的完全背包
+            // for (int i = amount; i > 0; i--) {
+            //     for (int j = 1; j * coin <= amount; j++) {
+            //         if (i >= j * coin) {
+            //             D[i] = Math.min(D[i], D[i - j * coin] + j);
+            //         } else {
+            //             break;
+            //         }
+            //     }
+            // }
+        }
+        if (D[amount] > amount) {
+            return -1;
+        }
+        return D[amount];
+    }
+
     public static void main(String[] args) {
         int i = new Coin_Change().coinChange(new int[]{1, 2147483647}, 2);
         System.out.println(i);

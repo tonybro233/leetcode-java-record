@@ -2,6 +2,7 @@ package tony.leetcode.feature.array;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 
 // 56. 合并区间
@@ -29,33 +30,30 @@ public class Merge_Intervals {
         if (null == intervals || intervals.length < 2) {
             return intervals;
         }
-        Arrays.sort(intervals, (a, b) -> {
-            if (a[0] > b[0]) {
-                return 1;
-            } else if (a[0] < b[0]) {
-                return -1;
+        Arrays.sort(intervals, Comparator.comparingInt(a -> a[0]));
+        List<int[]> res = new ArrayList<>();
+        Integer st = null, ed = null;
+        for (int[] interval : intervals) {
+            if (ed == null) {
+                st = interval[0];
+                ed = interval[1];
             } else {
-                return a[1] - b[1];
-            }
-        });
-        List<int[]> list = new ArrayList<>();
-        int[] current = intervals[0];
-        for (int i = 1; i < intervals.length; i++) {
-            if (intervals[i][0] <= current[1]) {
-                // 注意这里要判断最大值
-                current[1] = Math.max(current[1], intervals[i][1]);
-            } else {
-                list.add(current);
-                current = intervals[i];
+                if (ed >= interval[0]) {
+                    // 千万注意这里要判断最大值
+                    ed = Math.max(ed, interval[1]);
+                } else {
+                    res.add(new int[]{st, ed});
+                    st = interval[0];
+                    ed = interval[1];
+                }
             }
         }
-        list.add(current);
+        res.add(new int[]{st, ed});
 
-        int[][] result = new int[list.size()][2];
-        for (int i = 0; i < list.size(); i++) {
-            result[i] = list.get(i);
+        int[][] result = new int[res.size()][2];
+        for (int i = 0; i < res.size(); i++) {
+            result[i] = res.get(i);
         }
-
         return result;
     }
 

@@ -15,9 +15,7 @@ package tony.leetcode.feature.dynamic_program;
 public class Coin_Change_2 {
 
     public int change(int amount, int[] coins) {
-        // D[i] = D[i-coins[0]] + D[i-coins[1]] + ... + D[i-coins[n-1]]
-        // D[0] = 1
-
+        // 背包问题
         int[] D = new int[amount + 1];
         D[0] = 1;
 

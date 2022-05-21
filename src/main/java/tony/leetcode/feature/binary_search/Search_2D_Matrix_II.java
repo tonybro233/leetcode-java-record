@@ -23,18 +23,19 @@ package tony.leetcode.feature.binary_search;
 public class Search_2D_Matrix_II {
 
     public boolean searchMatrix(int[][] matrix, int target) {
-        int m = matrix.length;
-        if (m == 0) {
+        if (null == matrix || matrix.length == 0 || matrix[0].length == 0) {
             return false;
         }
-        int n = matrix[0].length;
-        for (int i = 0; i < m; i++) {
-            for (int j = n - 1; j >= 0; j--) {
-                if (matrix[i][j] < target) {
-                    break;
-                } else if (matrix[i][j] == target) {
-                    return true;
-                }
+        // 从左下角或者右上角进行计算
+        int h = matrix.length, w = matrix[0].length;
+        int x = w - 1, y = 0;
+        while (x >= 0 && y < h) {
+            if (matrix[y][x] < target) {
+                y++;
+            } else if (matrix[y][x] > target) {
+                x--;
+            } else {
+                return true;
             }
         }
         return false;
@@ -62,5 +63,16 @@ public class Search_2D_Matrix_II {
             }
         }
         return false;
+    }
+
+    public static void main(String[] args) {
+        boolean res = new Search_2D_Matrix_II().searchMatrix(new int[][]{
+                {1, 4, 7, 11, 15},
+                {2, 5, 8, 12, 19},
+                {3, 6, 9, 16, 22},
+                {10, 13, 14, 17, 24},
+                {18, 21, 23, 26, 30}
+        }, 5);
+        System.out.println(res);
     }
 }

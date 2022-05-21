@@ -63,9 +63,9 @@ public class Kth_Largest_Element_in_an_Array {
         }
 
         // 头部交换到尾部做下沉，依次取出最大值
-        for (int i = nums.length; i > 1; i--) {
-            exch(nums, 0, i - 1);
-            sink(nums, 0, i - 1);
+        for (int i = 1; i <= k; i++) {
+            exch(nums, 0, nums.length - i);
+            sink(nums, 0, nums.length - i);
         }
 
         return nums[nums.length - k];

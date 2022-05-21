@@ -28,6 +28,9 @@ public class _3Sum {
         }
         Arrays.sort(nums);
         for (int i = 0; i < n - 2 && nums[i] <= 0; i++) {
+            if (i > 0 && nums[i] == nums[i - 1]) {
+                continue;
+            }
             int target = -nums[i];
             int j = i + 1, k = n - 1;
             while (j < k) {
@@ -45,9 +48,6 @@ public class _3Sum {
                 } else {
                     k--;
                 }
-            }
-            while (i + 1 < n && nums[i] == nums[i + 1]) {
-                i++;
             }
         }
         return result;

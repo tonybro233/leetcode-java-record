@@ -46,32 +46,23 @@ public class Rotate_Image {
         if (null == matrix || matrix.length == 0) {
             return;
         }
+        // 每一圈做旋转
         int len = matrix.length;
-        int half = len / 2;
-        for (int i = 0; i < half; i++) {
-            // 每行除了最后一个点 每个点做4次交换
-            int limit = len - 1 - i;
+        for (int i = 0; i < len / 2; i++) {
+            // 按照每圈第一行来循环(排除最后一个点)
+            int limit = len - i - 1;
             for (int j = i; j < limit; j++) {
-                int k = len - 1 - j;
+                int v1 = matrix[i][j];
+                int v2 = matrix[j][len - 1 - i];
+                int v3 = matrix[len - 1 - i][len - 1 - j];
+                int v4 = matrix[len - 1 -j][i];
 
-                int last = matrix[i][j];
-
-                int tmp = matrix[i][k];
-                matrix[i][k] = last;
-                last = tmp;
-
-                tmp = matrix[k][k];
-                matrix[k][k] = last;
-                last = tmp;
-
-                tmp = matrix[k][j];
-                matrix[k][j] = last;
-                last = tmp;
-
-                matrix[i][j] = last;
+                matrix[i][j] = v4;
+                matrix[j][len - 1 - i] = v1;
+                matrix[len - 1 - i][len - 1 - j] = v2;
+                matrix[len - 1 -j][i] = v3;
             }
         }
-
     }
 
     public void rotate(int[][] matrix) {

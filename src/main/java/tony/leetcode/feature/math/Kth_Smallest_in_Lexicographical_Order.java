@@ -16,9 +16,9 @@ public class Kth_Smallest_in_Lexicographical_Order {
 
     public int findKthNumber3(int n, int k) {
         // 字典树
-        //                  1                       2
-        //         10           11 ... 18 19    20 ... 29
-        // 100 101 102 ... 109
+        //                  1                        2
+        //         10           11 ... 18 19      20 ... 29
+        // 100 101 102 ... 109     ...     199  200
 
         // 先走到1节点，k的意义变更为还剩下几个数
         long cur = 1;

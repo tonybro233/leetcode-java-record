@@ -27,4 +27,9 @@ public class Find_Peak_Element {
         }
         return low;
     }
+
+    public static void main(String[] args) {
+        int peakElement = new Find_Peak_Element().findPeakElement(new int[]{6, 5, 4, 2, 2, 2, 1, 0});
+        System.out.println(peakElement);
+    }
 }

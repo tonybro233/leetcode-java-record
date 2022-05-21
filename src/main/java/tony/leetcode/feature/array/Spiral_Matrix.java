@@ -26,46 +26,47 @@ import java.util.List;
 
 public class Spiral_Matrix {
     public List<Integer> spiralOrder(int[][] matrix) {
-        List<Integer> res = new ArrayList<Integer>();
+        List<Integer> result = new ArrayList<>();
+        if (null == matrix || matrix.length == 0 || matrix[0].length == 0) {
+            return result;
+        }
+
         // 维护4个值作为范围，按照向右、向下、向左、向上的顺序循环
-        int down = matrix.length - 1;
-        if (down < 0) {
-            return res;
-        }
-
-        int right = matrix[0].length - 1;
-
-        int top = 0;
-        int left = 0;
-        while (top <= down && left <= right) {
+        int top = 0, down = matrix.length - 1, left = 0, right = matrix[0].length - 1;
+        while (true) {
+            if (left > right) {
+                break;
+            }
             for (int i = left; i <= right; i++) {
-                res.add(matrix[top][i]);
+                result.add(matrix[top][i]);
             }
-            if (++top > down) {
+            top++;
+
+            if (top > down) {
                 break;
             }
-
             for (int i = top; i <= down; i++) {
-                res.add(matrix[i][right]);
+                result.add(matrix[i][right]);
             }
-            if (--right < left) {
+            right--;
+
+            if (left > right) {
                 break;
             }
-
             for (int i = right; i >= left; i--) {
-                res.add(matrix[down][i]);
+                result.add(matrix[down][i]);
             }
-            if (--down < top) {
-                break;
-            }
+            down--;
 
-            for (int i = down; i >= top; i--) {
-                res.add(matrix[i][left]);
-            }
-            if (++left > right) {
+            if (top > down) {
                 break;
             }
+            for (int i = down; i >= top; i--) {
+                result.add(matrix[i][left]);
+            }
+            left++;
         }
-        return res;
+
+        return result;
     }
 }
