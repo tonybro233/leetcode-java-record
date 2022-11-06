@@ -55,7 +55,7 @@ public class Rotate_Image {
                 int v1 = matrix[i][j];
                 int v2 = matrix[j][len - 1 - i];
                 int v3 = matrix[len - 1 - i][len - 1 - j];
-                int v4 = matrix[len - 1 -j][i];
+                int v4 = matrix[len - 1 - j][i];
 
                 matrix[i][j] = v4;
                 matrix[j][len - 1 - i] = v1;

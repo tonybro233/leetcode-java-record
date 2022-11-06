@@ -42,8 +42,8 @@ public class Coin_Change {
         return D[amount];
     }
 
-    // 同样的思路，相减的解法
     public int coinChange2(int[] coins, int amount) {
+        // 同样的思路，相减的解法
         int[] D = new int[amount + 1];
         Arrays.fill(D, amount + 1);
         D[0] = 0;

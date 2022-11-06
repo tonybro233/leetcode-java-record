@@ -23,6 +23,40 @@ import tony.util.ListNode;
 
 public class Rotate_List {
 
+    public ListNode rotateRight2(ListNode head, int k) {
+        if (null == head) {
+            return null;
+        }
+        // 统计长度
+        int cnt = 0;
+        ListNode tmp = head;
+        while (tmp != null) {
+            cnt++;
+            tmp = tmp.next;
+        }
+        int mov = k % cnt;
+        if (mov == 0) {
+            return head;
+        }
+        // 找到新的头节点前一个节点以及尾节点
+        ListNode preHead = null, tail = null;
+        ListNode slow = head, fast = head;
+        for (int i = 0; i < mov; i++) {
+            fast = fast.next;
+        }
+        while (fast != null) {
+            preHead = slow;
+            slow = slow.next;
+            tail = fast;
+            fast = fast.next;
+        }
+        // 链表调整
+        tail.next = head;
+        ListNode newHead = preHead.next;
+        preHead.next = null;
+        return newHead;
+    }
+
     public ListNode rotateRight(ListNode head, int k) {
         // 注意空节点和单节点
         if (k == 0 || null == head || head.next == null){

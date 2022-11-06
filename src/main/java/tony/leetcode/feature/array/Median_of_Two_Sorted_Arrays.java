@@ -1,6 +1,6 @@
 package tony.leetcode.feature.array;
 
-// 4 两个排序数组的中位数
+// 4 寻找两个正序数组的中位数
 
 // 给定两个大小为 m 和 n 的有序数组 nums1 和 nums2 。
 // 请找出这两个有序数组的中位数。要求算法的时间复杂度为 O(log (m+n)) 。
@@ -88,10 +88,10 @@ public class Median_of_Two_Sorted_Arrays {
             leftCount1 = low + (high - low) / 2;
             leftCount2 = (len + 1) / 2 - leftCount1; // 这里采用了 + 1 保证左侧更多
 
-            double L1 = leftCount1 == 0 ? Integer.MIN_VALUE : nums1[leftCount1 - 1];
-            double R1 = leftCount1 == nums1.length ? Integer.MAX_VALUE : nums1[leftCount1];
-            double L2 = leftCount2 == 0 ? Integer.MIN_VALUE : nums2[leftCount2 - 1];
-            double R2 = leftCount2 == nums2.length ? Integer.MAX_VALUE : nums2[leftCount2];
+            int L1 = leftCount1 == 0 ? Integer.MIN_VALUE : nums1[leftCount1 - 1];
+            int R1 = leftCount1 == nums1.length ? Integer.MAX_VALUE : nums1[leftCount1];
+            int L2 = leftCount2 == 0 ? Integer.MIN_VALUE : nums2[leftCount2 - 1];
+            int R2 = leftCount2 == nums2.length ? Integer.MAX_VALUE : nums2[leftCount2];
 
             if (L1 > R2) {
                 high = leftCount1 - 1;

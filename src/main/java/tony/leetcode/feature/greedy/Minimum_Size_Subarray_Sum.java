@@ -18,22 +18,19 @@ public class Minimum_Size_Subarray_Sum {
         if (null == nums || nums.length == 0 || target <= 0) {
             return 0;
         }
-        int left = 0, right = 0, result = Integer.MAX_VALUE;
         if (nums[0] >= target) {
             return 1;
         }
-        int current = nums[0];
-        while (true) {
-            right++;
-            if (right >= nums.length) {
-                break;
-            }
-            current += nums[right];
-            if (current >= target) {
-                while (current >= target) {
-                    current -= nums[left++];
+        int result = Integer.MAX_VALUE;
+        int sum = 0;
+        int st = 0;
+        for (int ed = 0; ed < nums.length; ed++) {
+            sum += nums[ed];
+            if (sum >= target) {
+                while (st < ed && sum - nums[st] >= target) {
+                    sum -= nums[st++];
                 }
-                result = Math.min(right - left + 2, result);
+                result = Math.min(result, ed - st + 1);
             }
         }
         if (result == Integer.MAX_VALUE) {
