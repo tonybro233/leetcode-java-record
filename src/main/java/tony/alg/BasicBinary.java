@@ -12,7 +12,7 @@ public class BasicBinary {
         //   终止条件为 low = high + 1
         //   终止之前的计算会出现 low = high 的情况，临界时 mid = low = high
         //   所以搜索区间(mid所在区间)为 [low, high], 所以 high 的初始值要取为 len - 1
-        //   所以进行下一轮时的操作是 low = mid + 1 和 high = mid - 1
+        //   所以为了在临界时能跳出循环，进行下一轮时的操作是 low = mid + 1 (mid=low=左侧) 和 high = mid - 1 (mid=high=右侧)
 
         // 如果采用 <
         //   终止条件为 low = high
@@ -66,7 +66,11 @@ public class BasicBinary {
                 arrayVal(array, l2), l2, arrayVal(array, h2), h2);
 
         int l3 = 0;
-        int h3 = array.length - 1; // 注意这里取的是 len
+        // 这里取 len 或者 len - 1 只会在目标大于最大值时有影响
+        // 比如目标值就是最大值
+        // 取len则l3会直接取到最大值，然后h3缩小退出循环
+        // 取len-1则l3无法直接取到最大值，最后l3增大退出循环，此时l3刚好取到最大值
+        int h3 = array.length - 1;
 
         // 使用小于，则退出条件为 l3 = h3
         // 搜索区间为[l3, h3)，所以下一轮被分为[l3, mid), [l3 + 1, h3)
@@ -153,6 +157,47 @@ public class BasicBinary {
         System.out.println("low=" + low + " high=" + high);
     }
 
+    public static void cmp(int[] array, int target) {
+        int l1 = 0;
+        int h1 = array.length - 1;
+
+        // 使用小于，则退出条件为 l3 = h3
+        // 搜索区间为[l3, h3)，所以下一轮被分为[l3, mid), [l3 + 1, h3)
+        while (l1 < h1) { // 注意
+            int mid = (l1 + h1) / 2;
+            if (array[mid] < target) {
+                l1 = mid + 1;
+            } else if (array[mid] == target) {
+                h1 = mid; // 相等的时候缩小上界
+            } else if (array[mid] > target) {
+                h1 = mid; // 注意没有 -1
+            }
+        }
+
+        System.out.printf("1 左边界(大于目标最小):%s(%s) low=%s(%s) high=%s(%s)%n",
+                arrayVal(array, l1), l1, arrayVal(array, l1), l1, arrayVal(array, h1), h1);
+
+
+        int l3 = 0;
+        int h3 = array.length - 1; // 注意这里取的是 len
+
+        while (l3 <= h3) { // 注意
+            int mid = (l3 + h3) / 2;
+            if (array[mid] < target) {
+                l3 = mid + 1;
+            } else if (array[mid] == target) {
+                h3 = mid; // 相等的时候缩小上界
+                break;
+            } else if (array[mid] > target) {
+                h3 = mid; // 注意没有 -1
+            }
+        }
+
+        System.out.printf("2 左边界(大于目标最小):%s(%s) low=%s(%s) high=%s(%s)%n",
+                arrayVal(array, l3), l3, arrayVal(array, l3), l3, arrayVal(array, h3), h3);
+
+    }
+
     public static void main(String[] args) {
         int[] array = new int[]{1, 2, 3, 4, 6, 6, 8, 10};
         int target = 9;
@@ -160,7 +205,21 @@ public class BasicBinary {
         // search(array, target);
 
         System.out.println("数组=" + Arrays.toString(array) + " 长度=" + array.length + " 目标=" + target);
-        search(array, target);
+        // search(array, target);
+
+
+        // System.out.println(11);
+        // cmp(array, 11);
+        // System.out.println(10);
+        // cmp(array, 10);
+        System.out.println(9);
+        cmp(array, 9);
+        System.out.println(8);
+        cmp(array, 8);
+        System.out.println(1);
+        cmp(array, 1);
+        System.out.println(0);
+        cmp(array, 0);
 
         // searchTest(array, 9);
     }
